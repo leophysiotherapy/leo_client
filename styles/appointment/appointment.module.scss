@@ -1,0 +1,13 @@
+.container {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   .hello {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      gap: 20px;
+   }
+}
