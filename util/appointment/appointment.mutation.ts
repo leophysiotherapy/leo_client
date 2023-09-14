@@ -1,15 +1,9 @@
 import { gql } from '@apollo/client'
 
 
-export const CreateAppointment = gql`mutation Mutation($appointment: appointmentInput, $serviceId: ID!, $platform: platform, $userId: ID!) {
-    createAppointment(appointment: $appointment, serviceID: $serviceId, platform: $platform, userID: $userId) {
-      date
-      link
-      platform
-      services {
-        service
-      }
-      status
-      time
-    }
-  }`
+export const CreateAppointment = gql`mutation Mutation($serviceId: ID!, $userId: ID!, $end: String!, $appointment: appointmentInput, $platform: platform) {
+  createAppointment(serviceID: $serviceId, userID: $userId, end: $end, appointment: $appointment, platform: $platform) {
+    date
+    link
+  }
+}`

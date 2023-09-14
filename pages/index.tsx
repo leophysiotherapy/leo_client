@@ -6,11 +6,6 @@ import { FC } from 'react'
 import PageWithLayout from '@/layout/page.layout'
 import MainLayout from '@/layout/main.layout'
 
-
-interface PRODUCT {
-  price: number,
-  name: string
-}
 const Home: FC = () => {
   return (
     <>

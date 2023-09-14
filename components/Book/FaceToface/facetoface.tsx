@@ -1,15 +1,16 @@
-import React, { useState, SyntheticEvent } from 'react'
+import React, { useState, SyntheticEvent, useEffect } from 'react'
 import styles from '@/styles/appointment/app.module.scss'
 import dayjs from 'dayjs'
 import cn from '../cn'
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { Oxygen, Poppins } from 'next/font/google'
-import { generateDAte, days, months, TimeValue } from '../calendar.config'
+import { generateDate, days, months, TimeValue } from '../calendar.config'
 import { GetAllService } from '@/util/service/service.query'
 import { useQuery } from '@apollo/client'
-import { CreateAppointment } from '@/util/appointment/appointment.mutation'
-import { useMutation } from '@apollo/client'
-import Books from '../book'
+
+import Books from './book'
+
+
 
 const poppins = Poppins({
     weight: "500",
@@ -25,25 +26,33 @@ const oxygen = Oxygen({
 export default function F2F() {
 
 
-
     const currentDate = dayjs();
-
     const [ today, setToday ] = useState(currentDate)
-
     const [ selectedDate, setSelectedDate ] = useState(currentDate)
-
     const { loading, data } = useQuery(GetAllService)
-
-    const [ time, setTime ] = useState("")
-
     const [ books, setBooks ] = useState(false)
 
+
+
+
+    const [ appointment, setAppointment ] = useState({
+        time: "",
+        end: "",
+        serviceId: "",
+
+    })
+
+    const onClosBookPayment = () => {
+        setBooks(() => !books)
+    }
 
     return (
         <div className={styles.container}>
             {
                 books ? <div className={styles.books}>
-                    <Books />
+                    <Books close={onClosBookPayment} selectedDate={selectedDate}
+                        time={appointment.time}
+                        platform={"Face-to-Face"} serviceID={appointment.serviceId} />
                 </div> : null
             }
             <div className={styles.cal}>
@@ -69,11 +78,19 @@ export default function F2F() {
                     ))}
                 </div>
                 <div className={styles.calendar}>
-                    {generateDAte(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
+                    {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
                         <div className={styles.cells} key={index}>
-                            <span
+                            <button
                                 onClick={() => { setSelectedDate(date) }}
-                                className={cn(today ? `${styles.activeDate} ${oxygen.className}` : `${styles.notActive} ${oxygen.className}`)}>{date.date()}</span>
+                                disabled={date.isBefore(currentDate, "days")}
+                                className={
+                                    cn(
+                                        today ?
+                                            `${styles.activeDate} ${oxygen.className}` : `${styles.notActive} ${oxygen.className}`,
+                                        selectedDate.toDate().toDateString() === date.toDate().toDateString() ? `${styles.activeSelectedDate}`
+                                            : null, currentMonth ? null : `${styles.monthFalse}`)
+
+                                }>{date.date()}</button>
                         </div>
                     ))}
                 </div>
@@ -81,15 +98,17 @@ export default function F2F() {
             <div className={styles.dates}>
                 <h2 className={poppins.className}>Select Time</h2>
                 <div className={styles.time}>
-                    {TimeValue.map(({ name, value }) => (
-                        <div key={name} className={styles.timeContainer}>
+                    {TimeValue.map(({ name, start, }) => (
+                        <button
+                            onClick={(e) => setAppointment({ ...appointment, time: e.currentTarget.value })}
+                            value={start} key={name} className={appointment.time === start ? `${styles.timeContainer} ${styles.timeActive}` : `${styles.timeContainer}`}>
                             <h2 className={oxygen.className}>{name}</h2>
-                        </div>
+                        </button>
                     ))}
                 </div>
                 <h2 className={poppins.className}>Select Service</h2>
                 <div className={styles.select}>
-                    <select>
+                    <select onChange={(e) => setAppointment({ ...appointment, serviceId: e.target.value })}>
                         <option>--</option>
                         {loading ? "Loading" : data.getAllServcie.map(({ service, serviceID }: any) => (
                             <option className={oxygen.className} key={serviceID} value={serviceID}>{service}</option>
@@ -101,11 +120,11 @@ export default function F2F() {
                     <span className={oxygen.className}>I have read the policies of the website</span>
                 </div>
                 <div className={styles.form}>
-                    <button>Cancel</button>
+                    <button className={styles.cancelBtn}>Cancel</button>
                     <button onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }

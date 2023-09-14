@@ -65,7 +65,7 @@ export default function Form() {
                 <input className={oxygen.className} type="password" placeholder='Password'
                     onChange={(e) => setUsers({ ...users, password: e.target.value })} />
                 <div className={styles.forgetPassword}>
-                    <Link className={oxygen.className} href="/auth/forgetpassword">Forget password</Link>
+                    <Link className={oxygen.className} href="/auth/forgotpassword">Forgot password</Link>
                 </div>
                 <button>
                     <span className={oxygen.className}>Login</span>

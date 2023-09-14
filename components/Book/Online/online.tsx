@@ -3,7 +3,7 @@ import styles from '@/styles/appointment/app.module.scss'
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { Oxygen, Poppins } from 'next/font/google'
 import dayjs from 'dayjs'
-import { generateDAte, days, months, TimeValue } from '../calendar.config'
+import { generateDate, days, months, TimeValue } from '../calendar.config'
 import cn from '../cn'
 
 const poppins = Poppins({
@@ -24,8 +24,14 @@ export default function Online() {
     const currentDate = dayjs();
 
     const [ today, setToday ] = useState(currentDate)
-
+    const [ books, setBooks ] = useState(false)
     const [ selectedDate, setSelectedDate ] = useState(currentDate)
+    const [ appointment, setAppointment ] = useState({
+        time: "",
+        end: "",
+        serviceId: "",
+
+    })
 
     return (
         <div className={styles.container}>
@@ -52,11 +58,19 @@ export default function Online() {
                     ))}
                 </div>
                 <div className={styles.calendar}>
-                    {generateDAte(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
+                    {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
                         <div className={styles.cells} key={index}>
-                            <span
+                            <button
                                 onClick={() => { setSelectedDate(date) }}
-                                className={cn(today ? `${styles.activeDate} ${oxygen.className}` : `${styles.notActive} ${oxygen.className}`)}>{date.date()}</span>
+                                disabled={date.isBefore(currentDate, "days")}
+                                className={
+                                    cn(
+                                        today ?
+                                            `${styles.activeDate} ${oxygen.className}` : `${styles.notActive} ${oxygen.className}`,
+                                        selectedDate.toDate().toDateString() === date.toDate().toDateString() ? `${styles.activeSelectedDate}`
+                                            : null, currentMonth ? null : `${styles.monthFalse}`)
+
+                                }>{date.date()}</button>
                         </div>
                     ))}
                 </div>
@@ -64,15 +78,17 @@ export default function Online() {
             <div className={styles.dates}>
                 <h2 className={poppins.className}>Select Time</h2>
                 <div className={styles.time}>
-                    {TimeValue.map(({ name, value }) => (
-                        <div key={name} className={styles.timeContainer}>
+                    {TimeValue.map(({ name, start, }) => (
+                        <button
+                            onClick={(e) => setAppointment({ ...appointment, time: e.currentTarget.value })}
+                            value={start} key={name} className={appointment.time === start ? `${styles.timeContainer} ${styles.timeActive}` : `${styles.timeContainer}`}>
                             <h2 className={oxygen.className}>{name}</h2>
-                        </div>
+                        </button>
                     ))}
                 </div>
                 <h2 className={poppins.className}>Select Service</h2>
                 <div className={styles.select}>
-                    <select>
+                    <select onChange={(e) => setAppointment({ ...appointment, serviceId: e.target.value })}>
                         <option>--</option>
                         <option value="Gmeet">Gmeet</option>
                     </select>
@@ -82,8 +98,8 @@ export default function Online() {
                     <span className={oxygen.className}>I have read the policies of the website</span>
                 </div>
                 <div className={styles.form}>
-                    <button>Cancel</button>
-                    <button>Book Now</button>
+                    <button className={styles.cancelBtn}>Cancel</button>
+                    <button onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 

@@ -1,0 +1,36 @@
+.container {
+   min-width: 100%;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+   background-color: rgb(94, 198, 224);
+   padding: 10px;
+   div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      h2 {
+         font-size: 1.5rem;
+         color: #fff;
+      }
+      button {
+         width: 30px;
+         height: 30px;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         border-radius: 100px;
+         border: none;
+         cursor: pointer;
+         background-color: transparent;
+         svg {
+            stroke: #fff;
+         }
+      }
+   }
+   p {
+      text-align: justify;
+      color: #fff;
+   }
+}
