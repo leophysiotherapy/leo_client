@@ -6,6 +6,7 @@ import { useLocalStorage } from 'usehooks-ts'
 import { RegisterUser } from '@/util/form/auth'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
+import TermsAndCondition from './termsAndCondition'
 interface RegisterForm {
     email: string
     password: string
@@ -26,6 +27,7 @@ export default function RegisterForm() {
 
     const router = useRouter()
     const [ store, setStored ] = useLocalStorage("email", "")
+    const [ hippa, setHippa ] = useState(false)
     const [ ischecked, setChecked ] = useState(false)
     const [ retype, setRetype ] = useState("")
     const [ mutate ] = useMutation(RegisterUser)
@@ -75,8 +77,19 @@ export default function RegisterForm() {
         })
     }
 
+
+    const onHippaClose = () => {
+        setHippa(() => !hippa)
+    }
+
     return (
         <div className={styles.container}>
+            {
+                hippa ?
+                    <div className={styles.tc}>
+                        <TermsAndCondition close={onHippaClose} />
+                    </div> : null
+            }
             <form onSubmit={onHandleRegisterForm}>
                 <h2 className={poppins.className}>Create an Account</h2>
                 <div className={styles.fullname}>
@@ -90,11 +103,11 @@ export default function RegisterForm() {
                 <div className={styles.verification}>
                     <div className={styles.statement}>
                         <input onChange={() => setChecked(!ischecked)} checked={ischecked} type="checkbox" />
-                        <span className={oxygen.className}>I agree to all statement in HIPPA</span>
+                        <span className={oxygen.className}>I agree to all statement in <button onClick={() => setHippa(() => !hippa)} className={styles.hippa}>HIPAA</button> </span>
                     </div>
                     <span className={oxygen.className}>Already have an account? <Link href="/auth/login">Login here</Link></span>
                 </div>
-                <button disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone} type="submit">
+                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone} type="submit">
                     <span className={oxygen.className}>
                         Sign up
                     </span>

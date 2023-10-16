@@ -4,16 +4,27 @@ import { Poppins, Oxygen } from 'next/font/google'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-
-const poppins = Poppins({
-    weight: "400",
-    subsets: [ "latin" ]
-})
+import Image from 'next/image'
+import { TbChevronDown } from 'react-icons/tb'
 
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
 })
+
+
+const patientURL = [
+    { name: "My Booking", url: "/patient/mybooking" },
+    { name: "Patient Record", url: "/patient/myrecord" },
+    { name: "Feedback", url: "/patient/feedback" },
+    { name: "Account Settings", url: "/patient/settings" }
+]
+
+const bookingURL = [
+    { name: "Face-to-Face", url: "/patient/appointment/facetoface" },
+    { name: "Online", url: "/patient/appointment/online" },
+    { name: "Pre-diagnostic", url: "" }
+]
 export default function Header() {
     const [ cookies, setCookies ] = useState("")
     const router = useRouter()
@@ -27,8 +38,10 @@ export default function Header() {
 
 
     const onHandleLogout = () => {
-        Cookies.remove("physio_token")
+
         router.push("/")
+        Cookies.remove("physio_token")
+        router.reload()
     }
 
     return (
@@ -36,7 +49,7 @@ export default function Header() {
 
             <div className={styles.link}>
                 <div className={styles.title}>
-                    <h2 className={poppins.className}>Leonardo Clinic</h2>
+                    <Image src="/logo.png" alt="" height={73} width={145} />
                 </div>
 
             </div>
@@ -44,18 +57,17 @@ export default function Header() {
                 {cookies ?
                     <div className={styles.toggle}>
                         <button onClick={() => setBook(() => !book)} className={styles.booknow}>
-                            <span className={oxygen.className}>Book Now</span>
+                            <span className={oxygen.className}>Book Now <TbChevronDown size={15} /></span>
                         </button>
                         {book ? <div className={styles.toggleContainer}>
-                            <button onClick={() => router.push("/appointment/facetoface")}>
-                                <span className={oxygen.className}>Face-to-Face</span>
-                            </button>
-                            <button onClick={() => router.push("/appointment/online")}>
-                                <span className={oxygen.className}>Online</span>
-                            </button>
-                            <button>
-                                <span className={oxygen.className}>Pre-Diagnostic</span>
-                            </button>
+                            {bookingURL.map(({ name, url }) => (
+                                <button key={name} onClick={() => {
+                                    router.push(url)
+                                    setBook(false)
+                                }}>
+                                    <span className={oxygen.className}>{name}</span>
+                                </button>
+                            ))}
                         </div> : null}
                     </div>
                     :
@@ -68,21 +80,21 @@ export default function Header() {
                 </div>
                 {cookies ? <div className={styles.toggle}>
                     <button onClick={() => setDashboard(() => !dashboard)} className={styles.booknow}>
-                        <span className={oxygen.className}>Dashboard</span>
+                        <span className={oxygen.className}>Dashboard <TbChevronDown size={15} /></span>
                     </button>
                     {dashboard ? <div className={styles.toggleContainer}>
-                        <button onClick={() => router.push("/patient/mybooking")}>
-                            <span className={oxygen.className}>My Booking</span>
-                        </button>
-                        <button onClick={() => router.push("/patient/myrecord")}>
-                            <span className={oxygen.className}>Patient Record</span>
-                        </button>
-                        <button onClick={() => router.push("/patient/feedback")}>
-                            <span className={oxygen.className}>Feedback</span>
-                        </button>
-                        <button onClick={() => router.push("/patient/settings")}>
-                            <span className={oxygen.className}>Account Settings</span>
-                        </button>
+
+                        {
+                            patientURL.map(({ name, url }) => (
+                                <button key={name} onClick={() => {
+                                    router.push(url)
+                                    setDashboard(false)
+                                }}>
+                                    <span className={oxygen.className}>{name}</span>
+                                </button>
+                            ))
+                        }
+
                     </div> : null}
                 </div> : null}
             </div>

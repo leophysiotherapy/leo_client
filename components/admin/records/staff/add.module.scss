@@ -1,0 +1,63 @@
+.container {
+   width: 700px;
+   height: 450px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   background-color: #fff;
+   gap: 20px;
+   box-shadow: 0px 0px 3px 0px #ccc;
+   @media screen and (max-width: 600px) {
+      width: 500px;
+      height: 100%;
+      box-shadow: none;
+   }
+   form {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      div {
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         gap: 20px;
+         @media screen and (max-width: 600px) {
+            height: 100%;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+         }
+         input {
+            width: 250px;
+            height: 38px;
+            padding: 10px;
+         }
+      }
+   }
+
+   .formBtnGrp {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 250px);
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      button {
+         width: 255px;
+         height: 45px;
+         border-radius: 3px;
+         border: none;
+         font-size: 16px;
+      }
+      .submit {
+         background-color: #0097b2;
+         color: #fff;
+      }
+   }
+}

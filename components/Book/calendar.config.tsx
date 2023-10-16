@@ -57,11 +57,12 @@ export const days = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ]
 
 
 export const TimeValue = [
-    { name: "09:00 am", start: "09:00", end: "10:00" },
-    { name: "10:00 am", start: "10:00", end: "11:00" },
-    { name: "11:00 am", start: "11:00", end: "12:00" },
-    { name: "01:00 pm", start: "01:00", end: "02:00" },
-    { name: "02:00 pm", start: "02:00", end: "03:00" },
-    { name: "03:00 pm", start: "03:00", end: "05:00" },
-    { name: "04:00 pm", start: "05:00", end: "06:00" }
+    { name: "09:00 AM", start: "09:00 AM", end: "10:00 AM" },
+    { name: "10:00 AM", start: "10:00 AM", end: "11:00 AM" },
+    { name: "11:00 AM", start: "11:00 AM", end: "12:00 PM" },
+    { name: "01:00 PM", start: "01:00 PM", end: "02:00 PM" },
+    { name: "02:00 PM", start: "02:00 PM", end: "03:00 PM" },
+    { name: "03:00 PM", start: "03:00 PM", end: "04:00 PM" },
+    { name: "04:00 PM", start: "04:00 PM", end: "05:00 PM" }
 ]
+

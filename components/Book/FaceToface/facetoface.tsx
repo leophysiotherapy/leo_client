@@ -1,14 +1,16 @@
-import React, { useState, SyntheticEvent, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/appointment/app.module.scss'
 import dayjs from 'dayjs'
 import cn from '../cn'
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { Oxygen, Poppins } from 'next/font/google'
 import { generateDate, days, months, TimeValue } from '../calendar.config'
-import { GetAllService } from '@/util/service/service.query'
+import { getFindSpecificDate } from '@/util/appointment/appointment.query'
 import { useQuery } from '@apollo/client'
+import { format } from 'date-fns'
 
 import Books from './book'
+import { useRouter } from 'next/router'
 
 
 
@@ -23,27 +25,72 @@ const oxygen = Oxygen({
 })
 
 
+
+const services = [
+    { name: "Physical Theraphy", amount: 175 },
+    { name: "Injury Rehabilation", amount: 175 },
+    { name: "Instrument Assisted Soft Tissue Manipulation", amount: 175 },
+    { name: "Cupping Theraphy", amount: 175 },
+    { name: "Personal Training", amount: 175 },
+    { name: "Home Health Physical Theraphy", amount: 175 },
+    { name: "Joint Mobilizaiton", amount: 175 }
+]
+
+
 export default function F2F() {
 
-
+    const router = useRouter();
     const currentDate = dayjs();
     const [ today, setToday ] = useState(currentDate)
     const [ selectedDate, setSelectedDate ] = useState(currentDate)
-    const { loading, data } = useQuery(GetAllService)
     const [ books, setBooks ] = useState(false)
-
-
-
 
     const [ appointment, setAppointment ] = useState({
         time: "",
         end: "",
-        serviceId: "",
+        services: "",
 
     })
 
     const onClosBookPayment = () => {
         setBooks(() => !books)
+    }
+
+
+    const { loading, data } = useQuery(getFindSpecificDate, {
+        variables: {
+            date: format(new Date(selectedDate.toISOString()), "yyyy-MM-dd"),
+            platform: "f2f"
+        }
+    })
+
+    const [ times, setTime ] = useState([ "" ]);
+    const [ dates, setDates ] = useState([ "" ])
+    const [ isRender, setRender ] = useState(false)
+
+
+    useEffect(() => {
+
+        if (!isRender) {
+            data?.getAppointmentByDateTime.map(({ date, time }: any) => {
+
+                setTime((patientsTime) => [ ...patientsTime, time ])
+                setDates((patientsDate) => [ ...patientsDate, date ])
+            })
+
+        }
+        setRender(false)
+    }, [ data, isRender ])
+
+
+    const onValidChange = (time: any) => {
+
+        if (dates.includes(format(new Date(selectedDate.toDate()), "yyyy-MM-dd"))) {
+            if (times.includes(time)) {
+                return true
+            }
+        }
+
     }
 
     return (
@@ -52,7 +99,7 @@ export default function F2F() {
                 books ? <div className={styles.books}>
                     <Books close={onClosBookPayment} selectedDate={selectedDate}
                         time={appointment.time}
-                        platform={"Face-to-Face"} serviceID={appointment.serviceId} />
+                        platform={"Face-to-Face"} services={appointment.services} />
                 </div> : null
             }
             <div className={styles.cal}>
@@ -82,7 +129,7 @@ export default function F2F() {
                         <div className={styles.cells} key={index}>
                             <button
                                 onClick={() => { setSelectedDate(date) }}
-                                disabled={date.isBefore(currentDate, "days")}
+                                disabled={date.isBefore(currentDate, "days") || date.isAfter(currentDate.add(1, "days"), "days")}
                                 className={
                                     cn(
                                         today ?
@@ -100,6 +147,7 @@ export default function F2F() {
                 <div className={styles.time}>
                     {TimeValue.map(({ name, start, }) => (
                         <button
+                            disabled={onValidChange(start)}
                             onClick={(e) => setAppointment({ ...appointment, time: e.currentTarget.value })}
                             value={start} key={name} className={appointment.time === start ? `${styles.timeContainer} ${styles.timeActive}` : `${styles.timeContainer}`}>
                             <h2 className={oxygen.className}>{name}</h2>
@@ -108,10 +156,10 @@ export default function F2F() {
                 </div>
                 <h2 className={poppins.className}>Select Service</h2>
                 <div className={styles.select}>
-                    <select onChange={(e) => setAppointment({ ...appointment, serviceId: e.target.value })}>
+                    <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
                         <option>--</option>
-                        {loading ? "Loading" : data.getAllServcie.map(({ service, serviceID }: any) => (
-                            <option className={oxygen.className} key={serviceID} value={serviceID}>{service}</option>
+                        {services.map(({ amount, name }) => (
+                            <option key={name} value={name}>{name}</option>
                         ))}
                     </select>
                 </div>
@@ -120,7 +168,7 @@ export default function F2F() {
                     <span className={oxygen.className}>I have read the policies of the website</span>
                 </div>
                 <div className={styles.form}>
-                    <button className={styles.cancelBtn}>Cancel</button>
+                    <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>
                     <button onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>

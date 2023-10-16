@@ -1,0 +1,83 @@
+.container {
+   width: 100%;
+   padding: 10px;
+   .overlay {
+      width: 100%;
+      position: fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inset: 0;
+      background-color: rgba(255, 255, 255, 0.8);
+   }
+   .filtering {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      .filterDate,
+      .filterAll {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         div {
+            display: flex;
+            gap: 5px;
+            label {
+               font-size: 18px;
+            }
+         }
+      }
+   }
+   .reports {
+      width: 100%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 20px;
+      button {
+         padding: 8px 20px;
+         color: #fff;
+         background-color: #0097b2;
+         cursor: pointer;
+      }
+   }
+   .table {
+      table {
+         width: 100%;
+         border-collapse: collapse;
+         thead,
+         tbody {
+            width: 100%;
+            tr {
+               th {
+                  font-size: 18px;
+               }
+               td {
+                  height: 50px;
+                  border: 1px solid #ccc;
+                  text-align: center;
+
+                  button {
+                     background-color: transparent;
+                     border: none;
+                     cursor: pointer;
+                     &:nth-child(2) {
+                        svg {
+                           stroke: red;
+                        }
+                     }
+                  }
+                  a {
+                     text-decoration: underline;
+                     color: blue;
+                  }
+               }
+            }
+         }
+      }
+   }
+}

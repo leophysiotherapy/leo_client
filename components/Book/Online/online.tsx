@@ -1,10 +1,16 @@
-import React, { useState, SyntheticEvent } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from '@/styles/appointment/app.module.scss'
 import { TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { Oxygen, Poppins } from 'next/font/google'
 import dayjs from 'dayjs'
 import { generateDate, days, months, TimeValue } from '../calendar.config'
 import cn from '../cn'
+import Books from './book'
+import { useRouter } from 'next/router'
+import { getFindSpecificDate } from '@/util/appointment/appointment.query'
+import { useQuery } from '@apollo/client'
+import { format } from 'date-fns'
+
 
 const poppins = Poppins({
     weight: "500",
@@ -20,8 +26,10 @@ const oxygen = Oxygen({
 export default function Online() {
 
 
-
+    const router = useRouter();
     const currentDate = dayjs();
+
+
 
     const [ today, setToday ] = useState(currentDate)
     const [ books, setBooks ] = useState(false)
@@ -29,12 +37,62 @@ export default function Online() {
     const [ appointment, setAppointment ] = useState({
         time: "",
         end: "",
-        serviceId: "",
+        services: "",
 
     })
 
+
+
+    const { loading, data } = useQuery(getFindSpecificDate, {
+        variables: {
+            date: format(new Date(selectedDate.toISOString()), "yyyy-MM-dd"),
+            platform: "online"
+        }
+    })
+
+    const onHandleClose = () => {
+        setBooks(false)
+    }
+
+
+    const [ times, setTime ] = useState([ "" ]);
+    const [ dates, setDates ] = useState([ "" ])
+    const [ isRender, setRender ] = useState(false)
+
+
+    useEffect(() => {
+
+        if (!isRender) {
+            data?.getAppointmentByDateTime.map(({ date, time }: any) => {
+
+                setTime((patientsTime) => [ ...patientsTime, time ])
+                setDates((patientsDate) => [ ...patientsDate, date ])
+            })
+
+        }
+        setRender(false)
+    }, [ data, isRender ])
+
+
+    const onValidChange = (time: any) => {
+
+        if (dates.includes(format(new Date(selectedDate.toDate()), "yyyy-MM-dd"))) {
+            if (times.includes(time)) {
+                return true
+            }
+        }
+
+    }
+
+
     return (
         <div className={styles.container}>
+            {
+                books ? <div className={styles.books}>
+                    <Books selectedDate={selectedDate} time={appointment.time} close={onHandleClose} />
+                </div> : null
+            }
+
             <div className={styles.cal}>
                 <div className={styles.dateToday}>
                     <div>
@@ -62,7 +120,7 @@ export default function Online() {
                         <div className={styles.cells} key={index}>
                             <button
                                 onClick={() => { setSelectedDate(date) }}
-                                disabled={date.isBefore(currentDate, "days")}
+                                disabled={date.isBefore(currentDate, "days") || date.isAfter(currentDate.add(1, "days"), "days")}
                                 className={
                                     cn(
                                         today ?
@@ -78,8 +136,16 @@ export default function Online() {
             <div className={styles.dates}>
                 <h2 className={poppins.className}>Select Time</h2>
                 <div className={styles.time}>
+
+                    {
+
+                    }
                     {TimeValue.map(({ name, start, }) => (
                         <button
+                            disabled={
+                                onValidChange(start)
+
+                            }
                             onClick={(e) => setAppointment({ ...appointment, time: e.currentTarget.value })}
                             value={start} key={name} className={appointment.time === start ? `${styles.timeContainer} ${styles.timeActive}` : `${styles.timeContainer}`}>
                             <h2 className={oxygen.className}>{name}</h2>
@@ -88,7 +154,7 @@ export default function Online() {
                 </div>
                 <h2 className={poppins.className}>Select Service</h2>
                 <div className={styles.select}>
-                    <select onChange={(e) => setAppointment({ ...appointment, serviceId: e.target.value })}>
+                    <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
                         <option>--</option>
                         <option value="Gmeet">Gmeet</option>
                     </select>
@@ -103,6 +169,6 @@ export default function Online() {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }

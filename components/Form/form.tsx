@@ -7,6 +7,8 @@ import { LoginUser } from '@/util/form/auth'
 import Link from 'next/link'
 import { Oxygen, Poppins } from 'next/font/google'
 import jwtDecode from 'jwt-decode'
+import ReCAPTCHA from "react-google-recaptcha"
+
 
 const oxygen = Oxygen({
     weight: "400",
@@ -20,6 +22,8 @@ const poppins = Poppins({
 
 export default function Form() {
     const router = useRouter()
+
+    const [ isVerified, setVerified ] = useState(false)
     const [ users, setUsers ] = useState({
         email: "",
         password: ""
@@ -47,27 +51,38 @@ export default function Form() {
                 const { role }: any = jwtDecode(data.login.token)
 
                 if (role === "patient") {
-                    router.push("/")
+                    router.push("/patient/mybooking")
                 } else if (role === "admin") {
                     router.push("/administrator")
                 }
+            },
+            onError: (error) => {
+                alert(error.message)
             },
             errorPolicy: "all"
         })
     }
 
+
+    const onCaptchaChange = () => {
+        setVerified(() => !isVerified)
+    }
+
     return (
         <div className={styles.container}>
             <h2 className={poppins.className}>Login</h2>
-            <form onSubmit={onHandleFormSubmit}>
-                <input className={oxygen.className} type='emai' placeholder='Email Addres'
+            <form>
+                <input className={oxygen.className} type='emai' placeholder='Email Address'
                     onChange={(e) => setUsers({ ...users, email: e.target.value })} />
                 <input className={oxygen.className} type="password" placeholder='Password'
                     onChange={(e) => setUsers({ ...users, password: e.target.value })} />
                 <div className={styles.forgetPassword}>
                     <Link className={oxygen.className} href="/auth/forgotpassword">Forgot password</Link>
                 </div>
-                <button>
+                <div>
+                    <ReCAPTCHA sitekey='6LcDfU4oAAAAAGxboInFz_ikEW9i2zGQY1kLoYWP' onChange={onCaptchaChange} />
+                </div>
+                <button disabled={isVerified === false} type="submit" onClick={onHandleFormSubmit}>
                     <span className={oxygen.className}>Login</span>
                 </button>
                 <div className={styles.register}>

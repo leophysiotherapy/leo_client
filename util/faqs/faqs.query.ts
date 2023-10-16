@@ -8,3 +8,12 @@ export const GetAllFAQs = gql`query GetAllFAQs {
       answer
     }
   }`
+
+
+export const GetFindFaqsQuestion = gql`query Query($search: String!) {
+  getFindFAQsQuestion(search: $search) {
+    faqsID
+    faqs
+    answer
+  }
+}`

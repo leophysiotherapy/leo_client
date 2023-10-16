@@ -22,3 +22,9 @@ export const VerifiedAccount = gql`mutation UpdateUserVerifiedAcc($email: EmailA
     password
   }
 }`
+
+export const ResetPassword = gql`mutation ResetUserPassword($email: EmailAddress!, $password: String!, $retype: String!) {
+  resetUserPassword(email: $email, password: $password, retype: $retype) {
+    email
+  }
+}`

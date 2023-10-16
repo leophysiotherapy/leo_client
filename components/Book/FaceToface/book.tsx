@@ -8,7 +8,6 @@ import { format } from 'date-fns'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import { getAllPhysioId } from '@/util/user/user.query'
-import { getAllServicebById } from '@/util/appointment/service/service.query'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
@@ -19,14 +18,10 @@ const oxygen = Oxygen({
     subsets: [ "latin" ]
 })
 
-export default function Books({ selectedDate, time, close, platform, serviceID }: any) {
+export default function Books({ selectedDate, time, close, platform, services }: any) {
 
     const [ cookies, setCookies ] = useState("")
     const [ paid, setPaid ] = useState(false)
-    const [ server, setService ] = useState({
-        service: "",
-        price: 0
-    })
 
     const { loading, data, error } = useQuery(getAllPhysioId, {
         variables: {
@@ -34,11 +29,6 @@ export default function Books({ selectedDate, time, close, platform, serviceID }
         }
     })
 
-    const { loading: loadService, data: Service } = useQuery(getAllServicebById, {
-        variables: {
-            serviceId: serviceID
-        }
-    })
 
     useEffect(() => {
         const token = Cookies.get("physio_token") as any
@@ -49,15 +39,6 @@ export default function Books({ selectedDate, time, close, platform, serviceID }
 
     }, [ cookies ])
 
-
-    useEffect(() => {
-        loadService ? "Loading" : Service?.getServiceById.map(({ price, service }: any) => {
-            setService({
-                price, service
-            })
-        })
-    }, [ Service, loadService ])
-
     const [ mutate ] = useMutation(CreateAppointment)
 
     const onHandleSubmitForm = (e: any) => {
@@ -66,10 +47,12 @@ export default function Books({ selectedDate, time, close, platform, serviceID }
             variables: {
                 appointment: {
                     date: format(new Date(selectedDate), "yyyy-MM-dd"),
-                    time: `${time}:00z`
+                    time: time,
+                    services: services,
+                    amount: 175,
                 },
                 end: "",
-                serviceId: serviceID,
+
                 userId: cookies,
                 platform: "f2f"
             },
@@ -135,7 +118,7 @@ export default function Books({ selectedDate, time, close, platform, serviceID }
                 <div className={styles.payment}>
                     <div>
                         <span className={oxygen.className}>Please Pay: </span>
-                        <span className={oxygen.className}>{server.price}</span>
+                        <span className={oxygen.className}>{Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(175)}</span>
                     </div>
                     <PayPalButtons
                         style={{
@@ -146,7 +129,7 @@ export default function Books({ selectedDate, time, close, platform, serviceID }
                         createOrder={(data, actions) => {
                             return actions.order.create({
                                 purchase_units: [ {
-                                    description: server.service,
+                                    description: services,
                                     amount: {
                                         value: "175"
                                     },
