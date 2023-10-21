@@ -5,7 +5,6 @@ import { Oxygen, Poppins } from 'next/font/google'
 import { useRouter } from 'next/router'
 import { PDFDownloadLink, Document, View, Page, Text } from '@react-pdf/renderer'
 import styles from '@/styles/admin/prescription/prescription.module.scss'
-import { DeletePrescription } from '@/util/prescription/prescription.mutation'
 import PrescriptionsDelete from './delete'
 
 const oxygen = Oxygen({

@@ -1,0 +1,44 @@
+.container {
+   width: 100%;
+   padding: 20px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   gap: 10px;
+   .header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      button {
+         background-color: #0097b2;
+         padding: 10px;
+         color: #fff;
+      }
+   }
+   .diagnosisContainer {
+      width: 700px;
+      height: 500px;
+      background-color: #0097b2;
+      padding: 15px;
+      border-radius: 5px;
+      @media screen and (max-width: 600px) {
+         width: 100%;
+      }
+
+      .card {
+         width: 100%;
+         height: 100%;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+         gap: 10px;
+         span {
+            color: #fff;
+            font-size: 18px;
+         }
+      }
+   }
+}

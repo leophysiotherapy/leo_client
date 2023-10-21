@@ -12,10 +12,12 @@ export const getAllPhysioId = gql`query Query($userId: ID!) {
       diagnosis {
       diagnosisID
       diagnosis
+      createdAt
     }
     prescription {
       prescriptionID
       prescription
+      createdAt
     }
     }
   }`

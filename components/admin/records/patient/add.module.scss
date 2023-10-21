@@ -40,6 +40,23 @@
                height: 38px;
                padding: 10px;
             }
+            .appointment {
+               display: flex;
+               gap: 5px;
+            }
+            .platform {
+               display: flex;
+               gap: 10px;
+               div {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 5px;
+                  input[type="radio"] {
+                     width: 20px;
+                  }
+               }
+            }
          }
          .ss {
             width: 100%;

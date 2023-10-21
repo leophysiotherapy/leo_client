@@ -6,6 +6,7 @@ import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { CreateOTP } from '@/util/otp/otp.mutation'
+import Image from 'next/image'
 const poppins = Poppins({
     weight: '500',
     subsets: [ "latin" ]
@@ -64,6 +65,7 @@ export default function ForgetPassword() {
 
             <div className={styles.forgotContainer}>
                 <h2 className={poppins.className}>Reset Password</h2>
+                <Image src="/logo.png" alt="" height={80} width={120} priority />
                 <span>
                     {error?.message}</span>
                 <span className={oxygen.className}>Enter your account Email Address </span>

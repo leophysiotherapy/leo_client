@@ -9,14 +9,12 @@ import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
-
+import { format } from 'date-fns'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
 })
 
-
-const heads = [ "Diagnosis", "Prescriptions" ]
 
 const MyRecord: FC = ({ userID }: any) => {
     const { loading, data } = useQuery(getAllPhysioId, {
@@ -39,30 +37,52 @@ const MyRecord: FC = ({ userID }: any) => {
                                 <h2 className={poppins.className}>Patient Name: {firstname} {lastname}</h2>
                                 <h2 className={poppins.className}>Email Address: {email}</h2>
                             </div>
-                            <div className={styles.record}>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            {heads.map((name) => (
-                                                <th className={poppins.className} key={name}>{name}</th>
-                                            ))}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            {diagnosis.map(({ diagnosisID, diagnosis }: any) => (
-                                                <td key={diagnosisID}>
-                                                    <Link href={`/patient/myrecord/diagnosis/${diagnosisID}`}>View</Link>
-                                                </td>
+                            <div className={styles.recordContainer}>
+                                <div className={styles.record}>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th className={poppins.className}>DateTime</th>
+                                                <th className={poppins.className}>Diagnosis</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            {diagnosis.map(({ diagnosisID, diagnosis, createdAt }: any) => (
+                                                <tr key={diagnosisID}>
+                                                    <td className={poppins.className}>{format(new Date(createdAt), "MMMM dd, yyyy hh:mm:ss")}</td>
+                                                    <td>
+                                                        <Link href={`/patient/myrecord/diagnosis/${diagnosisID}`}>View</Link>
+                                                    </td>
+
+                                                </tr>
                                             ))}
 
-                                            {prescription.map(({ prescriptionID, prescription }: any) => (
-                                                <td key={prescriptionID}> <Link href={`/patient/myrecord/prescription/${prescriptionID}`}>View</Link></td>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className={styles.record}>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th className={poppins.className}>DateTime</th>
+                                                <th className={poppins.className}>Prescriptions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                            {prescription.map(({ prescriptionID, prescription, createdAt }: any) => (
+                                                <tr key={prescriptionID}>
+                                                    <td className={poppins.className}>{format(new Date(createdAt), "MMMM dd, yyyy hh:mm:ss")}</td>
+                                                    <td ><Link href={`/patient/myrecord/prescription/${prescriptionID}`}>View</Link></td>
+                                                </tr>
                                             ))}
 
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     ))

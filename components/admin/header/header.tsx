@@ -17,7 +17,7 @@ export default function Header({ close }: any) {
                 <TbMenu2 size={40} />
             </button>
             <h2 className={poppins.className}>
-                Leonardo Physical Therapy Rehabilitation Clinic
+                Leonardo Physical Therapy Rehabilitation
             </h2>
         </div>
     )

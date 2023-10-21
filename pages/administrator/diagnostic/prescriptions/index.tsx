@@ -7,6 +7,9 @@ import { GetAllPrescription, GetFindPrescriptions } from '@/util/prescription/pr
 import { Oxygen, Poppins } from 'next/font/google'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import PrescriptionQuery from '@/components/admin/diagnostic/prescription'
+import { TbPlus } from 'react-icons/tb'
+import AddPrescriptions from '@/components/admin/diagnostic/add'
+
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
@@ -24,15 +27,25 @@ const headerTable = [ "DateTime", "Name", "Actions" ]
 
 const Prescriptions: FC = () => {
 
-
+    const [ add, setAdd ] = useState(false)
     const { loading, data } = useQuery(GetAllPrescription)
     const [ searchPrescriptions, { data: searchData } ] = useLazyQuery(GetFindPrescriptions)
     const [ search, setSearch ] = useState("")
+
+
+    const onHandleCancelPrescriptions = () => {
+        setAdd(() => !add)
+    }
     return (
         <div className={styles.container}>
             <Head>
                 <title>Prescription</title>
             </Head>
+            {
+                add ? <div className={styles.overlay}>
+                    <AddPrescriptions close={onHandleCancelPrescriptions} />
+                </div> : null
+            }
             <div className={styles.filter}>
                 <div className={styles.filterEntries}>
 
@@ -48,6 +61,12 @@ const Prescriptions: FC = () => {
                         }
 
                         } />
+                    </div>
+                    <div className={styles.addPrescriptions}>
+                        <button onClick={() => setAdd(() => !add)}>
+                            <span>Create</span>
+                            <TbPlus size={16} />
+                        </button>
                     </div>
                 </div>
             </div>

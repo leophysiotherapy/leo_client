@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Oxygen } from 'next/font/google'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { TbEdit, TbTrash } from 'react-icons/tb'
-import DeleteAppointmentsId from './delete'
+import { TbEdit, TbX } from 'react-icons/tb'
+import DeleteAppointmentsId from './cancelAppointment'
 import styles from '@/styles/admin/booking/online.module.scss'
 import EditAppointment from './edit'
 
@@ -50,7 +50,7 @@ export default function AppointmentQuery({ appointmentID, date, link, time, stat
                     <TbEdit size={23} />
                 </button>
                 <button onClick={onHandleDeleteApppointment}>
-                    <TbTrash size={23} />
+                    <TbX size={23} />
                 </button>
             </td>
         </tr >

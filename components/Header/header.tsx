@@ -23,7 +23,7 @@ const patientURL = [
 const bookingURL = [
     { name: "Face-to-Face", url: "/patient/appointment/facetoface" },
     { name: "Online", url: "/patient/appointment/online" },
-    { name: "Pre-diagnostic", url: "" }
+    { name: "Pre-diagnostic", url: "/patient/appointment/pre-diagnostic" }
 ]
 export default function Header() {
     const [ cookies, setCookies ] = useState("")
@@ -49,7 +49,7 @@ export default function Header() {
 
             <div className={styles.link}>
                 <div className={styles.title}>
-                    <Image src="/logo.png" alt="" height={73} width={145} />
+                    <Image src="/logo.png" alt="" height={73} width={145} onClick={() => router.push("/")} />
                 </div>
 
             </div>

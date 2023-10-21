@@ -71,7 +71,7 @@ const Online: FC = () => {
                 </div>
             </div>
             <div className={styles.reports}>
-                <button onClick={() => router.push("/administrator/bookings/online/reports")}>Reports</button>
+                <button onClick={() => router.push("/administrator/bookings/reports")}>Reports</button>
             </div>
             <div className={styles.table}>
                 <table>

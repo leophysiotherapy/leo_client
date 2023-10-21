@@ -35,11 +35,11 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
             {appointment.length === 0 ? <td className={oxygen.className}>N/A</td> : appointment.map(({ date, time }: any, i) => (
                 i === 0 ? <td key={date} className={oxygen.className}>{format(new Date(date), "MMMM dd, yyyy")}{" "}{time}</td> : null
             ))}
-            {prescription.length === 0 ? <td>N/A</td> : prescription.map(({ prescriptionID, prescription: pre }: any, i) => (
-                i === 0 ?
-                    pre.length === 0 || pre.length === null ? <td>N/A</td> : <td className={oxygen.className} key={prescriptionID}><Link href={`/administrator/records/patient/prescription/${prescriptionID}`}>View</Link></td> :
-                    <td key={userID}>N/A</td>
-            ))}
+            {prescription.length === 0 ? <td>N/A</td> :
+                prescription.map(({ prescriptionID, prescription: pre }: any, i) => (
+                    i === 0 ?
+                        <td className={oxygen.className} key={prescriptionID}><Link href={`/administrator/records/patient/prescription/${prescriptionID}`}>View</Link></td> : null
+                ))}
             {
                 diagnosis.map(({ diagnosisID, diagnosis: dia }: any) => (
                     dia.length === 0 ? <td key={diagnosisID}>N/A</td> : <td key={diagnosisID} className={oxygen.className}><Link href={`/administrator/records/patient/diagnosis/${diagnosisID}`}>View</Link></td>

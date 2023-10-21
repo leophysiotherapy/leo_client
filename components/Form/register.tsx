@@ -32,6 +32,8 @@ export default function RegisterForm() {
     const [ retype, setRetype ] = useState("")
     const [ mutate ] = useMutation(RegisterUser)
 
+    const [ isValid, setIsValid ] = useState(false)
+
     const [ users, setUsers ] = useState<RegisterForm>({
         email: "",
         password: "",
@@ -82,6 +84,18 @@ export default function RegisterForm() {
         setHippa(() => !hippa)
     }
 
+
+    const checkPassword = () => {
+        const capitalRegex = /[A-Z]/;
+        const numberRegex = /[0-9]/;
+
+        const hasCapital = capitalRegex.test(users.password);
+        const hasNumber = numberRegex.test(users.password);
+        const isLengthValid = users.password.length >= 6;
+
+        setIsValid(hasCapital && hasNumber && isLengthValid);
+    }
+
     return (
         <div className={styles.container}>
             {
@@ -98,7 +112,18 @@ export default function RegisterForm() {
                 </div>
                 <input onChange={(e) => setUsers({ ...users, email: e.target.value })} className={styles.inptext} type="email" placeholder='Email Address' />
                 <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
-                <input onChange={(e) => setUsers({ ...users, password: e.target.value })} className={styles.inptext} type="password" placeholder='Password' />
+                <input onChange={(e) => {
+                    setUsers({ ...users, password: e.target.value })
+                    checkPassword()
+                }} className={styles.inptext} type="password" placeholder='Password' />
+                <p className={oxygen.className}>
+                    Password must contain at least 1 capital letter, 1 number, and be at least 6 characters long.
+                </p>
+                {isValid ?
+                    <p className={oxygen.className} style={{ color: 'green' }}>Password is valid.</p>
+                    :
+                    <p className={oxygen.className} style={{ color: 'red' }}>Password is invalid.</p>
+                }
                 <input onChange={(e) => setRetype(e.target.value)} className={styles.inptext} type="password" placeholder='Confirm Password' />
                 <div className={styles.verification}>
                     <div className={styles.statement}>

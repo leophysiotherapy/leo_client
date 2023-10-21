@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import styles from '@/styles/Home.module.scss'
 import { FC } from 'react'
 import PageWithLayout from '@/layout/page.layout'
@@ -6,6 +7,13 @@ import MainLayout from '@/layout/main.layout'
 import { Oxygen, Poppins } from 'next/font/google'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
+import PageOne from '@/components/slider/page'
+import Page2 from '@/components/slider/page2'
+import Page3 from '@/components/slider/page3'
+import Page4 from '@/components/slider/page4'
+import Page5 from '@/components/slider/page5'
+import Page6 from '@/components/slider/page6'
+
 
 const poppins = Poppins({
   weight: "500",
@@ -60,6 +68,20 @@ const services = [
 const Home: FC = () => {
   const router = useRouter();
 
+  const [ slider, setSlider ] = useState(1)
+
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSlider(() => slider + 1)
+      if (slider === 6) {
+        setSlider(1)
+      }
+    }, 10000)
+
+
+    return () => clearInterval(interval)
+  })
   return (
     <>
       <Head>
@@ -73,6 +95,28 @@ const Home: FC = () => {
         <div className={styles.tagline}>
           <h2 className={poppins.className}>Reclaiming Movement, Restoring Life.</h2>
           <button onClick={() => router.push("/auth/login")}>BOOK NOW</button>
+          {
+            slider === 1 ? <PageOne /> : null
+          }
+          {
+            slider === 2 ? <Page2 /> : null
+          }
+
+          {
+            slider === 3 ? <Page3 /> : null
+          }
+
+          {
+            slider === 4 ? <Page4 /> : null
+          }
+          {
+            slider === 5 ? <Page5 /> : null
+          }
+          {
+            slider === 6 ? <Page6 /> : null
+          }
+
+
         </div>
         <div className={styles.title}>
           <h2 className={poppins.className}>Services</h2>

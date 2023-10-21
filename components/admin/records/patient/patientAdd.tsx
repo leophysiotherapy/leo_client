@@ -4,6 +4,7 @@ import styles from './add.module.scss'
 import { Poppins } from 'next/font/google'
 import { CreateOldPatient } from '@/util/user/user.mutation'
 import { GetAllPhysioUserByRole } from '@/util/user/user.query'
+import { TimeValue } from '@/components/Book/calendar.config'
 
 
 const poppins = Poppins({
@@ -17,6 +18,8 @@ export default function PatientAdd({ close }: any) {
 
     const [ mutate ] = useMutation(CreateOldPatient)
 
+
+    const [ platform, setPlatform ] = useState("")
     const [ patient, setAddPatient ] = useState({
         firstname: "",
         lastname: "",
@@ -70,10 +73,27 @@ export default function PatientAdd({ close }: any) {
                         <input type="text" value={patient.firstname} placeholder='Firstname' onChange={(e) => setAddPatient({ ...patient, firstname: e.target.value })} />
                         <input type="text" value={patient.lastname} placeholder='Lastname'
                             onChange={(e) => setAddPatient({ ...patient, lastname: e.target.value })} />
-
                         <input type="text" value={patient.email} placeholder='Email' onChange={(e) => setAddPatient({ ...patient, email: e.target.value })} />
                         <input type="text" value={patient.contact} placeholder='Contact'
                             onChange={(e) => setAddPatient({ ...patient, contact: e.target.value })} />
+                        <div className={styles.platform}>
+                            <div>
+                                <input type="radio" value="online" />
+                                <label>Online</label>
+                            </div>
+                            <div>
+                                <input type="radio" value="f2f" />
+                                <label>Face-to-Face</label>
+                            </div>
+                        </div>
+                        <div className={styles.appointment}>
+                            <input type='date' />
+                            <select>
+                                {TimeValue.map(({ name, start }) => (
+                                    <option key={name}>{name}</option>
+                                ))}
+                            </select>
+                        </div>
 
                     </div>
 

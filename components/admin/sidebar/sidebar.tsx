@@ -51,7 +51,7 @@ export default function Sidebar({ close }: any) {
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
-                <Image src='/logo.png' height={110} width={180} alt="" />
+                <Image src='/logo.png' height={110} width={180} alt="" onClick={() => router.push("/administrator")} />
                 {width < 600 ? <button onClick={close}>
                     <TbMenu2 size={23} />
                 </button> : null}
@@ -126,18 +126,16 @@ export default function Sidebar({ close }: any) {
                     <span>Inventory</span>
                     {inventory ? <TbChevronDown size={20} /> : <TbChevronRight size={20} />}
                 </button>
-                {
-                    inventory ?
-                        <div className={styles.subNav}>
-                            <button onClick={() => {
-                                router.push("/administrator/inventory/equipment")
-                                width < 600 ? close() : null
-                            }}>
-                                <span>Equipment </span>
-                                {loading ? "" : <span>{data.getInventoryExpiration}</span>}
-                            </button>
-                        </div> : null
-                }
+
+                <div className={styles.subNav}>
+                    <button onClick={() => {
+                        router.push("/administrator/inventory/equipment")
+                        width < 600 ? close() : null
+                    }}>
+                        <span>Equipment </span>
+                        {loading ? "" : <span>{data.getInventoryExpiration}</span>}
+                    </button>
+                </div>
                 <button onClick={() => setContent(() => !content)}>
                     <span>Content</span>
                     {content ? <TbChevronDown size={20} /> : <TbChevronRight size={20} />}
@@ -166,6 +164,12 @@ export default function Sidebar({ close }: any) {
                 {
                     feedback ?
                         <div className={styles.subNav}>
+                            <button onClick={() => {
+                                router.push("/administrator/feedback/evaluation-form")
+                                width < 600 ? close() : null
+                            }}>
+                                <span>Evaluation Form</span>
+                            </button>
                             <button onClick={() => {
                                 router.push("/administrator/feedback/reviews")
                                 width < 600 ? close() : null

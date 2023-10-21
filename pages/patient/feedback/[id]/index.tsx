@@ -1,4 +1,3 @@
-import DashboardLayout from '@/layout/dashboard.layout'
 import PageWithLayout from '@/layout/page.layout'
 import React, { FC } from 'react'
 import { GetAllFeedbackById, GetAllFeedbackQuery } from '@/util/feedback/feedback.query'

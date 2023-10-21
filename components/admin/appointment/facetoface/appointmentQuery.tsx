@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import { Oxygen } from 'next/font/google'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { TbEdit, TbTrash } from 'react-icons/tb'
+import { TbEdit, TbX } from 'react-icons/tb'
 import styles from '@/styles/admin/booking/online.module.scss'
-import DeleteAppointmentsId from './delete'
+import DeleteAppointmentsId from './cancelAppointment'
 import EditAppointment from './edit'
 const oxygen = Oxygen({
     weight: "400",
@@ -17,7 +17,7 @@ export default function AppointmentQuery({ appointmentID, date, time, status, fu
 
     const [ editAppointment, setEditAppointment ] = useState(false)
 
-    const onHandleDeleteApppointment = () => {
+    const onHandleCancelAppointment = () => {
         setDeleteAppointment(() => !deleteAppointment)
     }
 
@@ -37,7 +37,7 @@ export default function AppointmentQuery({ appointmentID, date, time, status, fu
             <td>
                 {
                     deleteAppointment ? <div className={styles.overlay}>
-                        <DeleteAppointmentsId appointmentID={appointmentID} close={onHandleDeleteApppointment} />
+                        <DeleteAppointmentsId appointmentID={appointmentID} close={onHandleCancelAppointment} />
                     </div> : null
                 }
                 {
@@ -49,8 +49,8 @@ export default function AppointmentQuery({ appointmentID, date, time, status, fu
                 <button onClick={onHandleEditAppointment}>
                     <TbEdit size={23} />
                 </button>
-                <button onClick={onHandleDeleteApppointment}>
-                    <TbTrash size={23} />
+                <button onClick={onHandleCancelAppointment}>
+                    <TbX size={23} />
                 </button>
             </td>
         </tr >
