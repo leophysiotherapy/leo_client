@@ -1,19 +1,32 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import styles from './edit.module.scss'
 import { Poppins } from 'next/font/google'
 import { UpdateOldPatient } from '@/util/user/user.mutation'
 import { GetAllPhysioUserByRole } from '@/util/user/user.query'
+import { TimeValue } from '@/components/Book/calendar.config'
 
 
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
 })
-export default function PatientAdd({ close, userID, firstname, lastname, phone, prescription, diagnosis }: any) {
+export default function PatientAdd({ close, userID, firstname, lastname, phone, prescription, diagnosis, appointment, email }: any) {
 
 
 
+    const [ editAppoint, setEditAppointment ] = useState<any>({
+        date: "", time: "", platform: ""
+    })
+
+
+    useEffect(() => {
+        appointment.map(({ date, time, platform }: any, i: any) => {
+            i === 0 ? setEditAppointment({
+                date, time, platform
+            }) : null
+        })
+    }, [ appointment ])
 
     const [ mutate ] = useMutation(UpdateOldPatient)
 
@@ -21,8 +34,13 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
         firstname: firstname,
         lastname: lastname,
         contact: phone,
-        diagnosis: "",
-        prescription: ""
+        email: email,
+        diagnosis: diagnosis[ 0 ].diagnosis,
+        prescription: "",
+        date: editAppoint.date,
+        time: editAppoint.time,
+        platform: editAppoint.platform,
+
     })
 
     const onHandleStaffForm = (e: SyntheticEvent) => {
@@ -32,10 +50,14 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                 userId: userID,
                 diagnosis: patient.diagnosis,
                 prescription: patient.prescription,
+                date: editAppoint.date,
+                time: editAppoint.time,
+                platform: editAppoint.platform,
                 user: {
                     firstname: patient.firstname,
                     lastname: patient.lastname,
-                    phone: patient.contact
+                    phone: patient.contact,
+                    email: patient.email
                 }
             },
             errorPolicy: "all",
@@ -45,8 +67,12 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                     firstname,
                     lastname,
                     contact: phone,
+                    email,
                     diagnosis: diagnosis[ 0 ].diagnosis,
-                    prescription: prescription[ 0 ].prescription
+                    prescription: prescription[ 0 ].prescription,
+                    date: editAppoint.date,
+                    platform: editAppoint.platform,
+                    time: editAppoint.time
                 })
             },
             onError: (e) => {
@@ -71,9 +97,35 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                         <input type="text" value={patient.firstname} placeholder='Firstname' onChange={(e) => setAddPatient({ ...patient, firstname: e.target.value })} />
                         <input type="text" value={patient.lastname} placeholder='Lastname'
                             onChange={(e) => setAddPatient({ ...patient, lastname: e.target.value })} />
+                        <input type="text" value={patient.email} placeholder='Email' onChange={(e) => setAddPatient({ ...patient, email: e.target.value })} />
                         <input type="text" value={patient.contact} placeholder='Contact'
                             onChange={(e) => setAddPatient({ ...patient, contact: e.target.value })} />
-
+                        <div className={styles.platform}>
+                            <div>
+                                <input type="radio"
+                                    checked={editAppoint.platform === "online" ? true : false}
+                                    value="online" onChange={(e) => {
+                                        setAddPatient({ ...patient, platform: e.target.value })
+                                    }} />
+                                <label>Online</label>
+                            </div>
+                            <div>
+                                <input type="radio"
+                                    checked={editAppoint.platform === "f2f" ? true : false}
+                                    value="f2f" onChange={(e) => {
+                                        setAddPatient({ ...patient, platform: e.target.value })
+                                    }} />
+                                <label>Face-to-Face</label>
+                            </div>
+                        </div>
+                        <div className={styles.appointment}>
+                            <input type='date' value={patient.date} onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
+                            <select value={patient.time} onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
+                                {TimeValue.map(({ name, start }) => (
+                                    <option key={name} value={start}>{name}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
 
                     <div className={styles.ss}>
@@ -86,7 +138,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                     </div>
                 </div>
                 <div className={styles.formBtnGrp}>
-                    <button onClick={close} type="button">Cancel</button>
+                    <button className={styles.cancel} onClick={close} type="button">Cancel</button>
                     <button className={styles.submit} type="submit">Submit</button>
                 </div>
             </form>

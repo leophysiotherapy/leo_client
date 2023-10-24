@@ -51,6 +51,7 @@ export const GetAllPhysioUserByRole = gql`query Query($role: roles, $take: Int!,
     appointment {
       date
       time
+      platform
     }
   }
 }
@@ -83,13 +84,13 @@ export const GetAllPhysioSearchByRole = gql`query GetSearchuserByRole($search: S
     appointment {
       date
       time
+      platform
     }
   }
 }`
 
-export const UpdatestaffUpdateProfile = gql`mutation Mutation($userId: ID!, $user: userInput) {
-  updateStaffAccount(userID: $userId, user: $user) {
+export const UpdatestaffUpdateProfile = gql`mutation UpdateStaffAccount($userId: ID!, $user: userInput, $file: Upload) {
+  updateStaffAccount(userID: $userId, user: $user, file: $file) {
     userID
-    email
   }
 }`

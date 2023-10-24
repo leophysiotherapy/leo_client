@@ -117,10 +117,10 @@ const Patient: FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {search ? searchData?.getSearchuserByRole.map(({ profile, userID, appointment, prescription, diagnosis }: { email: string, profile: [], appointment: [], userID: string, prescription: [], diagnosis: [] }) => (
+                        {search ? searchData?.getSearchuserByRole.map(({ email, profile, userID, appointment, prescription, diagnosis }: { email: string, profile: [], appointment: [], userID: string, prescription: [], diagnosis: [] }) => (
                             profile.map(({ firstname, lastname, phone }: { firstname: string, lastname: string, expertise: string, phone: string, emergencyPhone: string, designation: string, }) => (
 
-                                <PatientQuery key={userID} userID={userID} firstname={firstname} lastname={lastname} phone={phone} appointment={appointment} prescription={prescription} diagnosis={diagnosis} />
+                                <PatientQuery key={userID} userID={userID} firstname={firstname} lastname={lastname} phone={phone} appointment={appointment} prescription={prescription} diagnosis={diagnosis} email={email} />
 
 
                             ))
@@ -129,9 +129,9 @@ const Patient: FC = () => {
                             <td></td>
                             <td></td>
                             <td></td>
-                        </tr> : data.getPhysioUserByRole.map(({ profile, userID, appointment, prescription, diagnosis }: { email: string, profile: [], appointment: [], userID: string, prescription: [], diagnosis: [] }) => (
+                        </tr> : data.getPhysioUserByRole.map(({ email, profile, userID, appointment, prescription, diagnosis }: { email: string, profile: [], appointment: [], userID: string, prescription: [], diagnosis: [] }) => (
                             profile.map(({ firstname, lastname, phone }: { firstname: string, lastname: string, expertise: string, phone: string, emergencyPhone: string, designation: string, }) => (
-                                <PatientQuery key={userID} userID={userID} firstname={firstname} lastname={lastname} phone={phone} appointment={appointment} prescription={prescription} diagnosis={diagnosis} />
+                                <PatientQuery key={userID} userID={userID} firstname={firstname} lastname={lastname} phone={phone} appointment={appointment} prescription={prescription} diagnosis={diagnosis} email={email} />
                             ))
                         ))}
                     </tbody>

@@ -28,11 +28,45 @@ export default function TermsAndCondition({ close }: any) {
                 <div>
                     <h2 className={poppins.className}>1. Hippa Compliance </h2>
                     <p className={oxygen.className}>
-                        -  Leonardo Physical Therapy Rehabilitation Clinic is committed to complying with the Health Insurance Portability and Accountability Act (HIPAA) of 1996, which governs the protection of personal health information.
+                        -  Leonardo Physical Therapy Rehabilitation Clinic is fully dedicated to ensuring strict compliance with the Health Insurance Portability and Accountability Act (HIPAA) of 1996, which serves as the cornerstone for safeguarding personal health information. At our clinic, your privacy is of outmost importance to us, and we are unwavering in our commitment to protecting your Protected Health Information (PHI) in accordance with HIPAA regulations. We encourage you to review our comprehensive Privacy Policy to gain a deeper understanding of how we collect, utilize, and fortify the security of your PHI.
                     </p>
-                    <p className={oxygen.className}>
-                        -  We take your privacy seriously and will safeguard your protected health information (PHI) as required by HIPAA. Please refer to our Privacy Policy for more information on how we collect, use, and protect your PHI.
-                    </p>
+                    <div className={styles.privacy}>
+                        <h3 className={poppins.className}>Privacy Policy</h3>
+                        <p className={oxygen.className}>- Leonardo Physical Therapy Rehabilitation Clinic is fully dedicated to ensuring strict compliance with the Health Insurance Portability and Accountability Act (HIPAA) of 1996, which serves as the cornerstone for safeguarding personal health information. At our clinic, your privacy is of outmost importance to us, and we are unwavering in our commitment to protecting your Protected Health Information (PHI) in accordance with HIPAA regulations. We encourage you to review our comprehensive Privacy Policy to gain a deeper understanding of how we collect, utilize, and fortify the security of your PHI.</p>
+                        <div className={styles.s}>
+                            <div>
+                                <h2 className={poppins.className}>1. Collection of PHI</h2>
+                                <p className={oxygen.className}>- We collect PHI with your explicit consent and use it solely for the purpose of providing you with the best possible services and healthcare. This may include information such as your medical history, treatment records, and any other relevant health-related data necessary for your care.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className={poppins.className}>2. Use of PHI</h2>
+                                <p className={oxygen.className}>- Your PHI is used for treatment, payment, and healthcare operations as outlined under the Health Insurance Portability and Accountability Act (HIPAA) guidelines. We do not use your PHI for any purposes other than those permitted by law without your explicit authorization.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className={poppins.className}>3. Disclosure of PHI</h2>
+                                <p className={oxygen.className}>- We may disclose your PHI to authorized personnel involved in your care, or as required by law. Any other disclosure of your PHI to third parties will be done only with your explicit consent or as permitted by the HIPAA regulations.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className={poppins.className}>4. Compliance with Regulations</h2>
+                                <p className={oxygen.className}>- Our policies and procedures are in strict compliance with the regulations outlined in the HIPAA Privacy Rule. We regularly review and update our policies to ensure ongoing adherence to all applicable privacy and security requirements.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className={poppins.className}>5. Access to Your PHI</h2>
+                                <p className={oxygen.className}>- You have the right to access, review, and request amendments to your PHI as allowed by law.
+                                </p>
+                            </div>
+                            <div>
+                                <h2 className={poppins.className}>6. Data Retention and Disposal</h2>
+                                <p className={oxygen.className}>- We retain your PHI for the period required by law and dispose of it securely once it is no longer needed. This includes the secure deletion of electronic records and the proper disposal of physical documents containing PHI.
+                                </p>
+                            </div>
+                            <span className={oxygen.className}>If you have any questions or concerns regarding the use or protection of your PHI, please don{"'"}t hesitate to contact us.</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div>
@@ -45,90 +79,45 @@ export default function TermsAndCondition({ close }: any) {
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>3. Treatment Consent
+                    <h2 className={poppins.className}>3. Account Security
                     </h2>
                     <p className={oxygen.className}>
-                        -   By using our services, you consent to receive treatment and rehabilitation services from our qualified healthcare professionals.
-                    </p>
-                    <p className={oxygen.className}>
-                        - You understand that any information you provide to us, including medical history and treatment progress, may be used to facilitate your care and for billing purposes.
+                        -  Users are responsible for maintaining the security of their account credentials. It is essential to create strong passwords and refrain from sharing account information with any third parties.
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>4. Payment and Billing
+                    <h2 className={poppins.className}>4. Prohibited Activities
                     </h2>
                     <p className={oxygen.className}>
-                        -  You agree to pay all fees associated with your treatment and rehabilitation services as outlined in our fee schedule.
-                    </p>
-                    <p className={oxygen.className}>
-                        - Payment is due promptly upon receipt of the invoice. Failure to pay may result in suspension or termination of services.
+                        -  The use of our platform for any illegal, unauthorized, or fraudulent activities is strictly prohibited. Users are expected to adhere to the terms and conditions outlined in our policies and guidelines.
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>5. Cancellation and Refund Policy
+                    <h2 className={poppins.className}>5. Amendments
                     </h2>
                     <p className={oxygen.className}>
-                        -  We understand that circumstances may change. Please refer to our Cancellation and Refund Policy for information on canceling appointments and requesting refunds.
-                    </p>
-                </div>
-                <div>
-                    <h2 className={poppins.className}>6. User Conduct
-                    </h2>
-                    <p className={oxygen.className}>
-                        -  You agree to use our services for lawful purposes only and in compliance with all applicable laws and regulations.
-                    </p>
-                    <p className={oxygen.className}>
-                        -  You will not use our services to transmit any content that is offensive, harmful, or violates the rights of others.
-                    </p>
-                </div>
-                <div>
-                    <h2 className={poppins.className}>7. Intellectual Property
-                    </h2>
-                    <p className={oxygen.className}>
-                        -   All content provided on our platform, including text, graphics, logos, and software, is our property and is protected by copyright and other intellectual property laws.
-                    </p>
+                        -  We reserve the right to amend these Terms and Conditions at any time. Any changes will be posted on our platform, and it is your responsibility to review them periodically.
 
-                    <div>
-                        <h2 className={poppins.className}>8. Disclaimer of Warranties
-                        </h2>
-                        <p className={oxygen.className}>
-                            -  We make no warranties or representations about the accuracy or completeness of our services. Your use of our services is at your own risk.
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className={poppins.className}>9. Limitation of Liability
-                        </h2>
-                        <p className={oxygen.className}>
-                            -  In no event shall {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic{`"`} be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits or revenues, whether incurred directly or indirectly.
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className={poppins.className}>10. Governing Law
-                        </h2>
-                        <p className={oxygen.className}>
-                            -  These Terms and Conditions shall be governed by and construed in accordance with the laws of State of California, United States, without regard to its conflict of law principles
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className={poppins.className}>11. Amendments
-                        </h2>
-                        <p className={oxygen.className}>
-                            -  We reserve the right to amend these Terms and Conditions at any time. Any changes will be posted on our platform, and it is your responsibility to review them periodically.
-                        </p>
-                    </div>
-                    <div>
-                        <h2 className={poppins.className}>12. Contact Information
-                        </h2>
-                        <p className={oxygen.className}>
-                            -  If you have any questions or concerns about these Terms and Conditions or our services, please contact us at restore.pt11@gmail.com.
-                        </p>
-                    </div>
+                    </p>
+                </div>
+                <div>
+                    <h2 className={poppins.className}>6.  Intellectual Property
+                    </h2>
+                    <p className={oxygen.className}>
+                        -  All content provided on our platform, including text, graphics, logos, and software, is our property and is protected by copyright and other intellectual property laws.
+                    </p>
+                </div>
+                <div>
+                    <h2 className={poppins.className}>7.  Contact Information
+                    </h2>
+                    <p className={oxygen.className}>
+                        -  If you have any questions or concerns about these Terms and Conditions or our services, please contact us at restore.pt11@gmail.com
+                    </p>
                 </div>
             </div>
             <div className={styles.footer}>
                 <p className={oxygen.className}>
                     By signing up for an account with {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic,{`"`} you acknowledge that you have read, understood, and agreed to these Terms and Conditions, including our commitment to HIPAA compliance. If you do not agree with any part of these Terms and Conditions, please do not use our services.
-
                 </p>
             </div>
             <div className={styles.closeBtn}>

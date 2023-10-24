@@ -40,12 +40,12 @@ const Abouts: FC = () => {
                     <p className={oxygen.className}>Our solid aim at Restore PT is to empower and uplift our valued customers and patients on their journey to optimal physical well-being. We are dedicated to treating your pain-related issues, poor mobility, or a desire to regain strength and functionality. Our experienced healthcare specialists are committed to providing you with the most individualized care and attention possible.</p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>Vission</h2>
+                    <h2 className={poppins.className}>Vision</h2>
                     <p className={oxygen.className}>Restore PT aims to lead the way in changing healthcare by embracing the uniqueness of everyone’s road to recovery. We reject the idea of one-size-fits-all solutions and instead take the time to understand your unique circumstances, concerns, and goals. We strive to be a light of hope for people struggling with the weight of pain by adapting our treatment plans to your specific needs.</p>
                 </div>
             </div>
             <div className={styles.locations}>
-                <h2 className={poppins.className}>Locations</h2>
+                <h2 className={poppins.className}>Location</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.6245244326174!2d-118.15758552363712!3d33.92506202443397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cd0090d9f07b%3A0xb60d9c2df411bacb!2s7860%20Imperial%20Hwy.%2C%20Downey%2C%20CA%2090242%2C%20USA!5e0!3m2!1sen!2sph!4v1697342221282!5m2!1sen!2sph" width="600" height="450" style={{
                     border: "0px",
                 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
@@ -62,16 +62,6 @@ const Abouts: FC = () => {
                             </div>
                         </div>
                     ))}
-                </div>
-            </div>
-            <div className={styles.contact}>
-                <div className={styles.logo}>
-                    <Image src="/logo.png" alt="" height={150} width={250} />
-                </div>
-                <div className={styles.contactContainer}>
-                    <h2 className={poppins.className}>Contact Us</h2>
-                    <span className={oxygen.className}>johndoe@example.com</span>
-                    <span className={oxygen.className}>Phone Number</span>
                 </div>
             </div>
         </div>

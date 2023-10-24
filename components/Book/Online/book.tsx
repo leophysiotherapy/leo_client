@@ -96,7 +96,7 @@ export default function Books({ selectedDate, time, close, platform }: any) {
                                     <span className={oxygen.className}>{firstname} {lastname}</span>
                                 </div>
                                 <div>
-                                    <span className={oxygen.className}>Email Address:</span>
+                                    <span className={oxygen.className}>Email:</span>
                                     <span className={oxygen.className}>{email}</span>
                                 </div></>
                         ))
@@ -137,13 +137,14 @@ export default function Books({ selectedDate, time, close, platform }: any) {
 
                             })
                         }}
-                        onClick={(data, actions) => {
-                            setPaid(() => true)
-                        }}
-                        onApprove={async (data, actions) => {
 
+                        onApprove={async (data, actions) => {
+                            setPaid(true)
                             await actions.order?.capture()
                         }}
+                        onCancel={async (data, actions) => {
+                            setPaid(() => false)
+                        }} // to fixed
                     />
                 </div>
             </div>

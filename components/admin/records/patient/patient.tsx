@@ -13,8 +13,8 @@ const oxygen = Oxygen({
     subsets: [ "latin" ]
 })
 
-export default function PatientQuery({ userID, firstname, lastname, phone, appointment, prescription, diagnosis }: {
-    userID: string, firstname: string, lastname: string, phone: string, appointment: [], prescription: [], diagnosis: []
+export default function PatientQuery({ userID, firstname, lastname, phone, appointment, prescription, diagnosis, email }: {
+    userID: string, firstname: string, lastname: string, phone: string, appointment: [], prescription: [], diagnosis: [], email: string
 }) {
 
 
@@ -57,7 +57,7 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
                 }
                 {
                     staffEdit ? <div className={styles.overlay}>
-                        <UserEdit close={onHandleStaffEdit} userID={userID} firstname={firstname} lastname={lastname} phone={phone} prescription={prescription} diagnosis={diagnosis} />
+                        <UserEdit close={onHandleStaffEdit} userID={userID} firstname={firstname} lastname={lastname} phone={phone} prescription={prescription} diagnosis={diagnosis} appointment={appointment} email={email} />
                     </div> : null
                 }
                 <button onClick={() => setStaffEdit(() => !staffEdit)}>

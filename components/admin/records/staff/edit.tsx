@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState } from 'react'
+import React, { SyntheticEvent, useRef, useState } from 'react'
 import styles from './edit.module.scss'
 import { Poppins } from 'next/font/google'
 import { GetAllPhysioUserByRole, UpdatestaffUpdateProfile } from '@/util/user/user.query'
@@ -21,6 +21,9 @@ export default function UserEdit({ close, userID, firstname, lastname, phone, de
         experties: expertise
     })
 
+
+    const [ image, setImage ] = useState(null)
+
     const [ updateStaffProfile ] = useMutation(UpdatestaffUpdateProfile, {
         variables: {
             userId: userID,
@@ -31,7 +34,8 @@ export default function UserEdit({ close, userID, firstname, lastname, phone, de
                 firstname: staff.firstname,
                 lastname: staff.lastname,
                 phone: staff.contact
-            }
+            },
+            file: image
         },
         errorPolicy: "all",
         onCompleted: () => {
@@ -53,13 +57,27 @@ export default function UserEdit({ close, userID, firstname, lastname, phone, de
     }
 
 
+    const fileInputRef = useRef<HTMLInputElement>(null)
+
+    const handleImageClick = () => {
+        fileInputRef.current?.click()
+    }
+
+    const handleFileChange = (e: any) => {
+        const file = e.target.files[ 0 ];
+        if (!file) return
+        setImage(file);
+    }
+
+
     return (
         <div className={styles.container}>
             <h2 className={poppins.className}>Edit Staff</h2>
             <div className={styles.avatar}>
-                {avatar.length === 0 ? <Image src="/default.jpg" alt={`${firstname} ${lastname}`} width={90} height={90} /> : avatar.map(({ avatar: profile }: any) => (
-                    <Image key={profile} src={profile} alt={`${firstname} ${lastname}`} width={90} height={90} />
+                {avatar.length === 0 ? <Image onClick={handleImageClick} src="/profile.jpg" alt={`${firstname} ${lastname}`} width={90} height={90} /> : avatar.map(({ avatar: profile }: any) => (
+                    <Image onClick={handleImageClick} key={profile} src={profile} alt={`${firstname} ${lastname}`} width={90} height={90} />
                 ))}
+                <input type="file" accept='image/*' ref={fileInputRef} hidden onChange={handleFileChange} />
             </div>
             <form onSubmit={onHandleStaffForm}>
                 <div>

@@ -5,6 +5,7 @@
    box-shadow: 0px 0px 3px 0px #ccc;
    padding: 10px;
    background-color: #0097b2;
+   color: #fff;
    @media screen and (max-width: 600px) {
       height: 100%;
       box-shadow: none;
@@ -48,13 +49,10 @@
       }
       .submitBtn {
          cursor: pointer;
-         background-color: #0097b2;
-         color: #fff;
+         background-color: #fff;
+         color: #000;
          span {
             font-size: 16px;
-         }
-         &:disabled {
-            background-color: #ccc;
          }
       }
       .fullname {
@@ -78,6 +76,9 @@
             span {
                font-size: 14px;
             }
+            button {
+               color: #fff;
+            }
             input {
                appearance: none;
                width: 20px;
@@ -93,7 +94,7 @@
                   height: 1em;
                   transform: scale(0);
                   transition: 120ms transform ease-in-out;
-                  box-shadow: inset 1em 1em #0097b2;
+                  box-shadow: inset 1em 1em #fff;
                   border-radius: 2px;
                }
                &:checked::before {

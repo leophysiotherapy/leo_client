@@ -35,7 +35,7 @@ const Settings: FC = ({ userID }: any) => {
         }
     })
 
-
+    const [ isValid, setIsValid ] = useState(false)
     const [ changePasswordMutation ] = useMutation(UpdateUserPassword)
     const [ changePhoneNumberMutaiton ] = useMutation(UpdateContactNumber)
 
@@ -58,6 +58,20 @@ const Settings: FC = ({ userID }: any) => {
     }
 
 
+    const checkPassword = () => {
+        const capitalRegex = /[A-Z]/;
+        const numberRegex = /[0-9]/;
+
+        const hasCapital = capitalRegex.test(password.newpass);
+        const hasNumber = numberRegex.test(password.newpass);
+        const isLengthValid = password.newpass.length >= 6;
+
+        setIsValid(hasCapital && hasNumber && isLengthValid);
+    }
+
+
+
+
     const onhandleUpdateContactNumber = (e: SyntheticEvent) => {
         e.preventDefault();
         changePhoneNumberMutaiton({
@@ -70,7 +84,7 @@ const Settings: FC = ({ userID }: any) => {
                 alert("Contact Number Successfully Updated")
             },
             onError: (e) => {
-                alert(e.message)
+                alert("Phone number is not valid of the form +17895551234 (7-15 digits);")
             }
         })
     }
@@ -96,7 +110,10 @@ const Settings: FC = ({ userID }: any) => {
                                         </div>
                                         <div className={styles.in}>
                                             <h2 className={poppins.className}>New Password</h2>
-                                            <input type="password" onChange={(e) => setPassword({ ...password, newpass: e.target.value })} />
+                                            <input style={isValid && password.newpass.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} type="password" onChange={(e) => {
+                                                setPassword({ ...password, newpass: e.target.value })
+                                                checkPassword()
+                                            }} />
                                         </div>
                                         <div className={styles.confirmation}>
                                             <button type="submit">Save</button>

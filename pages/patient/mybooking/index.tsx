@@ -48,7 +48,6 @@ const MyBooking: FC = ({ userID }: any) => {
                 </select>
                 <select onChange={(e) => setStatus(e.target.value)}>
                     <option value="upcoming">Upcoming</option>
-                    <option value='done'>Done</option>
                     <option value="finished">Finished</option>
                     <option value="canceled">Canceled</option>
                 </select>
@@ -73,7 +72,7 @@ const MyBooking: FC = ({ userID }: any) => {
                                     <td className={oxygen.className}>{time}</td>
                                     <td className={oxygen.className}>{services}</td>
 
-                                    <td className={oxygen.className}>{Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(amount)}</td>
+                                    <td className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</td>
                                     <td>
                                         <Link href={`/patient/mybooking/${appointmentID}`}>View</Link>
                                     </td>

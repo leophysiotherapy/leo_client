@@ -76,9 +76,8 @@
          width: 100%;
          border-collapse: collapse;
          overflow-x: auto;
-         @media screen and (max-width: 600px) {
+         @media screen and (max-width: 700px) {
             width: 1000px;
-            overflow-x: auto;
          }
          thead,
          tbody {

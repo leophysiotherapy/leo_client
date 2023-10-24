@@ -12,6 +12,7 @@ import { useRouter } from 'next/router'
 import { Oxygen, Poppins } from 'next/font/google'
 import { CanceledAppointment } from '@/util/appointment/appointment.mutation'
 import { useMutation } from '@apollo/client'
+import { PayPalButtons } from '@paypal/react-paypal-js'
 
 
 const poppins = Poppins({
@@ -67,6 +68,8 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
     const [ feedback, setFeedback ] = useState(false)
     const [ mutate ] = useMutation(CanceledAppointment)
 
+    const [ paid, setPaid ] = useState(false)
+
 
     const onHandleFeedbackToggle = () => {
         setFeedback(false)
@@ -81,7 +84,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
             </Head>
             <div className={styles.filter}>
                 <button onClick={() => window.print()}>Print/save</button>
-                <button onClick={() => router.push("/")}>Home</button>
+                <button onClick={() => router.push("/patient/mybooking")}>Home</button>
             </div>
             <div className={styles.booking}>
                 <div className={styles.title}>
@@ -99,7 +102,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             {patients.map(({ profile, email }: any) => (
                                 profile.map(({ firstname, lastname }: any) => (
                                     <div className={styles.profile} key={firstname}>
-                                        <h2 className={poppins.className}>Email Address: {email}</h2>
+                                        <h2 className={poppins.className}>Email: {email}</h2>
                                         <h2 className={poppins.className}>Name: {firstname} {lastname}</h2>
                                     </div>
                                 ))
@@ -119,7 +122,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             {platform === "online" ? <div className={styles.bokk}>
                                 <h2 className={poppins.className}>Link:</h2>
                                 <span className={oxygen.className}>
-                                    {link.length === 0 ? "N/A" : <Link style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
+                                    {link.length === 0 ? "N/A" : <Link target='_blank' style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
                                 </span>
                             </div> : null}
                             <div className={styles.bokk}>
@@ -128,12 +131,32 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             </div>
                         </div>
                         <div className={styles.books}>
-                            <h2 className={poppins.className}>Total amount: <span className={oxygen.className}>{Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(amount)}</span></h2>
+                            <h2 className={poppins.className}>Total amount: <span className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</span></h2>
                             {status === "canceled" || status === "done" || status === "finished" ? null :
                                 <div className={styles.cancelBtn}>
-                                    <button
-                                        onClick={(e) => {
-                                            e.preventDefault();
+                                    <PayPalButtons
+
+                                        style={{
+                                            color: "gold",
+                                            layout: "horizontal",
+                                            shape: "rect"
+                                        }}
+                                        createOrder={(data, actions) => {
+                                            return actions.order.create({
+                                                purchase_units: [ {
+                                                    description: "Consultation",
+                                                    amount: {
+                                                        value: "175"
+                                                    },
+                                                } ],
+
+                                            })
+                                        }}
+                                        onClick={(data, actions) => {
+
+                                        }}
+                                        onApprove={async (data, actions) => {
+                                            setPaid(() => true)
                                             mutate({
                                                 variables: {
                                                     appointmentId: appointmentID
@@ -142,8 +165,12 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                                                     router.reload()
                                                 }
                                             })
+                                            await actions.order?.capture()
                                         }}
-                                        className={oxygen.className}>Cancel Booking</button>
+                                        onCancel={() => {
+                                            setPaid(false)
+                                        }} // to fixed
+                                    />
                                 </div>
                             }
                             {

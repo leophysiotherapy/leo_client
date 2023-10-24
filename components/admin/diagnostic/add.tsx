@@ -2,6 +2,7 @@ import React, { SyntheticEvent, useState } from 'react'
 import styles from './add.module.scss'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Oxygen } from 'next/font/google'
+import { GetAllPrescription } from '@/util/prescription/prescription.query'
 
 
 
@@ -45,7 +46,8 @@ export default function AddPrescriptions({ close }: any) {
                 userID: "-",
                 prescriptions: ""
             })
-        }
+        },
+        refetchQueries: [ GetAllPrescription ]
     })
 
 

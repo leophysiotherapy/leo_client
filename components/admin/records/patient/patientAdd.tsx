@@ -26,7 +26,10 @@ export default function PatientAdd({ close }: any) {
         contact: "",
         email: "",
         diagnosis: "",
-        prescription: ""
+        prescription: "",
+        time: "",
+        date: "",
+        platform: ""
     })
 
     const onHandleStaffForm = (e: SyntheticEvent) => {
@@ -39,6 +42,9 @@ export default function PatientAdd({ close }: any) {
                     lastname: patient.lastname,
                     phone: patient.contact
                 },
+                time: patient.time,
+                date: patient.date,
+                platform: patient.platform,
                 prescription: patient.prescription,
                 diagnosis: patient.diagnosis
             },
@@ -51,7 +57,10 @@ export default function PatientAdd({ close }: any) {
                     contact: "",
                     email: "",
                     diagnosis: "",
-                    prescription: ""
+                    prescription: "",
+                    date: "",
+                    platform: "",
+                    time: ""
                 })
             },
             refetchQueries: [ {
@@ -78,19 +87,28 @@ export default function PatientAdd({ close }: any) {
                             onChange={(e) => setAddPatient({ ...patient, contact: e.target.value })} />
                         <div className={styles.platform}>
                             <div>
-                                <input type="radio" value="online" />
+                                <input type="radio"
+                                    checked={patient.platform === "online" ? true : false}
+                                    value="online" onChange={(e) => {
+                                        setAddPatient({ ...patient, platform: e.target.value })
+                                    }} />
                                 <label>Online</label>
                             </div>
                             <div>
-                                <input type="radio" value="f2f" />
+                                <input type="radio"
+                                    checked={patient.platform === "f2f" ? true : false}
+                                    value="f2f" onChange={(e) => {
+                                        setAddPatient({ ...patient, platform: e.target.value })
+                                    }} />
                                 <label>Face-to-Face</label>
                             </div>
                         </div>
                         <div className={styles.appointment}>
-                            <input type='date' />
-                            <select>
+                            <input type='date' value={patient.date} onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
+                            <select onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
+                                <option>-</option>
                                 {TimeValue.map(({ name, start }) => (
-                                    <option key={name}>{name}</option>
+                                    <option key={name} value={start}>{name}</option>
                                 ))}
                             </select>
                         </div>

@@ -20,7 +20,6 @@ export default function Sidebar({ close }: any) {
     const [ records, setRecords ] = useState<boolean>(false);
     const [ bookings, setBooking ] = useState<boolean>(false);
     const [ diagnostics, setDiagnostic ] = useState<boolean>(false);
-    const [ inventory, setInventory ] = useState<boolean>(false);
     const [ content, setContent ] = useState<boolean>(false);
     const [ feedback, setFeedback ] = useState<boolean>(false);
     const [ width, setWidth ] = useState<number>(0)
@@ -53,7 +52,7 @@ export default function Sidebar({ close }: any) {
             <div className={styles.logo}>
                 <Image src='/logo.png' height={110} width={180} alt="" onClick={() => router.push("/administrator")} />
                 {width < 600 ? <button onClick={close}>
-                    <TbMenu2 size={23} />
+                    <TbMenu2 size={25} />
                 </button> : null}
             </div>
             <ul>
@@ -122,17 +121,13 @@ export default function Sidebar({ close }: any) {
                             </button>
                         </div> : null
                 }
-                <button onClick={() => setInventory(() => !inventory)}>
-                    <span>Inventory</span>
-                    {inventory ? <TbChevronDown size={20} /> : <TbChevronRight size={20} />}
-                </button>
 
                 <div className={styles.subNav}>
                     <button onClick={() => {
                         router.push("/administrator/inventory/equipment")
                         width < 600 ? close() : null
                     }}>
-                        <span>Equipment </span>
+                        <span>Inventory</span>
                         {loading ? "" : <span>{data.getInventoryExpiration}</span>}
                     </button>
                 </div>

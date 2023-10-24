@@ -44,7 +44,7 @@ const OnlineReports: FC = () => {
                 <option value="Monthly">Monthly</option>
                 <option value="Quarterly">Quarterly</option>
                 <option value="SemiAnnually">Semi-Annually</option>
-                <option value="Annually">Anually</option>
+                <option value="Annually">Annually</option>
             </select>
             <div className={styles.chartsJS} >
                 <Bar data={{

@@ -84,6 +84,11 @@ export default function Online() {
 
     }
 
+    const [ toggle, setToggle ] = useState(false)
+    const onHandleToggle = () => {
+        setToggle(() => !toggle)
+    }
+    if (loading) return <></>
 
     return (
         <div className={styles.container}>
@@ -152,7 +157,7 @@ export default function Online() {
                         </button>
                     ))}
                 </div>
-                <h2 className={poppins.className}>Select Service</h2>
+                <h2 className={poppins.className}>Select Platform</h2>
                 <div className={styles.select}>
                     <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
                         <option>--</option>
@@ -160,12 +165,12 @@ export default function Online() {
                     </select>
                 </div>
                 <div className={styles.policies}>
-                    <input type="checkbox" />
+                    <input type="checkbox" checked={toggle} onChange={() => setToggle(() => !toggle)} />
                     <span className={oxygen.className}>I have read the policies of the website</span>
                 </div>
                 <div className={styles.form}>
                     <button className={styles.cancelBtn}>Cancel</button>
-                    <button onClick={() => setBooks(() => !books)}>Book Now</button>
+                    <button disabled={toggle === false} onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 

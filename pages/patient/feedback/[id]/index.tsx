@@ -89,7 +89,7 @@ const FeedbackID: FC = ({ feed }: any) => {
                     ))
                 ))}
             </div>
-            <button onClick={() => router.push("/administrator/feedback/reviews")}>
+            <button onClick={() => router.push("/patient/feedback/")}>
                 <span className={poppins.className}>Back to Homepage</span>
             </button>
         </div>

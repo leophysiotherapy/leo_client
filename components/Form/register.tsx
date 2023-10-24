@@ -75,6 +75,9 @@ export default function RegisterForm() {
             onCompleted: () => {
                 router.push("/verify")
             },
+            onError: (e) => {
+                alert(e.message)
+            },
             errorPolicy: "all",
         })
     }
@@ -110,25 +113,22 @@ export default function RegisterForm() {
                     <input onChange={(e) => setUsers({ ...users, firstname: e.target.value })} className={styles.inptext} type="text" placeholder='Firstname' />
                     <input onChange={(e) => setUsers({ ...users, lastname: e.target.value })} className={styles.inptext} type="text" placeholder='Lastname' />
                 </div>
-                <input onChange={(e) => setUsers({ ...users, email: e.target.value })} className={styles.inptext} type="email" placeholder='Email Address' />
-                <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
                 <input onChange={(e) => {
+                    setUsers({ ...users, email: e.target.value })
+                }} className={styles.inptext} type="email" placeholder='Email Address' />
+                <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
+                <input style={isValid && users.password.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} onChange={(e) => {
                     setUsers({ ...users, password: e.target.value })
                     checkPassword()
                 }} className={styles.inptext} type="password" placeholder='Password' />
                 <p className={oxygen.className}>
                     Password must contain at least 1 capital letter, 1 number, and be at least 6 characters long.
                 </p>
-                {isValid ?
-                    <p className={oxygen.className} style={{ color: 'green' }}>Password is valid.</p>
-                    :
-                    <p className={oxygen.className} style={{ color: 'red' }}>Password is invalid.</p>
-                }
                 <input onChange={(e) => setRetype(e.target.value)} className={styles.inptext} type="password" placeholder='Confirm Password' />
                 <div className={styles.verification}>
                     <div className={styles.statement}>
                         <input onChange={() => setChecked(!ischecked)} checked={ischecked} type="checkbox" />
-                        <span className={oxygen.className}>I agree to all statement in <button onClick={() => setHippa(() => !hippa)} className={styles.hippa}>HIPAA</button> </span>
+                        <span className={oxygen.className}>I agree to all statement in <button type='button' onClick={() => setHippa(() => !hippa)} className={styles.hippa}><b>HIPAA</b></button> </span>
                     </div>
                     <span className={oxygen.className}>Already have an account? <Link href="/auth/login">Login here</Link></span>
                 </div>

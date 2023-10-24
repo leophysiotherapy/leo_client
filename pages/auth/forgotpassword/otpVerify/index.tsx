@@ -5,6 +5,7 @@ import { useMutation } from '@apollo/client'
 import { verifyOTP } from '@/util/otp/otp.mutation'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import Image from 'next/image'
 const poppins = Poppins({
     weight: '500',
     subsets: [ "latin" ]
@@ -41,6 +42,7 @@ export default function OTPVerify() {
             </Head>
             <div className={styles.forgotContainer}>
                 <h2 className={poppins.className}>Reset Password</h2>
+                <Image src="/logo.png" alt="" height={80} width={120} priority />
                 <span>
                     {error?.message}</span>
                 <span className={oxygen.className}>A verification code has been sent to your email, Please check your email</span>

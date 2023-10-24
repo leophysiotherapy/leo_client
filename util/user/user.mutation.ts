@@ -33,28 +33,36 @@ export const CreateStaff = gql`mutation CreateStaffAccount($user: userInput, $fi
 }`
 
 
-export const CreateOldPatient = gql`mutation CreateOldPatient(
-  $user: userInput
-  $prescription: String!
+export const CreateOldPatient = gql`mutation UpdateOlPatient(
   $diagnosis: String!
+  $prescription: String!
+  $date: String!
+  $user: userInput
+  $time: String
+  $platform: platform
 ) {
   createOldPatient(
-    user: $user
-    prescription: $prescription
     diagnosis: $diagnosis
+    prescription: $prescription
+    date: $date
+    user: $user
+    time: $time
+    platform: $platform
   ) {
     email
-    userID
   }
 }
+
 `
 
 
-export const UpdateOldPatient = gql`mutation UpdateOlPatient($diagnosis: String!, $prescription: String!, $user: userInput, $userId: ID!) {
-  updateOlPatient(diagnosis: $diagnosis, prescription: $prescription, user: $user, userID: $userId) {
-    email
+export const UpdateOldPatient = gql`mutation UpdateOlPatient($userId: ID!, $diagnosis: String!, $prescription: String!, $date: String!, $user: userInput, $time: String, $platform: platform) {
+  updateOlPatient(userID: $userId, diagnosis: $diagnosis, prescription: $prescription, date: $date, user: $user, time: $time, platform: $platform) {
+    userID
   }
-}`
+}
+
+`
 
 export const DeleteUsers = gql`mutation Mutation($userId: ID!) {
   deleteUserAcc(userID: $userId) {

@@ -51,7 +51,7 @@ export default function ForgetPassword() {
                     email: emailAddress,
                 },
                 onCompleted: () => {
-                    router.push("/auth/otpVerify/")
+                    router.push("/auth/forgotPassword/otpVerify")
                 },
             })
         }
@@ -68,7 +68,7 @@ export default function ForgetPassword() {
                 <Image src="/logo.png" alt="" height={80} width={120} priority />
                 <span>
                     {error?.message}</span>
-                <span className={oxygen.className}>Enter your account Email Address </span>
+                <span className={oxygen.className}>Enter your account{"'"}s Email Address </span>
                 <form onSubmit={onHandleFindEmaill}>
                     <input type="email" placeholder='Email address' onChange={(e) => setEmailAddress(e.target.value)} />
                     <button disabled={!emailAddress} type="submit">Submit</button>

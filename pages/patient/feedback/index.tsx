@@ -9,6 +9,8 @@ import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
 import { FeedbackQueryByUser } from '@/util/feedback/feedback.query'
 import FeedbackQuery from '@/components/patient/feedbackQuery'
+import { TbPlus } from 'react-icons/tb'
+import CreateAddFeedback from '@/components/patient/feedback/addFeedback'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
@@ -23,6 +25,12 @@ const Feedback: FC = ({ userID }: any) => {
             userId: userID
         }
     })
+    const [ open, setOpen ] = useState(false)
+
+
+    const onHandleCloseCreateFeedback = () => {
+        setOpen(() => !open)
+    }
 
     const [ selection, setSelections ] = useState("feedback")
     return (
@@ -30,12 +38,14 @@ const Feedback: FC = ({ userID }: any) => {
             <Head>
                 <title>Feedback</title>
             </Head>
-
-
+            {
+                open ? < div className={styles.overlay}>
+                    <CreateAddFeedback userID={userID} close={onHandleCloseCreateFeedback} />
+                </div> : null
+            }
             <div className={styles.forms}>
                 <select onChange={(e) => setSelections(e.target.value)}>
-
-                    <option value="feedback">Feedback</option>
+                    <option value="feedback">Reviews</option>
                     <option value="form">Evaluation form</option>
                 </select>
             </div>
@@ -43,6 +53,9 @@ const Feedback: FC = ({ userID }: any) => {
             <div>
                 <div className={styles.titleContainer}>
                     <h2 className={poppins.className}>Feedback</h2>
+                </div>
+                <div className={styles.addBtn}>
+                    <button onClick={onHandleCloseCreateFeedback}> <TbPlus size={20} /> Create </button>
                 </div>
                 {selection === "feedback" ? <table>
                     <thead>

@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Layout>
         <PayPalScriptProvider options={{
           clientId: "Ac43IkML6uLHN9Dje8gXDC80pu50MDjujny3mNmYHmBW_REN-Xv0oXzXTU_y1nW3WZ2wg-_MTGa3IY4a",
-          currency: "CAD",
+          currency: "USD",
         }}>
           <Component {...pageProps} />
         </PayPalScriptProvider>

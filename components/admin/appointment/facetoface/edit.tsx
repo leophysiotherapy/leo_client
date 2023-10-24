@@ -64,7 +64,6 @@ export default function EditAppointment({ appointmentID, close, date, fullname, 
                 <div>
                     <select onChange={(e) => setEdit({ ...edit, status: e.target.value })}>
                         <option value="upcoming">Upcoming</option>
-                        <option value="done">Done</option>
                         <option value="finished">Finished</option>
                         <option value="canceled">Canceled</option>
                     </select>

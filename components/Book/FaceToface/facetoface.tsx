@@ -8,9 +8,9 @@ import { generateDate, days, months, TimeValue } from '../calendar.config'
 import { getFindSpecificDate } from '@/util/appointment/appointment.query'
 import { useQuery } from '@apollo/client'
 import { format } from 'date-fns'
-
 import Books from './book'
 import { useRouter } from 'next/router'
+import WebPolicies from '../webPolicies'
 
 
 
@@ -33,7 +33,7 @@ const services = [
     { name: "Cupping Theraphy", amount: 175 },
     { name: "Personal Training", amount: 175 },
     { name: "Home Health Physical Theraphy", amount: 175 },
-    { name: "Joint Mobilizaiton", amount: 175 }
+    { name: "Joint Mobilization", amount: 175 }
 ]
 
 
@@ -67,7 +67,7 @@ export default function F2F() {
     const [ times, setTime ] = useState([ "" ]);
     const [ dates, setDates ] = useState([ "" ])
     const [ isRender, setRender ] = useState(false)
-
+    const [ policies, setPolicies ] = useState(false)
 
     useEffect(() => {
 
@@ -90,9 +90,19 @@ export default function F2F() {
                 return true
             }
         }
-
     }
 
+
+
+    const onHandleClosePolicies = () => {
+        setPolicies(() => !policies)
+    }
+
+    const [ toggle, setToggle ] = useState(false)
+    const onHandleToggle = () => {
+        setToggle(() => !toggle)
+    }
+    if (loading) return <></>
     return (
         <div className={styles.container}>
             {
@@ -100,6 +110,11 @@ export default function F2F() {
                     <Books close={onClosBookPayment} selectedDate={selectedDate}
                         time={appointment.time}
                         platform={"Face-to-Face"} services={appointment.services} />
+                </div> : null
+            }
+            {
+                policies ? <div className={styles.overlay}>
+                    <WebPolicies close={onHandleClosePolicies} />
                 </div> : null
             }
             <div className={styles.cal}>
@@ -129,7 +144,7 @@ export default function F2F() {
                         <div className={styles.cells} key={index}>
                             <button
                                 onClick={() => { setSelectedDate(date) }}
-                                disabled={date.isBefore(currentDate, "days") || date.isAfter(currentDate.add(1, "days"), "days")}
+                                disabled={date.isBefore(currentDate.add(1, "days"), "days") || date.isAfter(currentDate.add(2, "days"), "days")}
                                 className={
                                     cn(
                                         today ?
@@ -164,12 +179,12 @@ export default function F2F() {
                     </select>
                 </div>
                 <div className={styles.policies}>
-                    <input type="checkbox" />
-                    <span className={oxygen.className}>I have read the policies of the website</span>
+                    <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
+                    <span className={oxygen.className}>I have read the <button onClick={() => setPolicies(() => !policies)}>policies of the website</button></span>
                 </div>
                 <div className={styles.form}>
                     <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>
-                    <button onClick={() => setBooks(() => !books)}>Book Now</button>
+                    <button disabled={toggle === false} onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 

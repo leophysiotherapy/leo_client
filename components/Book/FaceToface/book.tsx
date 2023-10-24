@@ -40,7 +40,7 @@ export default function Books({ selectedDate, time, close, platform, services }:
     }, [ cookies ])
 
     const [ mutate ] = useMutation(CreateAppointment)
-
+    const [ toggle, setToggle ] = useState(false)
     const onHandleSubmitForm = (e: any) => {
         e.preventDefault()
         mutate({
@@ -49,7 +49,7 @@ export default function Books({ selectedDate, time, close, platform, services }:
                     date: format(new Date(selectedDate), "yyyy-MM-dd"),
                     time: time,
                     services: services,
-                    amount: 175,
+                    amount: toggle ? 175 : 125,
                 },
                 end: "",
 
@@ -96,7 +96,7 @@ export default function Books({ selectedDate, time, close, platform, services }:
                                     <span className={oxygen.className}>{firstname} {lastname}</span>
                                 </div>
                                 <div>
-                                    <span className={oxygen.className}>Email Address:</span>
+                                    <span className={oxygen.className}>Email:</span>
                                     <span className={oxygen.className}>{email}</span>
                                 </div></>
                         ))
@@ -137,13 +137,13 @@ export default function Books({ selectedDate, time, close, platform, services }:
 
                             })
                         }}
-                        onClick={(data, actions) => {
+                        onApprove={async (data, actions) => {
+                            await actions.order?.capture()
                             setPaid(() => true)
                         }}
-                        onApprove={async (data, actions) => {
-
-                            await actions.order?.capture()
-                        }}
+                        onCancel={async (data, actions) => [
+                            setPaid(() => false)
+                        ]}
                     />
                 </div>
             </div>
