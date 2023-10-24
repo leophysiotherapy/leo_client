@@ -31,17 +31,20 @@ const Abouts: FC = () => {
 
             <div className={styles.about}>
                 <h2 className={poppins.className}>LEONARDO PHYSICAL THERAPHY REHABILITATION CLINIC</h2>
-                <p className={oxygen.className}>Our purpose at Restore PT is simple: we want to help you achieve full functionality and well-being. Whether managing pain, improving mobility, or improving the overall quality of life, our devoted team of healthcare specialists creates individualized treatment regimens to meet your needs. We{"'"}re more than just a rehab facility; we{"'"}re your companions on the road to excellent health and a life full of vigor and joy. Your health is our main priority, and we{"'"}ll be there for you every step of the way
+                <p className={oxygen.className}>Our purpose at Leonardo Physical Therapy is simple: we want to help you achieve full functionality and well-being. Whether managing pain, improving mobility, or improving the overall quality of life, our devoted team of healthcare specialists creates individualized treatment regimens to meet your needs. We{"'"}re more than just a rehab facility; we{"'"}re your companions on the road to excellent health and a life full of vigor and joy. Your health is our main priority, and we{"'"}ll be there for you every step of the way
+
                 </p>
             </div>
             <div className={styles.mivission}>
                 <div>
                     <h2 className={poppins.className}>Mission</h2>
-                    <p className={oxygen.className}>Our solid aim at Restore PT is to empower and uplift our valued customers and patients on their journey to optimal physical well-being. We are dedicated to treating your pain-related issues, poor mobility, or a desire to regain strength and functionality. Our experienced healthcare specialists are committed to providing you with the most individualized care and attention possible.</p>
+                    <p className={oxygen.className}>
+                        Our solid aim at Leonardo Physical Therapy is to empower and uplift our valued customers and patients on their journey to optimal physical well-being. We are dedicated to treating your pain-related issues, poor mobility, or a desire to regain strength and functionality. Our experienced healthcare specialists are committed to providing you with the most individualized care and attention possible.</p>
                 </div>
                 <div>
                     <h2 className={poppins.className}>Vision</h2>
-                    <p className={oxygen.className}>Restore PT aims to lead the way in changing healthcare by embracing the uniqueness of everyone’s road to recovery. We reject the idea of one-size-fits-all solutions and instead take the time to understand your unique circumstances, concerns, and goals. We strive to be a light of hope for people struggling with the weight of pain by adapting our treatment plans to your specific needs.</p>
+                    <p className={oxygen.className}>Leonardo Physical Therapy aims to change healthcare by embracing the uniqueness of everyone{"'"}s road to recovery. We reject the idea of one-size-fits-all solutions and instead take the time to understand your unique circumstances, concerns, and goals. We strive to be a light of hope for people struggling with the weight of pain by adapting our treatment plans to your specific needs.
+                    </p>
                 </div>
             </div>
             <div className={styles.locations}>

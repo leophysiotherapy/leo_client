@@ -3,7 +3,8 @@ import React, { ReactNode, useState } from 'react'
 import styles from '@/styles/layout/main.layout.module.scss'
 import Image from 'next/image'
 import { Oxygen, Poppins } from 'next/font/google'
-import { TbMail, TbBrandInstagram } from 'react-icons/tb'
+import { TbMail, TbBrandInstagram, TbPhone } from 'react-icons/tb'
+import TermsAndCondition from '@/components/tc'
 
 
 const oxygen = Oxygen({
@@ -21,9 +22,21 @@ const Header = dynamic(() => import("@/components/Header/header"))
 
 export default function MainLayout({ children }: { children: ReactNode }) {
 
+
+    const [ isOpen, setIsOpen ] = useState(false)
     const [ datesYear ] = useState(new Date().getFullYear())
+
+
+    const onHandleTC = () => {
+        setIsOpen(() => !isOpen)
+    }
     return (
         <div className={styles.container}>
+            {
+                isOpen ? <div className={styles.overlay}>
+                    <TermsAndCondition close={onHandleTC} />
+                </div> : null
+            }
             <Header />
             {children}
             <div className={styles.contact}>
@@ -33,9 +46,10 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                 <div className={styles.sss}>
                     <span className={oxygen.className}><TbMail size={25} /> leophysiotherapyy@gmail.com</span>
                     <span className={oxygen.className}><TbBrandInstagram size={25} /> @restore.pt</span>
+                    <span className={oxygen.className}><TbPhone size={25} />Contact Number</span>
                 </div>
                 <div className={styles.contactContainer}>
-                    <span className={poppins.className}>Contact number</span>
+                    <span className={poppins.className}><button onClick={onHandleTC}>Terms and Condition</button></span>
                     <span className={oxygen.className}>&copy;{datesYear} by Leonardo Physical Theraphy</span>
                     <span className={oxygen.className}>Rehabilitation Clinic</span>
                 </div>
