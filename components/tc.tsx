@@ -26,41 +26,42 @@ export default function TermsAndCondition({ close }: any) {
             <div className={styles.orderlist}>
 
                 <div>
-                    <h2 className={poppins.className}>1. Hippa Compliance </h2>
+                    <h2 className={poppins.className}>1. Hipaa Compliance </h2>
                     <p className={oxygen.className}>
                         -  Leonardo Physical Therapy Rehabilitation Clinic is fully dedicated to ensuring strict compliance with the Health Insurance Portability and Accountability Act (HIPAA) of 1996, which serves as the cornerstone for safeguarding personal health information. At our clinic, your privacy is of outmost importance to us, and we are unwavering in our commitment to protecting your Protected Health Information (PHI) in accordance with HIPAA regulations. We encourage you to review our comprehensive Privacy Policy to gain a deeper understanding of how we collect, utilize, and fortify the security of your PHI.
                     </p>
                     <div className={styles.privacy}>
                         <h3 className={poppins.className}>Privacy Policy</h3>
-                        <p className={oxygen.className}>- Leonardo Physical Therapy Rehabilitation Clinic is fully dedicated to ensuring strict compliance with the Health Insurance Portability and Accountability Act (HIPAA) of 1996, which serves as the cornerstone for safeguarding personal health information. At our clinic, your privacy is of outmost importance to us, and we are unwavering in our commitment to protecting your Protected Health Information (PHI) in accordance with HIPAA regulations. We encourage you to review our comprehensive Privacy Policy to gain a deeper understanding of how we collect, utilize, and fortify the security of your PHI.</p>
+                        <p className={oxygen.className}>-This Privacy Policy outlines how we collect, use, and protect your Personal Health Information (PHI). By using our services, you acknowledge that you have read and understood our Privacy Policy and agree to its terms. Please find the key aspects of our Privacy Policy below:
+                        </p>
                         <div className={styles.s}>
                             <div>
-                                <h2 className={poppins.className}>1. Collection of PHI</h2>
+                                <h2 className={poppins.className}>A. Collection of PHI</h2>
                                 <p className={oxygen.className}>- We collect PHI with your explicit consent and use it solely for the purpose of providing you with the best possible services and healthcare. This may include information such as your medical history, treatment records, and any other relevant health-related data necessary for your care.
                                 </p>
                             </div>
                             <div>
-                                <h2 className={poppins.className}>2. Use of PHI</h2>
+                                <h2 className={poppins.className}>B. Use of PHI</h2>
                                 <p className={oxygen.className}>- Your PHI is used for treatment, payment, and healthcare operations as outlined under the Health Insurance Portability and Accountability Act (HIPAA) guidelines. We do not use your PHI for any purposes other than those permitted by law without your explicit authorization.
                                 </p>
                             </div>
                             <div>
-                                <h2 className={poppins.className}>3. Disclosure of PHI</h2>
+                                <h2 className={poppins.className}>C. Disclosure of PHI</h2>
                                 <p className={oxygen.className}>- We may disclose your PHI to authorized personnel involved in your care, or as required by law. Any other disclosure of your PHI to third parties will be done only with your explicit consent or as permitted by the HIPAA regulations.
                                 </p>
                             </div>
                             <div>
-                                <h2 className={poppins.className}>4. Compliance with Regulations</h2>
+                                <h2 className={poppins.className}>D. Compliance with Regulations</h2>
                                 <p className={oxygen.className}>- Our policies and procedures are in strict compliance with the regulations outlined in the HIPAA Privacy Rule. We regularly review and update our policies to ensure ongoing adherence to all applicable privacy and security requirements.
                                 </p>
                             </div>
                             <div>
-                                <h2 className={poppins.className}>5. Access to Your PHI</h2>
+                                <h2 className={poppins.className}>E. Access to Your PHI</h2>
                                 <p className={oxygen.className}>- You have the right to access, review, and request amendments to your PHI as allowed by law.
                                 </p>
                             </div>
                             <div>
-                                <h2 className={poppins.className}>6. Data Retention and Disposal</h2>
+                                <h2 className={poppins.className}>F. Data Retention and Disposal</h2>
                                 <p className={oxygen.className}>- We retain your PHI for the period required by law and dispose of it securely once it is no longer needed. This includes the secure deletion of electronic records and the proper disposal of physical documents containing PHI.
                                 </p>
                             </div>

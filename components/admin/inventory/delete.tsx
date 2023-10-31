@@ -31,7 +31,7 @@ export default function UserDelete({ close, equipmentID }: any) {
     return (
         <div className={styles.container}>
             <form onSubmit={onHandleDeleteInventory}>
-                <span className={oxygen.className}>Do you want to delete this user?</span>
+                <span className={oxygen.className}>Do you want to delete this items?</span>
                 <div className={styles.add}>
                     <button className={styles.cancel} onClick={close} type="button">Cancel</button>
                     <button className={styles.submit} type="submit">Submit</button>

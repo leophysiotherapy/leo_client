@@ -92,7 +92,7 @@ export default function WebPolicies({ close }: any) {
                 </p>
             </div>
             <div className={styles.closeBtn}>
-                <button onClick={close} className={poppins.className}>Agree to Terms and Conditions</button>
+                <button onClick={close} className={poppins.className}>Done</button>
             </div>
         </div>
     )

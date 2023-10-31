@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react'
 import Head from 'next/head'
 import { BarElement, Chart as ChartJS, Legend, CategoryScale, LinearScale } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
+import { format } from 'date-fns'
 ChartJS.register(BarElement, Legend, CategoryScale, LinearScale)
 
 import styles from '@/styles/admin/booking/reports/reports.module.scss'
@@ -53,13 +54,13 @@ const OnlineReports: FC = () => {
                             label: "Online",
                             backgroundColor: "red",
                             data: loadingOnline ? "" : dataOnline.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: createdAt, y: _all }
+                                return { x: format(new Date(createdAt), "MMMM"), y: _all }
                             })
                         }, {
                             label: "Face-to-Face",
                             backgroundColor: "Blue",
-                            data: loadingOnline ? "" : dataOnline.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: createdAt, y: _all }
+                            data: loadingF2F ? "" : dataF2f.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
+                                return { x: format(new Date(createdAt), "MMMM"), y: _all }
                             })
                         }
                     ]

@@ -51,7 +51,7 @@ export default function ForgetPassword() {
                     email: emailAddress,
                 },
                 onCompleted: () => {
-                    router.push("/auth/forgotPassword/otpVerify")
+                    router.push("/auth/forgotpassword/otpVerify")
                 },
             })
         }

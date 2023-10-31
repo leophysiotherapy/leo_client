@@ -147,6 +147,17 @@
          justify-content: center;
          gap: 20px;
          padding: 20px;
+         button {
+            &:hover {
+               background-color: #0097b2;
+               color: #fff;
+            }
+            &:disabled {
+               background-color: #ccc;
+               color: #fff;
+               border: none;
+            }
+         }
          @media screen and (max-width: 600px) {
             padding: 25px;
          }

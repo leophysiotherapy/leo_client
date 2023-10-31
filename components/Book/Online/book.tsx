@@ -77,9 +77,12 @@ export default function Books({ selectedDate, time, close, platform }: any) {
             {
                 paid ?
                     <div className={styles.successfullyPaid}>
-                        <h2 className={poppins.className}>Successfully Paid</h2>
+                        <div className={styles.titlePaid}>
+                            <h2 className={poppins.className}>Successfully Paid. Please click “Confirm” to process your appointment.</h2>
+                            <h2 className={poppins.className}> You can access your receipt in your dashboard.</h2>
+                        </div>
                         <form onSubmit={onHandleSubmitForm}>
-                            <button type="submit">Close</button>
+                            <button type="submit">Confirm</button>
                         </form>
                     </div>
                     : null
@@ -118,7 +121,7 @@ export default function Books({ selectedDate, time, close, platform }: any) {
                 <div className={styles.payment}>
                     <div>
                         <span className={oxygen.className}>Please Pay: </span>
-                        <span className={oxygen.className}>{Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(175)}</span>
+                        <span className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(175)}</span>
                     </div>
                     <PayPalButtons
                         style={{

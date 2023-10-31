@@ -7,6 +7,7 @@ import { RegisterUser } from '@/util/form/auth'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import TermsAndCondition from './termsAndCondition'
+import { TbEye, TbEyeOff } from 'react-icons/tb'
 interface RegisterForm {
     email: string
     password: string
@@ -31,7 +32,8 @@ export default function RegisterForm() {
     const [ ischecked, setChecked ] = useState(false)
     const [ retype, setRetype ] = useState("")
     const [ mutate ] = useMutation(RegisterUser)
-
+    const [ show, setShow ] = useState(false)
+    const [ isShow, setIsShow ] = useState(false)
     const [ isValid, setIsValid ] = useState(false)
 
     const [ users, setUsers ] = useState<RegisterForm>({
@@ -117,14 +119,26 @@ export default function RegisterForm() {
                     setUsers({ ...users, email: e.target.value })
                 }} className={styles.inptext} type="email" placeholder='Email Address' />
                 <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
-                <input style={isValid && users.password.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} onChange={(e) => {
-                    setUsers({ ...users, password: e.target.value })
-                    checkPassword()
-                }} className={styles.inptext} type="password" placeholder='Password' />
+                <div className={styles.password}>
+                    <input style={isValid && users.password.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} onChange={(e) => {
+                        setUsers({ ...users, password: e.target.value })
+                        checkPassword()
+                    }} className={styles.inptext} type={show ? "text" : "password"} placeholder='Password' />
+                    <button className={styles.showPassword} type="button" onClick={() => setShow(() => !show)}>
+                        {show ? <TbEyeOff size={23} /> : <TbEye size={23} />}
+                    </button>
+                </div>
                 <p className={oxygen.className}>
                     Password must contain at least 1 capital letter, 1 number, and be at least 6 characters long.
                 </p>
-                <input onChange={(e) => setRetype(e.target.value)} className={styles.inptext} type="password" placeholder='Confirm Password' />
+                <div className={styles.password}>
+                    <input onChange={(e) => {
+                        setRetype(e.target.value)
+                    }} className={styles.inptext} type={isShow ? "text" : "password"} placeholder='Re-Type Password' />
+                    <button className={styles.showPassword} type="button" onClick={() => setIsShow(() => !isShow)}>
+                        {show ? <TbEyeOff size={23} /> : <TbEye size={23} />}
+                    </button>
+                </div>
                 <div className={styles.verification}>
                     <div className={styles.statement}>
                         <input onChange={() => setChecked(!ischecked)} checked={ischecked} type="checkbox" />

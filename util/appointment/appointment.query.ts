@@ -53,6 +53,7 @@ export const getAllAppointmentIDs = gql`query GetAllAppointmentID($appointmentId
     patients {
       email
       profile {
+        phone
         firstname
         lastname
       }

@@ -40,7 +40,6 @@ export default function Books({ selectedDate, time, close, platform, services }:
     }, [ cookies ])
 
     const [ mutate ] = useMutation(CreateAppointment)
-    const [ toggle, setToggle ] = useState(false)
     const onHandleSubmitForm = (e: any) => {
         e.preventDefault()
         mutate({
@@ -49,7 +48,7 @@ export default function Books({ selectedDate, time, close, platform, services }:
                     date: format(new Date(selectedDate), "yyyy-MM-dd"),
                     time: time,
                     services: services,
-                    amount: toggle ? 175 : 125,
+                    amount: 175,
                 },
                 end: "",
 
@@ -77,9 +76,12 @@ export default function Books({ selectedDate, time, close, platform, services }:
             {
                 paid ?
                     <div className={styles.successfullyPaid}>
-                        <h2 className={poppins.className}>Successfully Paid</h2>
+                        <div className={styles.titlePaid}>
+                            <h2 className={poppins.className}>Successfully Paid. Please click “Confirm” to process your appointment.</h2>
+                            <h2 className={poppins.className}> You can access your receipt in your dashboard.</h2>
+                        </div>
                         <form onSubmit={onHandleSubmitForm}>
-                            <button type="submit">Close</button>
+                            <button type="submit">Confirm</button>
                         </form>
                     </div>
                     : null

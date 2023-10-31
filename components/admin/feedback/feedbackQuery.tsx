@@ -1,5 +1,5 @@
 import React from 'react'
-import { TbTrash } from 'react-icons/tb'
+import { TbEye, TbTrash } from 'react-icons/tb'
 import { format } from 'date-fns'
 import { Oxygen } from 'next/font/google'
 import { useRouter } from 'next/router'
@@ -25,7 +25,7 @@ export default function FeedbackQuery({ fullname, rating, date, feedbackID }: an
             </td>
             <td>
                 <button onClick={() => router.push(`/administrator/feedback/reviews/${feedbackID}`)} className={oxygen.className}>
-                    <span>View</span>
+                    <TbEye size={23} />
                 </button>
                 <button>
                     <TbTrash size={23} />

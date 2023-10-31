@@ -30,7 +30,7 @@ export default function AppointmentQuery({ appointmentID, date, link, time, stat
         <tr>
             <td className={oxygen.className}>{format(new Date(date), "MM/dd/yyyy")} {time}</td>
             <td className={oxygen.className}>{fullname}</td>
-            <td className={oxygen.className}>{link.length === 0 ? "N/A" : <Link href={link}>Link</Link>}</td>
+            <td className={oxygen.className}>{link.length === 0 ? "N/A" : <Link target='_blank' href={link}>Link</Link>}</td>
             <td style={{ textTransform: "uppercase" }} className={oxygen.className}>{status}</td>
             <td className={oxygen.className}>
                 <Link href={`/administrator/bookings/online/${appointmentID}`}>View</Link>

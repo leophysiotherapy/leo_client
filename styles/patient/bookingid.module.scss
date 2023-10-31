@@ -8,6 +8,12 @@
    flex-direction: column;
    padding: 20px;
    gap: 20px;
+
+   .print {
+      display: none !important;
+      @media print {
+      }
+   }
    .title {
       display: flex;
       align-items: center;

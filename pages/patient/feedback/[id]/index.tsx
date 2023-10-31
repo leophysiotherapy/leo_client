@@ -35,7 +35,7 @@ export const getStaticPaths = async () => {
     })
 
     return {
-        paths, fallback: false
+        paths, fallback: true
     }
 }
 
@@ -58,6 +58,10 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 const FeedbackID: FC = ({ feed }: any) => {
 
     const router = useRouter()
+
+    if (router.isFallback) {
+        return (<p>Loading...</p>)
+    }
     return (
         <div className={styles.container}>
             <Head>
@@ -90,7 +94,7 @@ const FeedbackID: FC = ({ feed }: any) => {
                 ))}
             </div>
             <button onClick={() => router.push("/patient/feedback/")}>
-                <span className={poppins.className}>Back to Homepage</span>
+                <span className={poppins.className}>Back to Reviews Page</span>
             </button>
         </div>
     )

@@ -91,11 +91,20 @@
                justify-content: center;
                align-items: center;
                display: flex;
+               overflow: hidden;
+               &:hover {
+                  box-shadow: 0px 0px 10px 0px #0097b2;
+               }
                .titleName {
+                  text-align: center;
                }
                .teamInfo {
                   display: flex;
+                  align-items: center;
                   flex-direction: column;
+                  span {
+                     text-align: center;
+                  }
                }
             }
          }

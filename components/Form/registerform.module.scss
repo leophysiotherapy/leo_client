@@ -6,6 +6,10 @@
    padding: 10px;
    background-color: #0097b2;
    color: #fff;
+   a {
+      text-decoration: underline;
+      color: #fff;
+   }
    @media screen and (max-width: 600px) {
       height: 100%;
       box-shadow: none;
@@ -31,6 +35,23 @@
       p {
          font-size: 14px;
       }
+      .password {
+         width: 100%;
+         display: flex;
+         align-items: center;
+         button {
+            height: 50px;
+            width: 70px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            background-color: #fff;
+            border: none;
+            svg {
+               stroke-width: 1.5px;
+               stroke: #0097b2;
+            }
+         }
+      }
       .inptext,
       .submitBtn {
          height: 50px;
@@ -45,7 +66,7 @@
          background-color: transparent;
          border: none;
          cursor: pointer;
-         text-decoration: 1.5px blue underline;
+         text-decoration: 1.5px #fff underline;
       }
       .submitBtn {
          cursor: pointer;
@@ -65,10 +86,7 @@
          display: flex;
          flex-direction: column;
          gap: 10px;
-         a {
-            text-decoration: underline;
-            color: blue;
-         }
+
          .statement {
             display: flex;
             align-items: center;

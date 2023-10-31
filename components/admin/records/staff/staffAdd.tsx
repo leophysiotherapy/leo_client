@@ -58,6 +58,9 @@ export default function StaffAdd({ close }: any) {
                 })
                 setImageUpload(null)
             },
+            onError: (e) => {
+                alert(e.message)
+            },
             refetchQueries: [ {
                 query: GetAllPhysioUserByRole,
                 variables: {

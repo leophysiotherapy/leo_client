@@ -6,6 +6,7 @@ import { GetStaticPropsContext } from 'next'
 import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer'
 import Head from 'next/head'
 import MainLayout from '@/layout/main.layout'
+import { useRouter } from 'next/router'
 
 export const getStaticPaths = async () => {
 
@@ -17,7 +18,7 @@ export const getStaticPaths = async () => {
         return { params: { id: prescriptionID } }
     })
     return {
-        paths, fallback: false
+        paths, fallback: true
     }
 }
 
@@ -41,12 +42,17 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
 
 const Prescriptions: FC = ({ prescription }: any) => {
 
-
+    const router = useRouter()
     const [ isClient, setClient ] = useState(false)
 
     useEffect(() => {
         setClient(true)
     }, [])
+
+
+    if (router.isFallback) {
+        return (<p>Loading...</p>)
+    }
     return (
         isClient ? <>
             <Head>

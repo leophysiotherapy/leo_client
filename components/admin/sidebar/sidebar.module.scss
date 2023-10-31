@@ -64,6 +64,21 @@
             stroke: #fff;
          }
       }
+      .normalBtn {
+         width: 100%;
+         background-color: transparent;
+         border: none;
+         height: 50px;
+         text-align: left;
+         border-radius: 5px;
+         cursor: pointer;
+         display: flex;
+         align-items: center;
+         justify-content: space-between;
+         &:hover {
+            background-color: #006e81;
+         }
+      }
       .subNav {
          background-color: #006e81;
          padding: 0 10px;

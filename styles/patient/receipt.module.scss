@@ -1,0 +1,122 @@
+.invoice_container {
+   padding: 10px 10px;
+   @media print {
+      display: block;
+   }
+   .invoice_header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      background: #0097b2;
+   }
+
+   .invoice_header h2 {
+      padding: 20px;
+      color: white;
+   }
+
+   .invoice_header p {
+      line-height: 1.8;
+      color: white;
+   }
+
+   .logo_container {
+      padding: 20px;
+      height: auto;
+   }
+
+   .clinic_info {
+      padding: 0 10px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      h2 {
+         padding: 0;
+      }
+      span {
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         color: #fff;
+         svg {
+            stroke-width: 1.5px;
+         }
+      }
+   }
+
+   .patient_container {
+      padding: 0 10px;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   .patient_container {
+      h2 {
+      }
+      padding: 10px;
+   }
+
+   .patient_container p {
+      margin: 0;
+      padding-bottom: 5px;
+   }
+
+   .details_container {
+      margin-top: auto;
+      margin-bottom: auto;
+   }
+
+   .details_header {
+      margin: 0;
+      text-align: center;
+      background: #0097b2;
+      padding: 5px;
+      color: white;
+   }
+
+   .service_container {
+      padding: 10px;
+      margin-top: 10px;
+      table {
+         border: 1px solid #000;
+         border-collapse: collapse;
+         tr {
+            th {
+               border: 1px solid #000;
+            }
+            td {
+               border: 1px solid #000;
+            }
+         }
+      }
+   }
+
+   .item_table {
+      width: 100%;
+      text-align: left;
+   }
+
+   .item_table td,
+   th {
+      padding: 10px 10px;
+   }
+
+   .footer {
+      padding: 0 10px;
+   }
+
+   .footer h3 {
+      background: #0097b2;
+      color: white;
+      padding: 7px;
+      margin-bottom: 10px;
+   }
+
+   .footer p {
+      text-indent: 20px;
+      text-align: justify;
+      margin-bottom: 10px;
+   }
+}

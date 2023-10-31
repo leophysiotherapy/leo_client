@@ -16,7 +16,7 @@ export default function InventoryAdd({ close, userID }: any) {
 
     const [ inventory, setInventoryAdd ] = useState({
         name: "",
-        quantity: "",
+        quantity: "" as unknown as number,
         inventories: "",
         expiredDate: "",
         description: ""
@@ -34,7 +34,7 @@ export default function InventoryAdd({ close, userID }: any) {
                     description: inventory.description,
                     expireDate: inventory.expiredDate,
                     name: inventory.name,
-                    quantity: parseInt(inventory.quantity)
+                    quantity: inventory.quantity
                 },
                 inventory: inventory.inventories
             },
@@ -52,7 +52,12 @@ export default function InventoryAdd({ close, userID }: any) {
                 <div>
                     <input type="text" value={inventory.name} placeholder='Name' onChange={(e) => setInventoryAdd({ ...inventory, name: e.target.value })} />
                     <input type="text" value={inventory.quantity} placeholder='Quantity'
-                        onChange={(e) => setInventoryAdd({ ...inventory, quantity: e.target.value })} />
+                        onChange={(e) => {
+                            setInventoryAdd({ ...inventory, quantity: parseInt(e.target.value) })
+                            if (isNaN(parseInt(e.target.value))) {
+                                setInventoryAdd({ ...inventory, quantity: "" as unknown as number })
+                            }
+                        }} />
                 </div>
                 <div>
                     <select onChange={(e) => setInventoryAdd({ ...inventory, inventories: e.target.value })}>

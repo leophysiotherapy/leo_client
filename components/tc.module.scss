@@ -10,6 +10,7 @@
    flex-direction: column;
    gap: 10px;
    color: #000;
+   text-align: justify;
    &::-webkit-scrollbar {
       width: 5px;
    }
@@ -40,10 +41,12 @@
       display: flex;
       flex-direction: column;
       gap: 5px;
+      margin: 10px 0;
       div {
          display: flex;
          flex-direction: column;
          gap: 10px;
+         margin: 5px 0;
          h2 {
             font-size: 1rem;
          }
@@ -69,6 +72,7 @@
    }
    .closeBtn {
       width: 100%;
+      margin: 10px 0;
       button {
          float: right;
          width: 100%;

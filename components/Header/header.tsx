@@ -70,7 +70,7 @@ export default function Header() {
                 </div>
             </div>
 
-            {width <= 600 ? <div className={styles.mobile} >
+            {width <=  900 ? <div className={styles.mobile} >
                 {mob ?
                     <div className={styles.navbar}>
                         <div className={styles.header}>

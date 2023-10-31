@@ -122,7 +122,7 @@ export default function Sidebar({ close }: any) {
                         </div> : null
                 }
 
-                <div className={styles.subNav}>
+                <div className={styles.normalBtn}>
                     <button onClick={() => {
                         router.push("/administrator/inventory/equipment")
                         width < 600 ? close() : null

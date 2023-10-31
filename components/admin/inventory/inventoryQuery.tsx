@@ -10,6 +10,7 @@ const oxygen = Oxygen({
 })
 import EditEquipment from './edit'
 import DeleteEquipment from './delete'
+import { buildQueryFromSelectionSet } from '@apollo/client/utilities'
 
 export default function InventoryQuery({ name, quantity, expiredDate, equipmentID }: any) {
 
@@ -30,15 +31,11 @@ export default function InventoryQuery({ name, quantity, expiredDate, equipmentI
     const almostExpiredDays: number = 7
     const almostExpiredDate = new Date(expirationDate);
     almostExpiredDate.setDate(expirationDate.getDate() - almostExpiredDays);
+    expirationDate.setDate(currentDate.getDate() + almostExpiredDays)
 
-    const stylestr = {
-        color: 'red'
-    }
-
-    const trFontDate = currentDate <= expirationDate && currentDate > almostExpiredDate ? { color: "red" } : ""
 
     return (
-        <tr style={currentDate <= expirationDate && currentDate > almostExpiredDate ? { color: "red" } : {}}>
+        <tr style={currentDate >= expirationDate && currentDate >= almostExpiredDate || currentDate <= expirationDate && currentDate >= almostExpiredDate ? { color: "red" } : {}}>
             <td className={oxygen.className}>{name}</td>
             <td className={oxygen.className}>{quantity}</td>
             <td className={oxygen.className}>{format(new Date(expiredDate), "MMMM dd, yyyy")}</td>

@@ -21,6 +21,7 @@ export default function AddPrescriptions({ close }: any) {
     const { loading, data } = useQuery(gql`query GetAllPhysioPatient {
         getAllPhysioPatient {
           userID
+          email
           profile {
             fullname
           }
@@ -61,9 +62,9 @@ export default function AddPrescriptions({ close }: any) {
                 <h2 className={oxygen.className}>Add Prescriptions</h2>
                 <select onChange={(e) => setPrescriptions({ ...prescriptions, userID: e.target.value })}>
                     <option value="-">-</option>
-                    {loading ? "" : data.getAllPhysioPatient.map(({ userID, profile }: any) => (
+                    {loading ? "" : data.getAllPhysioPatient.map(({ userID, email, profile }: any) => (
                         profile.map(({ fullname }: any) => (
-                            <option key={userID} value={userID}>{fullname}</option>
+                            <option key={userID} value={userID}>{fullname} ({email})</option>
                         ))
                     ))}
                 </select>

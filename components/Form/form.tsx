@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { Oxygen, Poppins } from 'next/font/google'
 import jwtDecode from 'jwt-decode'
 import ReCAPTCHA from "react-google-recaptcha"
+import { TbEye, TbEyeOff } from 'react-icons/tb'
 
 
 const oxygen = Oxygen({
@@ -23,6 +24,7 @@ const poppins = Poppins({
 export default function Form() {
     const router = useRouter()
 
+    const [ show, setShow ] = useState(false)
     const [ isVerified, setVerified ] = useState(false)
     const [ users, setUsers ] = useState({
         email: "",
@@ -50,10 +52,15 @@ export default function Form() {
 
                 const { role }: any = jwtDecode(data.login.token)
 
-                if (role === "patient") {
-                    router.push("/patient/mybooking")
-                } else if (role === "admin") {
-                    router.push("/administrator")
+                switch (role) {
+                    case "patient":
+                        router.push("/patient/mybooking");
+                        break;
+                    case "admin":
+                        router.push("/administrator")
+                        break;
+                    default:
+                        break;
                 }
             },
             onError: (error) => {
@@ -74,8 +81,13 @@ export default function Form() {
             <form>
                 <input className={oxygen.className} type='emai' placeholder='Email Address'
                     onChange={(e) => setUsers({ ...users, email: e.target.value })} />
-                <input className={oxygen.className} type="password" placeholder='Password'
-                    onChange={(e) => setUsers({ ...users, password: e.target.value })} />
+                <div className={styles.password}>
+                    <input className={oxygen.className} type={show ? "text" : "password"} placeholder='Password'
+                        onChange={(e) => setUsers({ ...users, password: e.target.value })} />
+                    <button className={styles.showPassword} type="button" onClick={() => setShow(() => !show)}>
+                        {show ? <TbEyeOff size={23} /> : <TbEye size={23} />}
+                    </button>
+                </div>
                 <div className={styles.forgetPassword}>
                     <Link className={oxygen.className} href="/auth/forgotpassword">Forgot password</Link>
                 </div>

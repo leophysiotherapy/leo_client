@@ -27,12 +27,12 @@ const oxygen = Oxygen({
 
 
 const services = [
-    { name: "Physical Theraphy", amount: 175 },
-    { name: "Injury Rehabilation", amount: 175 },
+    { name: "Physical Therapy", amount: 175 },
+    { name: "Injury Rehabilitation", amount: 175 },
     { name: "Instrument Assisted Soft Tissue Manipulation", amount: 175 },
-    { name: "Cupping Theraphy", amount: 175 },
+    { name: "Cupping Therapy", amount: 175 },
     { name: "Personal Training", amount: 175 },
-    { name: "Home Health Physical Theraphy", amount: 175 },
+    { name: "Home Health Physical Therapy", amount: 175 },
     { name: "Joint Mobilization", amount: 175 }
 ]
 
@@ -42,7 +42,7 @@ export default function F2F() {
     const router = useRouter();
     const currentDate = dayjs();
     const [ today, setToday ] = useState(currentDate)
-    const [ selectedDate, setSelectedDate ] = useState(currentDate)
+    const [ selectedDate, setSelectedDate ] = useState(currentDate.add(1, "days"))
     const [ books, setBooks ] = useState(false)
 
     const [ appointment, setAppointment ] = useState({
@@ -126,7 +126,6 @@ export default function F2F() {
                         <button onClick={() => setToday(today.month(today.month() - 1))}>
                             <TbChevronLeft size={20} />
                         </button>
-                        <span className={oxygen.className}>TODAY</span>
                         <button onClick={() => setToday(today.month(today.month() + 1))}>
                             <TbChevronRight size={20} />
                         </button>
@@ -169,7 +168,7 @@ export default function F2F() {
                         </button>
                     ))}
                 </div>
-                <h2 className={poppins.className}>Select Service</h2>
+                <h2 className={poppins.className}>Select Services</h2>
                 <div className={styles.select}>
                     <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
                         <option>--</option>
@@ -180,7 +179,7 @@ export default function F2F() {
                 </div>
                 <div className={styles.policies}>
                     <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
-                    <span className={oxygen.className}>I have read the <button onClick={() => setPolicies(() => !policies)}>policies of the website</button></span>
+                    <span className={oxygen.className}>I have read the <button onClick={onHandleClosePolicies}>policies of the website</button></span>
                 </div>
                 <div className={styles.form}>
                     <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>

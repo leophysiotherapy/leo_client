@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
         return { params: { id: diagnosisID } }
     })
     return {
-        paths, fallback: false
+        paths, fallback: true
     }
 }
 
@@ -56,6 +56,10 @@ const poppins = Poppins({
 
 const Diagnosis: FC = ({ diagnosis }: any) => {
     const router = useRouter()
+
+    if (router.isFallback) {
+        return (<p>Loading...</p>)
+    }
     return (
         <div className={styles.container}>
             <Head>

@@ -1,35 +1,39 @@
 .container {
    width: 100%;
+   height: 100vh;
    padding: 20px;
    display: flex;
    align-items: center;
-   justify-content: center;
    flex-direction: column;
    gap: 10px;
+   h2 {
+   }
    .header {
       width: 100%;
+      height: 80px;
       display: flex;
+      justify-content: space-around;
       align-items: center;
-      justify-content: space-between;
       button {
+         width: 250px;
          background-color: #0097b2;
          padding: 10px;
          color: #fff;
       }
    }
    .diagnosisContainer {
-      width: 700px;
+      width: 750px;
       height: 500px;
       background-color: #0097b2;
       padding: 15px;
       border-radius: 5px;
-      @media screen and (max-width: 600px) {
+      @media screen and (max-width: 900px) {
          width: 100%;
       }
 
       .card {
          width: 100%;
-         height: 100%;
+         height: 500px;
          display: flex;
          justify-content: center;
          align-items: center;

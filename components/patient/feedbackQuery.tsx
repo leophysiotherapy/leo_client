@@ -3,7 +3,7 @@ import { Oxygen } from 'next/font/google'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import styles from '@/styles/patient/feedback/feedback.module.scss'
-import { TbTrash } from 'react-icons/tb'
+import { TbEye, TbTrash } from 'react-icons/tb'
 import DeleteFeedback from './feedback/deleteFeedback'
 
 const oxygen = Oxygen({
@@ -28,7 +28,9 @@ export default function FeedbackQuery({ feedbackID, createdAt, rating }: any) {
                 {rating === 5 ? "⭐⭐⭐⭐⭐" : null}
             </td>
             <td className={styles.actions}>
-                <Link href={`/patient/feedback/${feedbackID}`}>View</Link>
+                <Link href={`/patient/feedback/${feedbackID}`}>
+                    <TbEye size={20} />
+                </Link>
                 {
                     feedback ? <div className={styles.overlay}>
                         <DeleteFeedback feedbackID={feedbackID} close={onHandleCloseFeedbackDelete} />

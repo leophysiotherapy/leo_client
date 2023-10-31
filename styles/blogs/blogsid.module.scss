@@ -1,0 +1,23 @@
+.container {
+   width: 100%;
+   padding: 20px;
+   .imageContainer {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      @media screen and (max-width: 700px) {
+         padding: 20px;
+      }
+   }
+   .pContainer {
+      width: 100%;
+      padding: 30px 20px;
+      p {
+         font-size: 18px;
+         text-align: justify;
+      }
+   }
+}

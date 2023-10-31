@@ -62,7 +62,7 @@ const Administrator: FC = () => {
                                         <td className={oxygen.className}>{services}</td>
                                         <td className={oxygen.className}>
                                             {platform === "f2f" ? "Face-to-Face" : null}
-                                            {platform === "online" ? <Link href={link}>Link</Link> : null}
+                                            {platform === "online" ? <Link target="_blank" href={link}>Link</Link> : null}
                                         </td>
                                     </tr>
                                 ))

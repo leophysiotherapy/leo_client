@@ -1,5 +1,5 @@
 import { client } from '@/lib/apolloWrapper'
-import React, { FC, useState, useRef, useEffect } from 'react'
+import React, { FC, useState } from 'react'
 import Head from 'next/head'
 import PageWithLayout from '@/layout/page.layout'
 import MainLayout from '@/layout/main.layout'
@@ -12,9 +12,8 @@ import { useRouter } from 'next/router'
 import { Oxygen, Poppins } from 'next/font/google'
 import { CanceledAppointment } from '@/util/appointment/appointment.mutation'
 import { useMutation } from '@apollo/client'
-import { PayPalButtons } from '@paypal/react-paypal-js'
-import { useReactToPrint } from 'react-to-print'
-import ReceiptBooking from '@/components/patient/receiptBooking'
+import DashboardLayout from '@/layout/dashboard.layout'
+
 
 const poppins = Poppins({
     weight: "500",
@@ -39,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
 
     return {
-        paths, fallback: true
+        paths, fallback: false
     }
 }
 
@@ -59,6 +58,7 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
             appointmentData: getAllAppointmentID
         }
     }
+
 }
 
 
@@ -68,51 +68,30 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
     const [ feedback, setFeedback ] = useState(false)
     const [ mutate ] = useMutation(CanceledAppointment)
 
-    const [ isPrinting, setIsPrinting ] = useState(false)
-    const promiseResolveRef = useRef<any>(null)
-    const PrintComponent = useRef(null)
-
-    const [ paid, setPaid ] = useState(false)
 
     const onHandleFeedbackToggle = () => {
         setFeedback(false)
     }
 
-    useEffect(() => {
-        if (isPrinting && promiseResolveRef.current) {
-            promiseResolveRef.current
-        }
-    }, [ isPrinting ])
-
-    const hanadlePrint = useReactToPrint({
-        content: () => PrintComponent.current
-    })
-
-
-
-    if (router.isFallback) {
-        return (<p>Loading...</p>)
-    }
     return (
         <div className={styles.container}>
             <Head>
                 <title>
-                    Booking
+                    Online - Booking
                 </title>
             </Head>
             <div className={styles.filter}>
-                <button onClick={hanadlePrint}>Print/save</button>
-                <button onClick={() => router.push("/patient/mybooking")}>Home</button>
-            </div>
-            <div className={styles.print} ref={PrintComponent}>
-                <ReceiptBooking appointment={appointmentData} ref={PrintComponent} />
+                <button onClick={() => {
+                    window.print()
+                }}>Print/save</button>
+                <button onClick={() => router.push("/administrator/bookings/online")}>Home</button>
             </div>
             <div className={styles.booking}>
                 <div className={styles.title}>
                     <h2 className={poppins.className}>Booking Summary</h2>
                 </div>
 
-                {appointmentData?.map(({ appointmentID, time, date, amount, patients, services, status, link, platform }: any) => (
+                {appointmentData.map(({ appointmentID, time, date, amount, patients, services, status, link, platform }: any) => (
                     <div key={appointmentID} className={styles.bookContainer}>
                         {
                             feedback ? <div className={styles.overlay}>
@@ -140,6 +119,10 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                                 <h2 className={poppins.className}>Service:</h2>
                                 <span className={oxygen.className}>{services}</span>
                             </div>
+                            <div className={styles.bokk}>
+                                <h2 className={poppins.className}>Amount:</h2>
+                                <span className={oxygen.className}>{Intl.NumberFormat("en-CA", { style: "currency", currency: "CAD" }).format(amount)}</span>
+                            </div>
                             {platform === "online" ? <div className={styles.bokk}>
                                 <h2 className={poppins.className}>Link:</h2>
                                 <span className={oxygen.className}>
@@ -151,59 +134,12 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                                 <span className={oxygen.className}>{status}</span>
                             </div>
                         </div>
-                        <div className={styles.books}>
-                            <h2 className={poppins.className}>Total amount: <span className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</span></h2>
-                            {status === "canceled" || status === "done" || status === "finished" ? null :
-                                <div className={styles.cancelBtn}>
-                                    <PayPalButtons
-                                        
-                                        style={{
-                                            color: "gold",
-                                            layout: "horizontal",
-                                            shape: "rect"
-                                        }}
-                                        createOrder={(data, actions) => {
-                                            return actions.order.create({
-                                                purchase_units: [ {
-                                                    description: "Consultation",
-                                                    amount: {
-                                                        value: "50"
-                                                    },
-                                                } ],
 
-                                            })
-                                        }}
-                                        onApprove={async (data, actions) => {
-                                            setPaid(() => true)
-
-                                            await actions.order?.capture()
-                                            mutate({
-                                                variables: {
-                                                    appointmentId: appointmentID
-                                                },
-                                                onCompleted: () => {
-                                                    router.push("/patient/mybooking")
-                                                }
-                                            })
-                                        }}
-                                        onCancel={() => {
-                                            setPaid(false)
-                                        }} // to fixed
-                                    />
-                                </div>
-                            }
-                            {
-                                status === "finished" ?
-                                    <div className={styles.feedbackBtn}>
-                                        <button onClick={() => setFeedback(() => !feedback)}>Create Feedback</button>
-                                    </div> : null
-                            }
-                        </div>
                     </div>
                 ))}
             </div>
         </div >
     )
 }
-(IdMyBooking as PageWithLayout).layout = MainLayout
+(IdMyBooking as PageWithLayout).layout = DashboardLayout
 export default IdMyBooking

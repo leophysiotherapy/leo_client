@@ -10,6 +10,7 @@ import { useRouter } from 'next/router'
 import { getFindSpecificDate } from '@/util/appointment/appointment.query'
 import { useQuery } from '@apollo/client'
 import { format } from 'date-fns'
+import WebPolicies from '../webPolicies'
 
 
 const poppins = Poppins({
@@ -26,21 +27,20 @@ const oxygen = Oxygen({
 export default function Online() {
 
 
-    const router = useRouter();
     const currentDate = dayjs();
 
 
 
-    const [ today, setToday ] = useState(currentDate)
+    const [ today, setToday ] = useState(currentDate.add(1, "days"))
     const [ books, setBooks ] = useState(false)
-    const [ selectedDate, setSelectedDate ] = useState(currentDate)
+    const [ selectedDate, setSelectedDate ] = useState(currentDate.add(1, "days"))
     const [ appointment, setAppointment ] = useState({
         time: "",
         end: "",
         services: "",
 
     })
-
+    const [ policies, setPolicies ] = useState(false)
 
 
     const { loading, data } = useQuery(getFindSpecificDate, {
@@ -88,6 +88,11 @@ export default function Online() {
     const onHandleToggle = () => {
         setToggle(() => !toggle)
     }
+
+
+    const onHandleClosePolicies = () => {
+        setPolicies(() => !policies)
+    }
     if (loading) return <></>
 
     return (
@@ -95,6 +100,11 @@ export default function Online() {
             {
                 books ? <div className={styles.books}>
                     <Books selectedDate={selectedDate} time={appointment.time} close={onHandleClose} />
+                </div> : null
+            }
+            {
+                policies ? <div className={styles.overlay}>
+                    <WebPolicies close={onHandleClosePolicies} />
                 </div> : null
             }
 
@@ -107,7 +117,6 @@ export default function Online() {
                         <button onClick={() => setToday(today.month(today.month() - 1))}>
                             <TbChevronLeft size={20} />
                         </button>
-                        <span className={oxygen.className}>TODAY</span>
                         <button onClick={() => setToday(today.month(today.month() + 1))}>
                             <TbChevronRight size={20} />
                         </button>
@@ -125,7 +134,7 @@ export default function Online() {
                         <div className={styles.cells} key={index}>
                             <button
                                 onClick={() => { setSelectedDate(date) }}
-                                disabled={date.isBefore(currentDate, "days") || date.isAfter(currentDate.add(1, "days"), "days")}
+                                disabled={date.isBefore(currentDate.add(1, "days"), "days") || date.isAfter(currentDate.add(2, "days"), "days")}
                                 className={
                                     cn(
                                         today ?
@@ -165,8 +174,8 @@ export default function Online() {
                     </select>
                 </div>
                 <div className={styles.policies}>
-                    <input type="checkbox" checked={toggle} onChange={() => setToggle(() => !toggle)} />
-                    <span className={oxygen.className}>I have read the policies of the website</span>
+                    <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
+                    <span className={oxygen.className}>I have read the <button onClick={onHandleClosePolicies}>policies of the website</button></span>
                 </div>
                 <div className={styles.form}>
                     <button className={styles.cancelBtn}>Cancel</button>
