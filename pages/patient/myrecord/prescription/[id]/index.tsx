@@ -3,10 +3,11 @@ import React, { FC, useEffect, useState } from 'react'
 import { GetAllPrescription, GetPrescriptionById } from '@/util/prescription/prescription.query'
 import { client } from '@/lib/apolloWrapper'
 import { GetStaticPropsContext } from 'next'
-import { Page, Text, View, Document, PDFViewer } from '@react-pdf/renderer'
+import { Page, Text, View, Document, Image, PDFViewer } from '@react-pdf/renderer'
 import Head from 'next/head'
 import MainLayout from '@/layout/main.layout'
 import { useRouter } from 'next/router'
+import { format } from 'date-fns'
 
 export const getStaticPaths = async () => {
 
@@ -64,33 +65,64 @@ const Prescriptions: FC = ({ prescription }: any) => {
                 height: "700px"
             }}>
                 <Document>
-                    <Page size="LETTER">
+                    <Page size="LETTER" style={{
+                        padding: "10px",
+                    }}>
                         <View style={{
+                            width: "100%",
+                            height: "150px",
+                            gap: "10px",
+                            backgroundColor: "#0097b2",
                             display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
                             alignItems: "center",
-                            justifyContent: "center",
-                            flexDirection: "column",
-                            height: "70px",
-                            gap: "10px"
+                            padding: "0 20px",
                         }}>
-                            <Text>Leonardo Physical Therapy Rehabilitation Clinic</Text>
-                            <Text style={{ fontSize: "12px" }}>
-                                7860 imperial hwy downey, california
-                            </Text>
+                            <View style={{ width: "100%", flex: "1" }}>
+                                <Image src="/logo.png" style={{ width: "160px", height: "90px" }} />
+                            </View>
+                            <View style={{
+                                width: "60px",
+                                display: "flex",
+                                justifyContent: "center",
+                                flex: "1"
+                            }}>
+                                <Text style={{ color: "#fff", fontSize: "13px" }}>Palo Leonardo, DPT</Text>
+                                <Text style={{ color: "#fff", fontSize: "13px" }}>
+                                    Owner and Physical Therapist
+                                </Text>
+                                <Text style={{ color: "#fff", fontSize: "13px" }}>7860 Imperial Highway, Downey, California</Text>
+                                <Text style={{ color: "#fff", fontSize: "13px" }}>@restore.pt</Text>
+                            </View>
                         </View>
 
 
 
-                        {prescription.map(({ prescription, prescriptionID, patient }: any) => (
-                            patient.map(({ profile }: any) => (
-                                profile.map(({ firstname, lastname }: any) => (
+                        {prescription.map(({ prescription, prescriptionID, patient, createdAt }: any) => (
+                            patient.map(({ profile, email }: any) => (
+                                profile.map(({ firstname, lastname, phone }: any) => (
                                     <View style={{
-
+                                        padding: "10px 0"
                                     }} key={prescriptionID}>
                                         <View>
-                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Name: {firstname} {lastname} </Text>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Patient Name: {firstname} {lastname} </Text>
                                         </View>
-                                        <Text style={{ padding: "20px", fontSize: "14px" }}>{prescription}</Text>
+                                        <View>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Email: {email} </Text>
+                                        </View>
+                                        <View>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Contact No.: {phone} </Text>
+                                        </View>
+                                        <View>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Date of Prescription: {format(new Date(createdAt), "MMMM dd, yyyy hh:mm")} </Text>
+                                        </View>
+                                        <View>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>____________________________________________________________________________</Text>
+                                        </View>
+                                        <View>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>{prescription}</Text>
+                                        </View>
                                     </View>
                                 ))
                             ))

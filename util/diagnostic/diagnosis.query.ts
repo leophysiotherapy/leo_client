@@ -16,5 +16,12 @@ export const GetDiagnosisID = gql`query GetDiagnosisID($diagnosisId: ID!) {
       diagnosis
       diagnosisID
       createdAt
+      patient {
+        email
+        profile {
+          fullname
+          phone
+        }
+      }
     }
   }`

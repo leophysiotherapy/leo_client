@@ -5,7 +5,6 @@ import { UpdateAppointmentSession } from '@/util/appointment/appointment.mutatio
 import { gql, useMutation } from '@apollo/client'
 import { getAllAppointByPlatform } from '@/util/appointment/appointment.query'
 import { TimeValue } from '@/components/Book/calendar.config'
-import { format } from 'date-fns'
 
 const poppins = Poppins({
     weight: "500",
@@ -46,16 +45,28 @@ export default function EditAppointment({ appointmentID, close, link, date, full
         date: "",
         time: ""
     })
-    const [ updateDateOnly ] = useMutation(gql`mutation UpdateDateAppointment($date: String!, $time: String!, $appointmentId: ID!) {
-        updateDateAppointment(date: $date, time: $time, appointmentID: $appointmentId) {
+    const [ updateDateOnly ] = useMutation(gql`mutation UpdateDateAppointment(
+        $date: String!
+        $time: String!
+        $appointmentId: ID!
+        $reason: String!
+      ) {
+        updateDateAppointment(
+          date: $date
+          time: $time
+          appointmentID: $appointmentId
+          reason: $reason
+        ) {
           createdAt
           date
           link
           appointmentID
         }
-      }`, {
+      }
+      `, {
         variables: {
             date: myReason.date,
+            reason: myReason.reason,
             time: myReason.time,
             appointmentId: appointmentID
         },

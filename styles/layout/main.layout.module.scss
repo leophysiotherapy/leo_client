@@ -71,4 +71,17 @@
          color: #fff;
       }
    }
+   .footers {
+      width: 100%;
+      text-align: center;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      background-color: #0097b2;
+      span {
+         width: 100%;
+         color: #fff;
+         text-transform: uppercase;
+      }
+   }
 }

@@ -54,6 +54,9 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                     <span className={oxygen.className}>Rehabilitation Clinic</span>
                 </div>
             </div>
+            <div className={styles.footers}>
+                <span className={oxygen.className}>All photos are courtesy of the clinic.</span>
+            </div>
         </div>
     )
 }

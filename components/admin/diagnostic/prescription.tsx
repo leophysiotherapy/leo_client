@@ -3,7 +3,7 @@ import { TbDownload, TbTrash, TbEye } from 'react-icons/tb'
 import { format } from 'date-fns'
 import { Oxygen, Poppins } from 'next/font/google'
 import { useRouter } from 'next/router'
-import { PDFDownloadLink, Document, View, Page, Text } from '@react-pdf/renderer'
+import { PDFDownloadLink, Document, View, Page, Text, Image } from '@react-pdf/renderer'
 import styles from '@/styles/admin/prescription/prescription.module.scss'
 import PrescriptionsDelete from './delete'
 
@@ -21,33 +21,63 @@ const poppins = Poppins({
 
 
 
-const PrescriptionDocument = ({ fullname, prescription }: any) => {
+const PrescriptionDocument = ({ fullname, prescription, email, phone, date }: any) => {
     return (
         <Document>
-            <Page size="LETTER">
+            <Page size="LETTER" style={{
+                padding: "10px",
+            }}>
                 <View style={{
+                    width: "100%",
+                    height: "150px",
+                    gap: "10px",
+                    backgroundColor: "#0097b2",
                     display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
                     alignItems: "center",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    height: "70px",
-                    gap: "10px"
+                    padding: "0 20px",
                 }}>
-                    <Text>Leonardo Physical Therapy Rehabilitation Clinic</Text>
-                    <Text style={{ fontSize: "12px" }}>
-                        4742 Kelvin Road, Freetown, Prince Edward Island, C0B 1L0
-                    </Text>
+                    <View style={{ width: "100%", flex: "1" }}>
+                        <Image src="/logo.png" style={{ width: "160px", height: "90px" }} />
+                    </View>
+                    <View style={{
+                        width: "60px",
+                        display: "flex",
+                        justifyContent: "center",
+                        flex: "1"
+                    }}>
+                        <Text style={{ color: "#fff", fontSize: "13px" }}>Palo Leonardo, DPT</Text>
+                        <Text style={{ color: "#fff", fontSize: "13px" }}>
+                            Owner and Physical Therapist
+                        </Text>
+                        <Text style={{ color: "#fff", fontSize: "13px" }}>7860 Imperial Highway, Downey, California</Text>
+                        <Text style={{ color: "#fff", fontSize: "13px" }}>@restore.pt</Text>
+                    </View>
                 </View>
-
 
                 <View style={{
-                }} >
+                    padding: "10px 0"
+                }}>
                     <View>
-                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Name: {fullname} </Text>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Patient Name: {fullname} </Text>
                     </View>
-                    <Text style={{ padding: "20px", fontSize: "14px" }}>{prescription}</Text>
+                    <View>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Email: {email} </Text>
+                    </View>
+                    <View>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Contact No.: {phone} </Text>
+                    </View>
+                    <View>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>Date of Prescription: {format(new Date(date), "MMMM dd, yyyy hh:mm")} </Text>
+                    </View>
+                    <View>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>____________________________________________________________________________</Text>
+                    </View>
+                    <View>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>{prescription}</Text>
+                    </View>
                 </View>
-
 
             </Page>
         </Document>
@@ -55,7 +85,7 @@ const PrescriptionDocument = ({ fullname, prescription }: any) => {
 }
 
 
-export default function PrescriptionQuery({ date, prescriptionID, fullname, prescription }: { date: any, prescriptionID: string, fullname: string, prescription: string }) {
+export default function PrescriptionQuery({ date, prescriptionID, fullname, prescription, email, phone }: { date: any, prescriptionID: string, fullname: string, prescription: string, email: string, phone: string }) {
 
     const router = useRouter()
 
@@ -83,7 +113,7 @@ export default function PrescriptionQuery({ date, prescriptionID, fullname, pres
                 <button onClick={() => router.push(`/administrator/diagnostic/prescriptions/${prescriptionID}`)}>
                     <TbEye size={23} />
                 </button>
-                {isClient ? <PDFDownloadLink fileName={`${fullname}.pdf`} document={<PrescriptionDocument fullname={fullname} prescription={prescription} />}>
+                {isClient ? <PDFDownloadLink fileName={`${fullname}.pdf`} document={<PrescriptionDocument fullname={fullname} prescription={prescription} date={date} email={email} phone={phone} />}>
                     <TbDownload size={23} />
                 </PDFDownloadLink> : null}
                 <button onClick={() => setDeletePrescription(() => !deletePrescription)}>

@@ -102,7 +102,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
             </Head>
             <div className={styles.filter}>
                 <button onClick={hanadlePrint}>Print/save</button>
-                <button onClick={() => router.push("/patient/mybooking")}>Home</button>
+                <button onClick={() => router.push("/patient/mybooking")}>Back</button>
             </div>
             <div className={styles.print} ref={PrintComponent}>
                 <ReceiptBooking appointment={appointmentData} ref={PrintComponent} />
@@ -155,41 +155,44 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             <h2 className={poppins.className}>Total amount: <span className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</span></h2>
                             {status === "canceled" || status === "done" || status === "finished" ? null :
                                 <div className={styles.cancelBtn}>
-                                    <PayPalButtons
-                                        
-                                        style={{
-                                            color: "gold",
-                                            layout: "horizontal",
-                                            shape: "rect"
-                                        }}
-                                        createOrder={(data, actions) => {
-                                            return actions.order.create({
-                                                purchase_units: [ {
-                                                    description: "Consultation",
-                                                    amount: {
-                                                        value: "50"
+                                    <button>
+                                        <h2 className={oxygen.className}>Cancel</h2>
+                                        <PayPalButtons
+
+                                            style={{
+                                                color: "gold",
+                                                layout: "horizontal",
+                                                shape: "rect"
+                                            }}
+                                            createOrder={(data, actions) => {
+                                                return actions.order.create({
+                                                    purchase_units: [ {
+                                                        description: "Consultation",
+                                                        amount: {
+                                                            value: "50"
+                                                        },
+                                                    } ],
+
+                                                })
+                                            }}
+                                            onApprove={async (data, actions) => {
+                                                setPaid(() => true)
+
+                                                await actions.order?.capture()
+                                                mutate({
+                                                    variables: {
+                                                        appointmentId: appointmentID
                                                     },
-                                                } ],
-
-                                            })
-                                        }}
-                                        onApprove={async (data, actions) => {
-                                            setPaid(() => true)
-
-                                            await actions.order?.capture()
-                                            mutate({
-                                                variables: {
-                                                    appointmentId: appointmentID
-                                                },
-                                                onCompleted: () => {
-                                                    router.push("/patient/mybooking")
-                                                }
-                                            })
-                                        }}
-                                        onCancel={() => {
-                                            setPaid(false)
-                                        }} // to fixed
-                                    />
+                                                    onCompleted: () => {
+                                                        router.push("/patient/mybooking")
+                                                    }
+                                                })
+                                            }}
+                                            onCancel={() => {
+                                                setPaid(false)
+                                            }} // to fixed
+                                        />
+                                    </button>
                                 </div>
                             }
                             {

@@ -10,7 +10,7 @@ import Image from 'next/image'
 import Head from 'next/head'
 import styles from '@/styles/blogs/blogsid.module.scss'
 import { Poppins, Oxygen } from 'next/font/google'
-
+import parse from 'html-react-parser'
 
 const poppins = Poppins({
     weight: "500",
@@ -90,7 +90,7 @@ const BlogsID: FC = ({ blogs }: any) => {
                     }} />
                 </div>
                 <div className={styles.pContainer}>
-                    <p className={oxygen.className}>{content}</p>
+                    <p className={oxygen.className}>{parse(content)}</p>
                 </div>
             </div>
         ))

@@ -1,0 +1,60 @@
+.container {
+   padding: 10px;
+   .invoice_header {
+      display: flex;
+
+      height: 200px;
+      justify-content: space-between;
+      width: 100%;
+      background: #0097b2;
+   }
+   .invoice_header h2 {
+      padding: 20px;
+      color: white;
+   }
+   .invoice_header p {
+      line-height: 1.8;
+      color: white;
+   }
+
+   .logo_container {
+      padding: 20px;
+      height: auto;
+      display: flex;
+      align-items: center;
+   }
+   .clinic_info {
+      padding: 0 20px;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      h2 {
+         padding: 0;
+      }
+      span {
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         color: #fff;
+         svg {
+            stroke-width: 1.5px;
+         }
+      }
+   }
+   .patient_info {
+      padding: 10px;
+      div {
+         display: flex;
+         flex-direction: column;
+         gap: 5px;
+      }
+   }
+   .diagnosis {
+      padding: 10px;
+      h2 {
+         font-size: 22px;
+      }
+   }
+}

@@ -1,8 +1,7 @@
 import { client } from '@/lib/apolloWrapper'
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import PageWithLayout from '@/layout/page.layout'
-import MainLayout from '@/layout/main.layout'
 import styles from '@/styles/patient/bookingid.module.scss'
 import Feedback from '@/components/Book/feedback'
 import Link from 'next/link'
@@ -13,7 +12,8 @@ import { Oxygen, Poppins } from 'next/font/google'
 import { CanceledAppointment } from '@/util/appointment/appointment.mutation'
 import { useMutation } from '@apollo/client'
 import DashboardLayout from '@/layout/dashboard.layout'
-
+import ReceiptBooking from '@/components/patient/receiptBooking'
+import { useReactToPrint } from 'react-to-print'
 
 const poppins = Poppins({
     weight: "500",
@@ -67,11 +67,27 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
     const router = useRouter();
     const [ feedback, setFeedback ] = useState(false)
     const [ mutate ] = useMutation(CanceledAppointment)
+    const [ isPrinting, setIsPrinting ] = useState(false)
+    const promiseResolveRef = useRef<any>(null)
+    const PrintComponent = useRef(null)
 
 
     const onHandleFeedbackToggle = () => {
         setFeedback(false)
     }
+
+
+    useEffect(() => {
+        if (isPrinting && promiseResolveRef.current) {
+            promiseResolveRef.current
+        }
+    }, [ isPrinting ])
+
+    const hanadlePrint = useReactToPrint({
+        content: () => PrintComponent.current
+    })
+
+
 
     return (
         <div className={styles.container}>
@@ -81,14 +97,16 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                 </title>
             </Head>
             <div className={styles.filter}>
-                <button onClick={() => window.print()}>Print/save</button>
+                <button onClick={hanadlePrint}>Print/save</button>
                 <button onClick={() => router.back()}>Home</button>
             </div>
             <div className={styles.booking}>
                 <div className={styles.title}>
                     <h2 className={poppins.className}>Booking Summary</h2>
                 </div>
-
+                <div className={styles.print} ref={PrintComponent}>
+                    <ReceiptBooking appointment={appointmentData} ref={PrintComponent} />
+                </div>
                 {appointmentData.map(({ appointmentID, time, date, amount, patients, services, status, link, platform }: any) => (
                     <div key={appointmentID} className={styles.bookContainer}>
                         {

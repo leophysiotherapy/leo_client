@@ -77,7 +77,7 @@ const Feedback: FC = ({ userID }: any) => {
                         ))}
                     </tbody>
                 </table> : <div style={{ display: "flex", justifyContent: "center", alignContent: "center", border: "0" }}>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScEkdc9eEgx9NYVmIscK6PDFzDMG3gdujJc8ojmHCwAQfYg_w/viewform?embedded=true" width="640" height="1800" >Loading…</iframe>
+                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfZMcDctfaw0MQr08Bx8A53JedEa4vTvFmD8aRbzTWYhaSzEQ/viewform?embedded=true" width="640" height="1800" >Loading…</iframe>
                 </div>}
             </div>
         </div>

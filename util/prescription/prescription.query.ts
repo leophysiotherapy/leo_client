@@ -2,12 +2,16 @@ import { gql } from "@apollo/client";
 
 export const GetAllPrescription = gql`query GetAllPrescription {
     getAllPrescription {
-      prescriptionID
+      prescription
+    prescriptionID
     createdAt
-    prescription
     patient {
+      email
       profile {
         fullname
+        firstname
+        lastname
+        phone
       }
     }
     }
@@ -19,10 +23,14 @@ export const GetPrescriptionById = gql`query GetAllPrescription($prescriptionId:
   getPrescriptionsById(prescriptionID: $prescriptionId) {
     prescription
     prescriptionID
+    createdAt
     patient {
+      email
       profile {
         firstname
+        fullname
         lastname
+        phone
       }
     }
   }
@@ -31,12 +39,16 @@ export const GetPrescriptionById = gql`query GetAllPrescription($prescriptionId:
 
 export const GetFindPrescriptions = gql`query GetAllPrescription($search: String!) {
   getFindPrescription(search: $search) {
-    prescriptionID
     prescription
+    prescriptionID
     createdAt
     patient {
+      email
       profile {
-        fullname
+        firstname
+        fulname
+        lastname
+        phone
       }
     }
   }

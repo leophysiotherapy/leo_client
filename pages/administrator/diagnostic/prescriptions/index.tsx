@@ -84,11 +84,11 @@ const Prescriptions: FC = () => {
                     <tbody>
                         {
                             search ?
-                                searchData?.getFindPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string }) => (
+                                searchData?.getFindPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string, email: string }) => (
 
-                                    patient.map(({ profile }: { profile: [] }) => (
-                                        profile.map(({ fullname }: { fullname: string }) => (
-                                            <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} />
+                                    patient.map(({ profile, email }: { profile: [], email: string}) => (
+                                        profile.map(({ fullname, phone }: { fullname: string, phone: string }) => (
+                                            <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} email={email} phone={phone} />
                                         ))
                                     ))
 
@@ -99,11 +99,11 @@ const Prescriptions: FC = () => {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                </tr> : data.getAllPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string }) => (
+                                </tr> : data.getAllPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string, }) => (
 
-                                    patient.map(({ profile }: { profile: [] }) => (
-                                        profile.map(({ fullname }: { fullname: string }) => (
-                                            <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} />
+                                    patient.map(({ profile, email }: { profile: [], email: string }) => (
+                                        profile.map(({ fullname, phone }: { fullname: string, phone: string }) => (
+                                            <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} email={email} phone={phone} />
                                         ))
                                     ))
 

@@ -76,7 +76,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                 })
             },
             onError: (e) => {
-                alert(e.message)
+                alert("Please set an appointment first before creating a diagnosis and prescription.")
             },
             refetchQueries: [ {
                 query: GetAllPhysioUserByRole,
@@ -103,7 +103,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                         <div className={styles.platform}>
                             <div>
                                 <input type="radio"
-                                    checked={editAppoint.platform === "online" ? true : false}
+                                    checked={patient.platform === "online" ? true : false}
                                     value="online" onChange={(e) => {
                                         setAddPatient({ ...patient, platform: e.target.value })
                                     }} />
@@ -111,8 +111,10 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             </div>
                             <div>
                                 <input type="radio"
-                                    checked={editAppoint.platform === "f2f" ? true : false}
-                                    value="f2f" onChange={(e) => {
+                                    value="f2f"
+                                    checked={patient.platform === "f2f" ? true : false}
+                                    onChange={(e) => {
+
                                         setAddPatient({ ...patient, platform: e.target.value })
                                     }} />
                                 <label>Face-to-Face</label>

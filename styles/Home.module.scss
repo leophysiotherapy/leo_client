@@ -48,16 +48,33 @@
       padding: 20px 10px;
       .service {
          width: 100%;
-         height: 500px;
          border-radius: 3px;
-         padding: 20px;
          box-shadow: 0px 0px 3px 0px #ccc;
          display: flex;
          flex-direction: column;
          justify-content: flex-end;
-         gap: 10px;
+         position: relative;
          &:hover {
             box-shadow: 0px 0px 5px 0px #0097b2;
+            .cardTitle {
+               display: block;
+               width: 100%;
+               height: 100%;
+               background-color: rgba(0, 0, 0, 0.479);
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-direction: column;
+               padding: 10px;
+               color: #fff;
+               position: absolute;
+               inset: 0;
+               h2 {
+                  font-size: 18px;
+               }
+               p {
+               }
+            }
          }
          .image {
             width: 100%;
@@ -69,14 +86,8 @@
             object-fit: cover;
             position: relative;
          }
-         h2 {
-            font-size: 18px;
-         }
-         p {
-            height: 180px;
-            text-align: justify;
-            white-space: unset;
-            text-wrap: balance;
+         .cardTitle {
+            display: none;
          }
       }
    }
@@ -91,5 +102,18 @@
          color: #fff;
          text-transform: uppercase;
       }
+   }
+}
+
+@keyframes scale-in-ver-bottom {
+   0% {
+      transform: scaleY(0);
+      transform-origin: 0% 100%;
+      opacity: 1;
+   }
+   100% {
+      transform: scaleY(1);
+      transform-origin: 0% 100%;
+      opacity: 1;
    }
 }

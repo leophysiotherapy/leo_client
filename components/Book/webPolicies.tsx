@@ -20,7 +20,7 @@ export default function WebPolicies({ close }: any) {
                     IMPORTANT: PLEASE READ THESE TERMS AND CONDITIONS CAREFULLY BEFORE SIGNING UP FOR AN ACCOUNT
                 </h2>
                 <p className={oxygen.className}>
-                    By booking an appointment with {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic{`"`}P, you agree to be bound by the following Terms and Conditions. These Terms and Conditions, along with our Privacy Policy and any additional agreements and policies referenced herein, govern your use of our services and access to our Rehabilitation Clinic.
+                    By booking an appointment with {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic{`"`}, you agree to be bound by the following Terms and Conditions. These Terms and Conditions, along with our Privacy Policy and any additional agreements and policies referenced herein, govern your use of our services and access to our Rehabilitation Clinic.
                 </p>
             </div>
             <div className={styles.orderlist}>
