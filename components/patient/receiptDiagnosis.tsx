@@ -1,9 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import styles from '@/styles/patient/diagnosisRecepit.module.scss'
 import Image from 'next/image'
 import { Poppins, Oxygen } from 'next/font/google'
 import { TbLocationPin, TbBrandInstagram } from 'react-icons/tb'
-import { useReactToPrint } from 'react-to-print'
 
 
 const poppins = Poppins({
@@ -56,6 +55,10 @@ export default function ReceiptDiagnosis({ data }: { data: [] }) {
                         <div className={styles.diagnosis}>
                             <h2 className={poppins.className}>Diagnosis</h2>
                             <p className={oxygen.className}>{diagnosis}</p>
+                        </div>
+                        <div className={styles.signature}>
+                            <Image src="/signature.png" alt="" height={90} width={110} />
+                            <span>Therapist Signature:</span>
                         </div>
                     </div>
                 ))

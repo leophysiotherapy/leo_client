@@ -57,4 +57,11 @@
          font-size: 22px;
       }
    }
+   .signature {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+   }
 }

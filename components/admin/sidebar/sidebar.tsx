@@ -50,7 +50,7 @@ export default function Sidebar({ close }: any) {
     return (
         <div className={styles.container}>
             <div className={styles.logo}>
-                <Image src='/logo.png' height={110} width={180} alt="" onClick={() => router.push("/administrator")} />
+                <Image src='/logo.png' height={110} width={180} alt="" priority onClick={() => router.push("/administrator")} />
                 {width < 600 ? <button onClick={close}>
                     <TbMenu2 size={25} />
                 </button> : null}

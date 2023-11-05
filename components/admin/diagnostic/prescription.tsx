@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { PDFDownloadLink, Document, View, Page, Text, Image } from '@react-pdf/renderer'
 import styles from '@/styles/admin/prescription/prescription.module.scss'
 import PrescriptionsDelete from './delete'
+import HTMLParse from 'react-pdf-html'
 
 const oxygen = Oxygen({
     weight: "400",
@@ -75,10 +76,23 @@ const PrescriptionDocument = ({ fullname, prescription, email, phone, date }: an
                         <Text style={{ padding: "5px 10px", fontSize: "14px" }}>____________________________________________________________________________</Text>
                     </View>
                     <View>
-                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>{prescription}</Text>
+                        <Text style={{ padding: "5px 10px", fontSize: "14px" }}>
+                            <HTMLParse>
+                                {prescription}
+                            </HTMLParse>
+                        </Text>
                     </View>
                 </View>
-
+                <View style={{
+                    width: "100%",
+                    display: "flex",
+                    alignItems: "flex-end"
+                }}>
+                    <Image src="/signature.png" style={{
+                        height: "100px", width: "150px"
+                    }} />
+                    <Text>Therapist Signature:</Text>
+                </View>
             </Page>
         </Document>
     )

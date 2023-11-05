@@ -8,6 +8,7 @@ import { Page, Text, View, Document, PDFViewer, Image } from '@react-pdf/rendere
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
+import HTMLParse from 'react-pdf-html'
 
 export const getStaticPaths = async () => {
 
@@ -124,12 +125,26 @@ const Prescriptions: FC = ({ prescription }: any) => {
                                             <Text style={{ padding: "5px 10px", fontSize: "14px" }}>____________________________________________________________________________</Text>
                                         </View>
                                         <View>
-                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>{prescription}</Text>
+                                            <Text style={{ padding: "5px 10px", fontSize: "14px" }}>
+                                                <HTMLParse>
+                                                    {prescription}
+                                                </HTMLParse>
+                                            </Text>
                                         </View>
                                     </View>
                                 ))
                             ))
                         ))}
+                        <View style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "flex-end"
+                        }}>
+                            <Image src="/signature.png" style={{
+                                height: "100px", width: "150px"
+                            }} />
+                            <Text>Therapist Signature:</Text>
+                        </View>
                     </Page>
                 </Document>
             </PDFViewer >

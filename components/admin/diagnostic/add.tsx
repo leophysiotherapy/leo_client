@@ -3,7 +3,12 @@ import styles from './add.module.scss'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import { Oxygen } from 'next/font/google'
 import { GetAllPrescription } from '@/util/prescription/prescription.query'
-
+import dynamic from 'next/dynamic'
+const ReactQuill = dynamic(() => import("react-quill"), {
+    ssr: false,
+    loading: () => <p>Loading...</p>
+})
+import 'react-quill/dist/quill.snow.css';
 
 
 const oxygen = Oxygen({
@@ -15,9 +20,10 @@ export default function AddPrescriptions({ close }: any) {
 
     const [ prescriptions, setPrescriptions ] = useState({
         userID: "",
-        prescriptions: ""
+
     })
 
+    const [ prescription, setPrescription ] = useState("")
     const { loading, data } = useQuery(gql`query GetAllPhysioPatient {
         getAllPhysioPatient {
           userID
@@ -38,14 +44,13 @@ export default function AddPrescriptions({ close }: any) {
         variables: {
             userId: prescriptions.userID,
             prescription: {
-                prescription: prescriptions.prescriptions
+                prescription: prescription
             }
         },
         onCompleted: () => {
             alert("Successfully Prescriptions Added")
             setPrescriptions({
                 userID: "-",
-                prescriptions: ""
             })
         },
         refetchQueries: [ GetAllPrescription ]
@@ -68,7 +73,7 @@ export default function AddPrescriptions({ close }: any) {
                         ))
                     ))}
                 </select>
-                <textarea onChange={(e) => setPrescriptions({ ...prescriptions, prescriptions: e.target.value })} />
+                <ReactQuill value={prescription} onChange={setPrescription} style={{ width: "100%", height: "300px", margin: "10px 0" }} />
                 <div className={styles.btnGrp}>
                     <button className={styles.cancel} type="button" onClick={close}>Cancel</button>
                     <button className={styles.submit} type="submit">Submit</button>
