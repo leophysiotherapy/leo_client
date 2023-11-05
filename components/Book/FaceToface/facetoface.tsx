@@ -6,7 +6,7 @@ import { TbChevronLeft, TbChevronRight } from 'react-icons/tb'
 import { Oxygen, Poppins } from 'next/font/google'
 import { generateDate, days, months, TimeValue } from '../calendar.config'
 import { getFindSpecificDate } from '@/util/appointment/appointment.query'
-import { useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import { format } from 'date-fns'
 import Books from './book'
 import { useRouter } from 'next/router'
@@ -23,19 +23,6 @@ const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
 })
-
-
-
-const services = [
-    { name: "Physical Therapy", amount: 175 },
-    { name: "Injury Rehabilitation", amount: 175 },
-    { name: "Instrument Assisted Soft Tissue Manipulation", amount: 175 },
-    { name: "Cupping Therapy", amount: 175 },
-    { name: "Personal Training", amount: 175 },
-    { name: "Home Health Physical Therapy", amount: 175 },
-    { name: "Joint Mobilization", amount: 175 }
-]
-
 
 export default function F2F() {
 
@@ -102,7 +89,15 @@ export default function F2F() {
     const onHandleToggle = () => {
         setToggle(() => !toggle)
     }
-    if (loading) return <></>
+
+    const { loading: LoadServices, data: dataServices } = useQuery(gql`query GetAllServices {
+        getAllServices {
+          services
+          descriptions
+          servicesID
+        }
+      }`)
+    if (loading || LoadServices) return <></>
     return (
         <div className={styles.container}>
             {
@@ -172,8 +167,8 @@ export default function F2F() {
                 <div className={styles.select}>
                     <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
                         <option>--</option>
-                        {services.map(({ amount, name }) => (
-                            <option key={name} value={name}>{name}</option>
+                        {dataServices.getAllServices.map(({ services, servicesID }: { services: string, servicesID: string }) => (
+                            <option key={servicesID} value={services}>{services}</option>
                         ))}
                     </select>
                 </div>

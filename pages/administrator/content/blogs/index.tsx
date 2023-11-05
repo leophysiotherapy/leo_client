@@ -12,7 +12,7 @@ import BlogQuery from '@/components/admin/content/blogs/blogQuery'
 import { BlogQuery as BlogQueries, BlogSearch } from '@/util/blog/blog.query'
 import { useQuery, useLazyQuery } from '@apollo/client'
 
-const Thead = [ "Title", "Author", "Expertise", "Date", "Actions" ]
+const Thead = [ "Title", "Author", "Date", "Actions" ]
 
 
 const poppins = Poppins({

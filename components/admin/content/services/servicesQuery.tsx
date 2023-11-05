@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-import { format } from 'date-fns'
-import { TbEdit, TbTrash } from 'react-icons/tb'
 import { Oxygen } from 'next/font/google'
-import styles from '@/styles/admin/content/blogs.module.scss'
-import BlogDelete from './delete'
-import BlogEdit from './edit'
+import React, { useState } from 'react'
+import { TbEdit, TbTrash } from 'react-icons/tb'
+import ServiceEdit from './edit'
+import styles from '@/styles/admin/content/services.module.scss'
+import ServiceDelete from './delete'
 
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
 })
-export default function BlogQuery({ blogsID, author, title, date, expertise, content }: any) {
 
+
+export default function ServiceQuery({ services, servicesID, descriptions }: { servicesID: any, services: any, descriptions: string }) {
 
     const [ edit, setEdit ] = useState(false)
     const [ deleteBlog, setDeleteBlog ] = useState(false)
+
 
     const onHandleEditBlog = () => {
         setEdit(() => !edit)
@@ -23,21 +24,23 @@ export default function BlogQuery({ blogsID, author, title, date, expertise, con
     const onHandleDeleteBlog = () => {
         setDeleteBlog(() => !deleteBlog)
     }
+
+
+
     return (
         <tr>
-            <td className={oxygen.className}>{title}</td>
-            <td className={oxygen.className}>{author}</td>
-            <td className={oxygen.className}>{format(new Date(date), "MM/dd/yyyy")}</td>
+            <td className={oxygen.className}>{services}</td>
+            <td className={oxygen.className}>{descriptions}</td>
             <td>
                 {
                     deleteBlog ? <div className={styles.overlay}>
-                        <BlogDelete blogsID={blogsID} close={onHandleDeleteBlog} />
+                        <ServiceDelete servicesID={servicesID} close={onHandleDeleteBlog} />
                     </div> : null
                 }
                 {
                     edit ?
                         <div className={styles.overlay}>
-                            <BlogEdit close={onHandleEditBlog} blogsID={blogsID} title={title} content={content} expertise={expertise} />
+                            <ServiceEdit close={onHandleEditBlog} servicesID={servicesID} services={services} descriptions={descriptions} />
                         </div> : null
                 }
                 <button onClick={onHandleEditBlog}>

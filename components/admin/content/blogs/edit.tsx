@@ -5,6 +5,16 @@ import { UpdateBlogPost } from '@/util/blog/blog.mutation'
 import { useMutation } from '@apollo/client'
 import { BlogQuery } from '@/util/blog/blog.query'
 
+import dynamic from 'next/dynamic'
+const ReactQuill = dynamic(() => import("react-quill"), {
+    ssr: false,
+    loading: () => <p>Loading...</p>
+})
+import 'react-quill/dist/quill.snow.css';
+
+
+
+
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
@@ -23,12 +33,14 @@ export default function BlogEdit({ blogsID, title, content, expertise, close }: 
         content: content,
         expertise: expertise
     })
+    const [ contents, setContent ] = useState(content)
+
 
 
     const [ mutate ] = useMutation(UpdateBlogPost, {
         variables: {
             blog: {
-                content: edit.content,
+                content: contents,
                 expertise: edit.expertise,
                 title: edit.title
             },
@@ -50,8 +62,8 @@ export default function BlogEdit({ blogsID, title, content, expertise, close }: 
                 <h2 className={poppins.className}>Edit Blogs</h2>
                 <div className={styles.con}>
                     <input className={oxygen.className} type="text" value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} />
-                    <input className={oxygen.className} type="text" value={edit.expertise} onChange={(e) => setEdit({ ...edit, expertise: e.target.value })} />
-                    <textarea className={oxygen.className} value={edit.content} onChange={(e) => setEdit({ ...edit, content: e.target.value })} />
+
+                    <ReactQuill value={content} onChange={setContent} style={{ height: "280px" }} />
                 </div>
                 <div className={styles.add}>
                     <button className={styles.cancel} onClick={close} type="button">Cancel</button>

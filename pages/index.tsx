@@ -14,6 +14,7 @@ import Page4 from '@/components/slider/page4'
 import Page5 from '@/components/slider/page5'
 import Page6 from '@/components/slider/page6'
 import Cookies from 'js-cookie'
+import { gql, useQuery } from '@apollo/client'
 
 
 
@@ -27,47 +28,7 @@ const oxygen = Oxygen({
   subsets: [ "latin" ]
 })
 
-const services = [
-  {
-    name: "Physical Therapy",
-    image: "images/PhysicalTherapy.jpg",
-    descriptions: "Physical therapy aims to optimize strength, flexibility, and coordination while helping individuals regain independence and prevent further physical limitations. It involves the assessment, diagnosis, and treatment of various physical conditions, injuries, and disorders. Through a combination of exercises, manual techniques, and specialized equipment, physical therapists work to alleviate pain, improve movement, and promote recovery after injuries or surgeries. "
-  },
-  {
-    name: "Injury Rehabilitation",
-    image: "images/injury.jpg",
-    descriptions: "is a structured and individualized process aimed at helping individuals recover from injuries, whether they're related to sports, accidents, or other causes. It involves a combination of therapeutic exercises, hands-on treatments, and other modalities to facilitate healing, restore function, and prevent recurring problems."
-  },
-  {
-    name: "Instrument Assisted Soft Tissue Manipulation",
-    image: "images/IASTM.jpg",
-    descriptions: "Instrument Assisted Soft Tissue Manipulation (IASTM) is a therapeutic technique to treat soft tissue injuries and muscle-related conditions. During IASTM, specialized tools are applied to the skin's surface to perform controlled movements that target scar tissue, fascia restrictions, and muscle adhesions. This process can help break down adhesions, improve blood flow, reduce pain, and enhance overall tissue function."
-  },
-  {
-    name: "Cupping Therapy",
-    image: "images/ctheraphy.jpg",
-    descriptions: " is an ancient alternative healing technique that involves placing cups, often made of glass or silicone, onto the skin's surface. These cups create a vacuum-like suction that draws the skin and underlying tissues upwards. Cupping is believed to improve blood circulation, release muscle tension, and promote relaxation. It is often used to address pain, inflammation, and certain musculoskeletal conditions."
-  },
-  {
-    name: "Personal Training",
-    image: "images/texercise.jpg",
-    descriptions: "These goals can range from weight loss and muscle building to improving cardiovascular fitness and overall health. Personal trainers provide guidance, motivation, and instruction on proper exercise techniques. They consider an individual's fitness level, medical history, and preferences to design effective and safe workout routines."
-  },
-  {
-    name: "Home Health Physical Therapy",
-    image: "images/texercise1.jpg",
-    descriptions: "Home health physical therapy refers to physical therapy services provided in the comfort of a patient's home. It is particularly beneficial for individuals who have difficulty traveling to a clinic due to mobility issues, surgery recovery, or other medical reasons."
-  },
-  {
-    name: "Joint Mobilization",
-    image: "images/jointmobilization.jpg",
-    descriptions: "is a manual therapy technique to improve the mobility and function of a joint. It involves gentle and controlled movements applied to the joint surfaces by the therapist's hands. Joint mobilization can help reduce pain, increase joint range of motion, and restore normal movement patterns. This technique is often used in the treatment of musculoskeletal conditions such as arthritis, sprains, and joint stiffness"
-  }
-
-]
-
-
-const Home: FC = ({ userID }: any) => {
+const Home: FC = () => {
   const router = useRouter();
 
   const [ slider, setSlider ] = useState(1)
@@ -95,6 +56,17 @@ const Home: FC = ({ userID }: any) => {
   }, [ cookies ])
 
 
+
+  const { loading, data } = useQuery(gql`query GetAllServices {
+    getAllServices {
+      services
+      image
+      descriptions
+      servicesID
+    }
+  }`)
+
+  if (loading) return <p>Loadding...</p>
   return (
     <>
       <Head>
@@ -135,21 +107,17 @@ const Home: FC = ({ userID }: any) => {
           <h2 className={poppins.className}>Services</h2>
         </div>
         <div className={styles.services}>
-
-          {services.map(({ descriptions, name, image }) => (
-            <div className={styles.service} key={name}>
-              <div className={styles.image}>
-                <Image src={`/${image}`} alt="" fill style={{
+          {data.getAllServices.map(({ services, image, servicesID, descriptions }: { services: string, image: string, servicesID: string, descriptions: string }) => (
+            <div key={servicesID} className={styles.card}>
+              <div className={styles.imgbox}>
+                <Image src={image} alt="physical therapy" fill style={{
                   objectFit: "cover",
                   objectPosition: "center",
                   imageResolution: "from-image"
-                }} priority blurDataURL={`/${image}`} />
-
+                }} />
               </div>
-              <div className={styles.cardTitle}>
-
-                <h2 className={poppins.className}>{name}</h2>
-
+              <div className={styles.content}>
+                <h2 className={poppins.className}>{services}</h2>
                 <p className={oxygen.className}>{descriptions}</p>
               </div>
             </div>
