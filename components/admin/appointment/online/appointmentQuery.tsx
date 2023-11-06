@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Oxygen } from 'next/font/google'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { TbEdit, TbX } from 'react-icons/tb'
+import { TbEdit, TbEye, TbX } from 'react-icons/tb'
 import DeleteAppointmentsId from './cancelAppointment'
 import styles from '@/styles/admin/booking/online.module.scss'
 import EditAppointment from './edit'
@@ -33,7 +33,9 @@ export default function AppointmentQuery({ appointmentID, date, link, time, stat
             <td className={oxygen.className}>{link === null || link === "" ? "N/A" : <Link target='_blank' href={link}>Link</Link>}</td>
             <td style={{ textTransform: "uppercase" }} className={oxygen.className}>{status}</td>
             <td className={oxygen.className}>
-                <Link href={`/administrator/bookings/online/${appointmentID}`}>View</Link>
+                <Link href={`/administrator/bookings/online/${appointmentID}`}>
+                    <TbEye size={23} />
+                </Link>
             </td>
             <td>
                 {

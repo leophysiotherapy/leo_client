@@ -10,6 +10,7 @@ import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
 import { format } from 'date-fns'
 import Link from 'next/link'
+import { TbEye } from 'react-icons/tb'
 
 const poppins = Poppins({
     weight: "500",
@@ -74,7 +75,9 @@ const MyBooking: FC = ({ userID }: any) => {
 
                                     <td className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</td>
                                     <td>
-                                        <Link href={`/patient/mybooking/${appointmentID}`}>View</Link>
+                                        <Link href={`/patient/mybooking/${appointmentID}`}>
+                                            <TbEye size={23} />
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}

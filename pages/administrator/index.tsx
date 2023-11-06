@@ -220,7 +220,7 @@ const Administrator: FC = () => {
             <Head>
                 <title>Administrator</title>
             </Head>
-            <h2 className={poppins.className}>Appointment</h2>
+            <h2 className={poppins.className}>Today{"'"}s Appointments</h2>
             <div className={styles.table}>
                 <table>
                     <thead>

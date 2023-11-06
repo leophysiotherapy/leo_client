@@ -58,7 +58,7 @@ export default function ReceiptDiagnosis({ data }: { data: [] }) {
                         </div>
                         <div className={styles.signature}>
                             <Image src="/signature.png" alt="" height={90} width={110} />
-                            <span>Therapist Signature:</span>
+                            <span>Provider Signature:</span>
                         </div>
                     </div>
                 ))

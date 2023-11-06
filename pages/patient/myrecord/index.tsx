@@ -10,6 +10,7 @@ import { useQuery } from '@apollo/client'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link'
 import { format } from 'date-fns'
+import { TbEye } from 'react-icons/tb'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
@@ -52,7 +53,9 @@ const MyRecord: FC = ({ userID }: any) => {
                                                 <tr key={diagnosisID}>
                                                     <td className={poppins.className}>{format(new Date(createdAt), "MMMM dd, yyyy hh:mm:ss")}</td>
                                                     <td>
-                                                        <Link href={`/patient/myrecord/diagnosis/${diagnosisID}`}>View</Link>
+                                                        <Link href={`/patient/myrecord/diagnosis/${diagnosisID}`}>
+                                                            <TbEye size={23} />
+                                                        </Link>
                                                     </td>
 
                                                 </tr>
@@ -76,7 +79,8 @@ const MyRecord: FC = ({ userID }: any) => {
                                             {prescription.map(({ prescriptionID, prescription, createdAt }: any) => (
                                                 <tr key={prescriptionID}>
                                                     <td className={poppins.className}>{format(new Date(createdAt), "MMMM dd, yyyy hh:mm:ss")}</td>
-                                                    <td ><Link href={`/patient/myrecord/prescription/${prescriptionID}`}>View</Link></td>
+                                                    <td ><Link href={`/patient/myrecord/prescription/${prescriptionID}`}>
+                                                        <TbEye size={23} /></Link></td>
                                                 </tr>
                                             ))}
 

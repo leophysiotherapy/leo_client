@@ -111,7 +111,7 @@ export default function EditAppointment({ appointmentID, close, date, fullname, 
             {
                 reason ? <div className={styles.overlay}>
                     <div className={styles.reason}>
-                        <h2>Reason for Appointment</h2>
+                        <h2 className={poppins.className}>Reason for Reschedule</h2>
                         <select onChange={(e) => setMyReason({ ...myReason, reason: e.target.value })}>
                             <option value="-">-</option>
                             {reasonAppointment.map(({ name, value }) => (

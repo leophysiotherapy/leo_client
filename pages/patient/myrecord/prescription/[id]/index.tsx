@@ -141,7 +141,7 @@ const Prescriptions: FC = ({ prescription }: any) => {
                             <Image src="/signature.png" style={{
                                 height: "100px", width: "150px"
                             }} />
-                            <Text>Therapist Signature:</Text>
+                            <Text>Provider Signature:</Text>
                         </View>
                     </Page>
                 </Document>

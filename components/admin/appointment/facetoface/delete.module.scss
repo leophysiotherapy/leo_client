@@ -10,10 +10,12 @@
    gap: 10px;
    border-radius: 5px;
    flex-direction: column;
-
    padding: 20px;
    span {
       font-size: 18px;
+   }
+   h2 {
+      color: #fff;
    }
    form {
       width: 350px;
