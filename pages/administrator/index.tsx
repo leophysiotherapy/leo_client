@@ -35,6 +35,9 @@ const Administrator: FC = () => {
         createSMSNotification(phoneNumber: $phoneNumber)
       }`)
 
+    const [ EmailNotificationMutaiton, { data: emailData } ] = useMutation(gql`mutation CreateEmailNotification($email: EmailAddress!) {
+        createEmailNotification(email: $email)
+      }`)
     const { loading, data } = useQuery(gql`query GetAllAppointmentToday {
         getAllAppointmentToday {
           appointmentID
@@ -82,7 +85,27 @@ const Administrator: FC = () => {
     }
 
 
+
     useEffect(() => {
+
+
+        function isTargetTimeBefore10Mins(currentDateTime: Date, targetDateTime: Date) {
+            const differenceInMilliseconds = targetDateTime.getTime() - currentDateTime.getTime();
+            const time = differenceInMilliseconds <= 600000 && differenceInMilliseconds >= 0; // 600000 milliseconds is equal to 10 minutes
+            if (time) {
+                if (!emailData) {
+                    EmailNotificationMutaiton({
+                        variables: {
+                            email: "leonardophysiotherapy@gmail.com",
+                        }
+                    })
+                } else {
+                    return
+                }
+            } else {
+                return
+            }
+        }
 
 
         appointment.map(({ date, phone, time }) => {
@@ -92,129 +115,163 @@ const Administrator: FC = () => {
             switch (times) {
                 case "09:00":
                     const targetDateTimeNine = new Date(`${date}T08:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetDateTimeNine)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
+                    const interval =
+                        setInterval(() => {
+
+                            if (isLessThan1Hour(currentDateTime, targetDateTimeNine)) {
+                                SMSMutation({
+                                    variables: {
+                                        phoneNumber: phone
+                                    }
+                                })
+                            } else {
+                                checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
                             }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break;
+
+
+                            isTargetTimeBefore10Mins(currentDateTime, targetDateTimeNine);
+                        }, 60000)
+
+
+                    return () => clearInterval(interval)
                 case "10:00":
-                    const targetDateTimeTen = new Date(`${date}T09:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetDateTimeTen)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break;
+                    const intervalTen = setInterval(() => { }, 60000)
+                    return () => clearInterval(intervalTen)
                 case "11:00":
-                    const targetTimeEleven = new Date(`${date}T10:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeEleven)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
+                    const intervalElevel = setInterval(() => {
+                        const targetTimeEleven = new Date(`${date}T10:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeEleven)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeEleven)
+                    }, 60000)
+
+                    return () => clearInterval(intervalElevel)
                     break;
                 case "12:00":
-                    const targetTimeTwelve = new Date(`${date}T11:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeTwelve)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    }
-                    break;
+                    const intervalTwelve = setInterval(() => {
+                        const targetTimeTwelve = new Date(`${date}T11:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeTwelve)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        }
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeTwelve)
+                    }, 60000)
+
+                    return () => clearInterval(intervalTwelve)
                 case "01:00":
-                    const targetTimeOne = new Date(`${date}T12:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeOne)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break;
+                    const intervalOne = setInterval(() => {
+                        const targetTimeOne = new Date(`${date}T12:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeOne)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeOne)
+                    }, 60000)
+                    return () => clearInterval(intervalOne)
                 case "02:00":
-                    const targetTimeTwo = new Date(`${date}T13:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeTwo)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break;
+                    const intervalTwo = setInterval(() => {
+                        const targetTimeTwo = new Date(`${date}T13:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeTwo)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeTwo)
+                    }, 60000)
+                    return () => clearInterval(intervalTwo)
                 case "03:00":
-                    const targetTimeThree = new Date(`${date}T14:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeThree)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break
+                    const intervalThree = setInterval(() => {
+                        const targetTimeThree = new Date(`${date}T14:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeThree)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeThree)
+                    }, 60000)
+
+                    return () => clearInterval(intervalThree)
                 case "04:00":
-                    const targetTimeFour = new Date(`${date}T15:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetTimeFour)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-
-                    break;
+                    const intervalFour = setInterval(() => {
+                        const targetTimeFour = new Date(`${date}T15:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetTimeFour)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+                        isTargetTimeBefore10Mins(currentDateTime, targetTimeFour)
+                    }, 60000)
+                    return () => clearInterval(intervalFour)
                 case "05:00":
-                    const targetDateTimeFive = new Date(`${date}T16:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetDateTimeFive)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
+                    const intervalFive = setInterval(() => {
+                        const targetDateTimeFive = new Date(`${date}T16:00:00`)
+                        if (isLessThan1Hour(currentDateTime, targetDateTimeFive)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
 
-                    break;
+                        isTargetTimeBefore10Mins(currentDateTime, targetDateTimeFive)
+                    }, 60000)
+
+                    return () => clearInterval(intervalFive)
                 case "06:00":
-                    const targetDateTimeSix = new Date(`${date}T17:00:00`)
-                    if (isLessThan1Hour(currentDateTime, targetDateTimeSix)) {
-                        SMSMutation({
-                            variables: {
-                                phoneNumber: phone
-                            }
-                        })
-                    } else {
-                        checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
-                    }
-                    break;
+                    const intervalSix = setInterval(() => {
+
+                        const targetDateTimeSix = new Date(`${date}T17:20:00`)
+
+                        isTargetTimeBefore10Mins(currentDateTime, targetDateTimeSix)
+                        if (isLessThan1Hour(currentDateTime, targetDateTimeSix)) {
+                            SMSMutation({
+                                variables: {
+                                    phoneNumber: phone
+                                }
+                            })
+                        } else {
+                            checkIfTimeIsGreaterThan(currentDateTime, new Date(`${date}T${times}:00`))
+                        }
+
+
+
+                    }, 60000)
+                    return () => clearInterval(intervalSix)
             }
 
         })
 
-    }, [ SMSMutation, appointment ])
+    }, [EmailNotificationMutaiton, SMSMutation, appointment, emailData])
     return (
         <div className={styles.container}>
             <Head>

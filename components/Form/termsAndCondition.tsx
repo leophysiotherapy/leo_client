@@ -118,7 +118,9 @@ export default function TermsAndCondition({ close }: any) {
             </div>
             <div className={styles.footer}>
                 <p className={oxygen.className}>
-                    By signing up for an account with {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic,{`"`} you acknowledge that you have read, understood, and agreed to these Terms and Conditions, including our commitment to HIPAA compliance. If you do not agree with any part of these Terms and Conditions, please do not use our services.
+                    <i>
+                        By signing up for an account with {`"`}Physiotherapy: An Appointment and General Records Management System for Leonardo Physical Therapy Rehabilitation Clinic,{`"`} you acknowledge that you have read, understood, and agreed to these Terms and Conditions, including our commitment to HIPAA compliance. If you do not agree with any part of these Terms and Conditions, please do not use our services.
+                    </i>
                 </p>
             </div>
             <div className={styles.closeBtn}>

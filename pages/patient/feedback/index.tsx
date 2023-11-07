@@ -54,9 +54,9 @@ const Feedback: FC = ({ userID }: any) => {
                 <div className={styles.titleContainer}>
                     <h2 className={poppins.className}>Feedback</h2>
                 </div>
-                <div className={styles.addBtn}>
+                {selection === "feedback" ? <div className={styles.addBtn}>
                     <button onClick={onHandleCloseCreateFeedback}> <TbPlus size={20} /> Create </button>
-                </div>
+                </div> : null}
                 {selection === "feedback" ? <table>
                     <thead>
                         <tr>

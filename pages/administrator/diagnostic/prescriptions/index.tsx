@@ -29,10 +29,13 @@ const Prescriptions: FC = () => {
 
     const [ add, setAdd ] = useState(false)
     const { loading, data } = useQuery(GetAllPrescription)
-    const [ searchPrescriptions, { data: searchData } ] = useLazyQuery(GetFindPrescriptions)
     const [ search, setSearch ] = useState("")
-
-
+    const [ searchPrescriptions, { data: searchData } ] = useLazyQuery(GetFindPrescriptions, {
+        variables: {
+            search: search
+        }
+    })
+    
     const onHandleCancelPrescriptions = () => {
         setAdd(() => !add)
     }
@@ -46,17 +49,15 @@ const Prescriptions: FC = () => {
                     <AddPrescriptions close={onHandleCancelPrescriptions} />
                 </div> : null
             }
+
             <div className={styles.filter}>
+
                 <div className={styles.filterEntries}>
 
                     <div className={styles.filterSearch}>
                         <span className={oxygen.className}>Search:</span>
                         <input type="search" onChange={(e) => {
-                            searchPrescriptions({
-                                variables: {
-                                    search
-                                }
-                            })
+                            searchPrescriptions()
                             setSearch(e.target.value)
                         }
 
@@ -86,7 +87,7 @@ const Prescriptions: FC = () => {
                             search ?
                                 searchData?.getFindPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string, email: string }) => (
 
-                                    patient.map(({ profile, email }: { profile: [], email: string}) => (
+                                    patient.map(({ profile, email }: { profile: [], email: string }) => (
                                         profile.map(({ fullname, phone }: { fullname: string, phone: string }) => (
                                             <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} email={email} phone={phone} />
                                         ))

@@ -88,7 +88,9 @@ export default function WebPolicies({ close }: any) {
             </div>
             <div className={styles.title}>
                 <p className={oxygen.className}>
-                    This policy will contribute to a fair and efficient booking process, allowing all our patients to enjoy our services without any undue advantage or inconvenience. Thank you for your understanding and cooperation.
+                    <i>
+                        This policy will contribute to a fair and efficient booking process, allowing all our patients to enjoy our services without any undue advantage or inconvenience. Thank you for your understanding and cooperation.
+                    </i>
                 </p>
             </div>
             <div className={styles.closeBtn}>

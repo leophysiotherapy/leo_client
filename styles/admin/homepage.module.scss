@@ -21,8 +21,14 @@
          tbody {
             tr {
                height: 40px;
+               border: 1px solid #ccc;
+               th {
+                  border: 1px solid #ccc;
+                  font-weight: 600;
+               }
                td {
                   text-align: center;
+                  border: 1px solid #ccc;
                   a {
                      color: blue;
                      text-decoration: underline;

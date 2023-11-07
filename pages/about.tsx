@@ -18,10 +18,10 @@ const oxygen = Oxygen({
 
 
 const teams = [
-    { name: "Sofhia Lacandola", expertise: "Expert", descriptions: "descriptions" },
-    { name: "Shane Ivan Tiu", expertise: "Expert", descriptions: "descriptions" },
-    { name: "Marc Ramos", expertise: "Expert", descriptions: "descriptions" },
-    { name: "Rylan Tioco", expertise: "Expert", descriptions: "descriptions" },
+    { name: "Sofhia Lacandola", avatar: "/avatar/sofhia.JPG", expertise: "Expert", descriptions: "Therapist" },
+    { name: "Shane Ivan Tiu", avatar: "/avatar/sheyn.jpg", expertise: "Expert", descriptions: "Therapist" },
+    { name: "Marc Ramos", avatar: "/avatar/marc.jpg", expertise: "Expert", descriptions: "Therapist" },
+    { name: "Rylan Tioco", avatar: "/avatar/ry.jpg", expertise: "Expert", descriptions: "Therapist" },
 ]
 const Abouts: FC = () => {
     return (
@@ -31,6 +31,15 @@ const Abouts: FC = () => {
             </Head>
 
             <div className={styles.about}>
+                <div className={styles.video}>
+                    <video muted loop style={{
+                        width: "100%",
+                        height: "500px",
+                        objectFit: "cover"
+                    }} autoPlay={true}>
+                        <source src="/video/finalvideo.mov" />
+                    </video>
+                </div>
                 <h2 className={poppins.className}>LEONARDO PHYSICAL THERAPY REHABILITATION CLINIC</h2>
                 <p className={oxygen.className}>Our purpose at Leonardo Physical Therapy is simple: we want to help you achieve full functionality and well-being. Whether managing pain, improving mobility, or improving the overall quality of life, our devoted team of healthcare specialists creates individualized treatment regimens to meet your needs. We{"'"}re more than just a rehab facility; we{"'"}re your companions on the road to excellent health and a life full of vigor and joy. Your health is our main priority, and we{"'"}ll be there for you every step of the way
 
@@ -57,16 +66,17 @@ const Abouts: FC = () => {
             <div className={styles.team}>
                 <h2 className={poppins.className}>Meet Our Team</h2>
                 <div className={styles.teamGrid}>
-                    {teams.map(({ name, descriptions, expertise }) => (
+                    {teams.map(({ name, descriptions, expertise, avatar }) => (
                         <div className={styles.teamCard} key={name}>
                             <div className={styles.avatar}>
-                                <Image src="/profile.jpg" alt="" height={150} width={150} style={{
+                                <Image src={avatar} alt={name} height={150} width={150} style={{
                                     objectPosition: "center",
                                     overflow: 'hidden',
                                     objectFit: "cover"
                                 }} />
                             </div>
-                            <h2 className={`${styles.titleName} ${poppins.className}`}>{name}, {expertise}</h2>
+                            <h2 className={`${styles.titleName} ${poppins.className}`}>{name},</h2>
+                            <span className={poppins.className}>{expertise}</span>
                             <div className={styles.teamInfo}>
                                 <span>{descriptions}</span>
                             </div>

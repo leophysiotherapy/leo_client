@@ -44,13 +44,13 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                     <Image src="/logo.png" alt="" height={100} width={150} />
                 </div>
                 <div className={styles.sss}>
-                    <span className={oxygen.className}><TbMail size={25} /> leophysiotherapyy@gmail.com</span>
+                    <span className={oxygen.className}><TbMail size={25} /> leonardophysiotherapy@gmail.com</span>
                     <span className={oxygen.className}><TbBrandInstagram size={25} /> @restore.pt</span>
-                    <span className={oxygen.className}><TbPhone size={25} />Contact Number</span>
+                    <span className={oxygen.className}><TbPhone size={25} />+16264847725</span>
                 </div>
                 <div className={styles.contactContainer}>
                     <span className={poppins.className}><button onClick={onHandleTC}>Terms and Condition</button></span>
-                    <span className={oxygen.className}>&copy;{datesYear} by Leonardo Physical Theraphy</span>
+                    <span className={oxygen.className}>&copy;{datesYear} by Leonardo Physical Therapy</span>
                     <span className={oxygen.className}>Rehabilitation Clinic</span>
                 </div>
             </div>

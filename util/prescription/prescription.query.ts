@@ -46,7 +46,7 @@ export const GetFindPrescriptions = gql`query GetAllPrescription($search: String
       email
       profile {
         firstname
-        fulname
+        fullname
         lastname
         phone
       }
