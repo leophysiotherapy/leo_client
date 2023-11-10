@@ -24,6 +24,7 @@ const Reviews: FC = () => {
             <Head>
                 <title>Feedback</title>
             </Head>
+            <h2 className={poppins.className}>Reviews</h2>
             <div className={styles.table}>
                 <table>
                     <thead>

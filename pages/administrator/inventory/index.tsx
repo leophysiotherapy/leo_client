@@ -48,6 +48,7 @@ const Equipment: FC = ({ userID }: any) => {
     }
     return (
         <div className={styles.container}>
+            <h2 className={poppins.className}>Inventory</h2>
             <Head>
                 <title>Inventory</title>
             </Head>

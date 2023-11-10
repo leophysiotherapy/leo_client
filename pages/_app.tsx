@@ -11,11 +11,12 @@ type AppProps = {
 export default function App({ Component, pageProps }: AppProps) {
 
   const Layout = Component.layout || (({ children }: { children: React.ReactNode }) => <>{children}</>)
+//call to function
   return (
     <ApolloWrapper>
       <Layout>
         <PayPalScriptProvider options={{
-          clientId: "Ac43IkML6uLHN9Dje8gXDC80pu50MDjujny3mNmYHmBW_REN-Xv0oXzXTU_y1nW3WZ2wg-_MTGa3IY4a",
+          clientId: process.env.PAYPAL_CLIENT_ID as string,
           currency: "USD",
         }}>
           <Component {...pageProps} />

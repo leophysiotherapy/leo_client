@@ -45,6 +45,7 @@ const Online: FC = () => {
             <Head>
                 <title>Face-to-Face Appointment</title>
             </Head>
+            <h2 className={poppins.className}>Face-to-Face</h2>
             <div className={styles.filtering}>
                 <div className={styles.filterDate}>
 

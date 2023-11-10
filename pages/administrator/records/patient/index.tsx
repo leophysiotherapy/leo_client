@@ -70,6 +70,7 @@ const Patient: FC = () => {
             <Head>
                 <title>Patient</title>
             </Head>
+            <h2 className={poppins.className}>Patient Records</h2>
             {
                 add ? <div className={styles.overlay}>
                     <PatientAdd close={onHandlePatient} />

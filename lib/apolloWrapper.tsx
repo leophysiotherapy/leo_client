@@ -6,7 +6,7 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
 
 const uploadLink = createUploadLink({
-    uri: "http://localhost:4000/graphql",
+    uri: process.env.localhost,
     credentials: "include",
     headers: {
         'Apollo-Require-Preflight': 'true'
@@ -15,7 +15,7 @@ const uploadLink = createUploadLink({
 
 
 const webSocketLink = typeof window !== "undefined" ? new GraphQLWsLink(createClient({
-    url: "ws://localhost:4000/graphql"
+    url: process.env.NODE_ENV === "production" ? process.env.productions as string : process.env.websocketLocalhost as string
 })) : null
 
 const splitLink = typeof window !== "undefined" && webSocketLink !== null ? split(({ query }) => {

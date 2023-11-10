@@ -35,7 +35,7 @@ const Prescriptions: FC = () => {
             search: search
         }
     })
-    
+
     const onHandleCancelPrescriptions = () => {
         setAdd(() => !add)
     }
@@ -44,6 +44,7 @@ const Prescriptions: FC = () => {
             <Head>
                 <title>Prescription</title>
             </Head>
+            <h2 className={poppins.className}>Prescriptions</h2>
             {
                 add ? <div className={styles.overlay}>
                     <AddPrescriptions close={onHandleCancelPrescriptions} />

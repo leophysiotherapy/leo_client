@@ -43,6 +43,7 @@ const Blogs: FC = ({ userID }: any) => {
             <Head>
                 <title>Blogs</title>
             </Head>
+            <h2 className={poppins.className}>Blogs</h2>
             {
                 add ? <div className={styles.overlay}>
                     <AddBlog close={onHandleClose} userID={userID} />

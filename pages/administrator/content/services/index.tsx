@@ -51,6 +51,7 @@ const Services: FC = () => {
             <Head>
                 <title>Services</title>
             </Head>
+            <h2 className={poppins.className}>Services</h2>
             {
                 add ? <div className={styles.overlay}>
                     <AddServices close={onHandleClose} />

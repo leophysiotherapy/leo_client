@@ -68,6 +68,7 @@ const Staff: FC = () => {
                 <title>Staff</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
             </Head>
+            <h2 className={poppins.className}>Staff Records</h2>
             {
                 add ? <div className={styles.overlay}>
                     <StaffAdd close={onHandleStaff} />

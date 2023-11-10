@@ -32,7 +32,9 @@ export default function Sidebar({ close }: any) {
 
 
 
-    const { loading, data } = useQuery(GetNumberofExpiration)
+    const { loading, data } = useQuery(GetNumberofExpiration, {
+        pollInterval: 1000
+    })
 
 
     useEffect(() => {
@@ -124,7 +126,7 @@ export default function Sidebar({ close }: any) {
 
                 <div className={styles.normalBtn}>
                     <button onClick={() => {
-                        router.push("/administrator/inventory/equipment")
+                        router.push("/administrator/inventory")
                         width < 600 ? close() : null
                     }}>
                         <span>Inventory</span>

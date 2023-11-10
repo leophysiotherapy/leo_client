@@ -7,12 +7,6 @@ import MainLayout from '@/layout/main.layout'
 import { Oxygen, Poppins } from 'next/font/google'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import PageOne from '@/components/slider/page'
-import Page2 from '@/components/slider/page2'
-import Page3 from '@/components/slider/page3'
-import Page4 from '@/components/slider/page4'
-import Page5 from '@/components/slider/page5'
-import Page6 from '@/components/slider/page6'
 import Cookies from 'js-cookie'
 import { gql, useQuery } from '@apollo/client'
 
@@ -66,7 +60,18 @@ const Home: FC = () => {
     }
   }`)
 
-  if (loading) return <p>Loadding...</p>
+
+  const imagesBgSlider = [
+    { name: "page1", path: "/slider/1.png", count: 1 },
+    { name: "page2", path: "/slider/2.png", count: 2 },
+    { name: "page3", path: "/slider/3.png", count: 3 },
+    { name: "page4", path: "/slider/4.png", count: 4 },
+    { name: "page5", path: "/slider/5.png", count: 5 },
+    { name: "page6", path: "/slider/6.png", count: 6 },
+
+  ]
+
+  if (loading) return <p>Loading...</p>
   return (
     <>
       <Head>
@@ -77,30 +82,24 @@ const Home: FC = () => {
       </Head>
 
       <div className={styles.container}>
+
         <div className={styles.tagline}>
           <h2 className={poppins.className}>Reclaiming Movement, Restoring Life.</h2>
           {cookies ? <button onClick={() => router.push("/patient/appointment/facetoface")}>BOOK NOW</button> : <button onClick={() => router.push("/auth/login")}>BOOK NOW</button>}
-          {
-            slider === 1 ? <PageOne /> : null
-          }
-          {
-            slider === 2 ? <Page2 /> : null
-          }
-
-          {
-            slider === 3 ? <Page3 /> : null
-          }
-
-          {
-            slider === 4 ? <Page4 /> : null
-          }
-          {
-            slider === 5 ? <Page5 /> : null
-          }
-          {
-            slider === 6 ? <Page6 /> : null
-          }
-
+          <div className={styles.carousel}>
+            {imagesBgSlider.map(({ name, path, count }) => (
+              slider === count ? <Image key={name}
+                blurDataURL={path}
+                src={path}
+                alt=""
+                priority
+                fill
+                style={{
+                  objectFit: "cover",
+                  objectPosition: "center"
+                }} /> : null
+            ))}
+          </div>
 
         </div>
         <div className={styles.title}>
