@@ -28,7 +28,7 @@ const FAQs: FC = () => {
             </Head>
             <h2 className={poppins.className}>Frequently Asked Question</h2>
             {
-                loading ? "Loading" : data.getAllFAQs.map(({ faqsID, faqs, answer }: FAQs) => (
+                loading ? "Loading" : data?.getAllFAQs.map(({ faqsID, faqs, answer }: FAQs) => (
                     <FAQsCard key={faqsID} question={faqs} answers={answer} />
                 ))
             }

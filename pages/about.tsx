@@ -59,7 +59,7 @@ const Abouts: FC = () => {
             </div>
             <div className={styles.locations}>
                 <h2 className={poppins.className}>Location</h2>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.6245244326174!2d-118.15758552363712!3d33.92506202443397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cd0090d9f07b%3A0xb60d9c2df411bacb!2s7860%20Imperial%20Hwy.%2C%20Downey%2C%20CA%2090242%2C%20USA!5e0!3m2!1sen!2sph!4v1697342221282!5m2!1sen!2sph" width="600" height="450" style={{
+                <iframe className={styles.locaitonFrame} src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3310.6245244326174!2d-118.15758552363712!3d33.92506202443397!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2cd0090d9f07b%3A0xb60d9c2df411bacb!2s7860%20Imperial%20Hwy.%2C%20Downey%2C%20CA%2090242%2C%20USA!5e0!3m2!1sen!2sph!4v1697342221282!5m2!1sen!2sph" width="600" height="450" style={{
                     border: "0px",
                 }} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </div>

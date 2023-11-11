@@ -12,56 +12,61 @@
       justify-content: center;
       flex-direction: column;
       gap: 10px;
-      background-color: #0097b2;
       position: relative;
       .video {
          width: 100%;
+         z-index: -1;
          height: 500px;
          position: absolute;
       }
       @media screen and (max-width: 700px) {
          width: 100%;
          padding: 10px;
-         height: auto;
+         height: 500px;
       }
 
       h2 {
          text-align: center;
          color: #fff;
-         z-index: 999;
       }
       p {
          width: 750px;
+         height: auto;
          font-size: 18px;
          color: #fff;
          text-align: justify;
-         z-index: 999;
          @media screen and (max-width: 700px) {
             width: 100%;
             padding: 10px;
-            height: 450px;
+            height: auto;
          }
       }
    }
    .mivission {
       width: 100%;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, 450px);
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
       padding: 10px;
       @media screen and (max-width: 700px) {
          width: 100%;
+
+         flex-direction: column;
          padding: 10px;
          height: 100%;
       }
       div {
-         width: 100%;
+         width: 500px;
          background-color: #0097b2;
          padding: 20px;
          border-radius: 10px;
          color: #fff;
+         @media screen and (max-width: 700px) {
+            width: 350px;
+            padding: 10px;
+            height: 100%;
+         }
       }
       p {
          text-align: justify;
@@ -74,6 +79,13 @@
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      .locaitonFrame {
+         @media screen and (max-width: 700px) {
+            width: 100%;
+            padding: 10px;
+            height: 700px;
+         }
+      }
       @media screen and (max-width: 700px) {
          width: 100%;
          padding: 10px;

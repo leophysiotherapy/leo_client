@@ -56,7 +56,7 @@ const Blogs: FC = () => {
                             </span>
                         </div>
                     </div>
-                )) : loading ? "Loading" : data.getAllBlogsPost.map(({ title, content, blogsID, image, createdAt }: any) => (
+                )) : loading ? "Loading" : data?.getAllBlogsPost.map(({ title, content, blogsID, image, createdAt }: any) => (
                     <div className={styles.blogCard} key={blogsID}>
                         <div className={styles.backImage}>
                             <Image src={image} width={480} height={260} alt={title} blurDataURL={image} priority style={{ objectFit: "cover", objectPosition: "center", }} />
