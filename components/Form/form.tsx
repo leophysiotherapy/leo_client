@@ -92,7 +92,7 @@ export default function Form() {
                     <Link className={oxygen.className} href="/auth/forgotpassword">Forgot password</Link>
                 </div>
                 <div>
-                    <ReCAPTCHA sitekey='6LeKkgspAAAAAJjNAbvK33ZoKvuaLLebsEGPF1G0' onChange={onCaptchaChange} />
+                    <ReCAPTCHA sitekey='6LeakgspAAAAANbCiKckz48E2XCGHpYgfZHshxMH' onChange={onCaptchaChange} />
                 </div>
                 <button disabled={isVerified === false} type="submit" onClick={onHandleFormSubmit}>
                     <span className={oxygen.className}>Login</span>
