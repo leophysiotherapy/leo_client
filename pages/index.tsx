@@ -106,7 +106,7 @@ const Home: FC = () => {
           <h2 className={poppins.className}>Services</h2>
         </div>
         <div className={styles.services}>
-          {data.getAllServices.map(({ services, image, servicesID, descriptions }: { services: string, image: string, servicesID: string, descriptions: string }) => (
+          {data?.getAllServices.map(({ services, image, servicesID, descriptions }: { services: string, image: string, servicesID: string, descriptions: string }) => (
             <div key={servicesID} className={styles.card}>
               <div className={styles.imgbox}>
                 <Image src={image} alt="physical therapy" fill style={{

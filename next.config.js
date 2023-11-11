@@ -2,8 +2,9 @@
 const nextConfig = {
    reactStrictMode: true,
    env: {
-      localhost: "http://localhost:4000/graphql",
+      localhost: "https://leophysio-22e2a3c9656a.herokuapp.com/graphql",
       websocketLocalhost: "ws://localhost:4000/graphql",
+      productions: "wss://leophysio-22e2a3c9656a.herokuapp.com/graphql",
       PAYPAL_CLIENT_ID:
          "AftuRb9G9NQzEK-cL9xR2DULgH9u2vuW3a7EsojNS_ownVdqifZ89mVnQH3M5LpveaaB3oyGcYjkr2cj",
    },
