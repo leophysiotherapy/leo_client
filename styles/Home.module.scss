@@ -19,7 +19,12 @@
       h2 {
          font-size: 24px;
          color: #fff;
+         text-align: center;
          z-index: 1;
+         @media screen and (max-width: 700px) {
+            text-align: center;
+            font-size: 20px;
+         }
       }
       button {
          width: 140px;
