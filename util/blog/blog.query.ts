@@ -22,6 +22,7 @@ export const BlogSearch = gql`query Query($search: String!) {
     title
       content
       blogsID
+      image
       createdAt
       expertise
       author {

@@ -7,6 +7,21 @@
    flex-direction: column;
    overflow: auto;
    gap: 20px;
+   .search {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 5px;
+      input {
+         border: 1px solid #aaa;
+         border-radius: 3px;
+         background-color: transparent;
+         color: inherit;
+         padding: 8px;
+         margin-left: 3px;
+      }
+   }
    .blogContainer {
       width: 100%;
       display: grid;
