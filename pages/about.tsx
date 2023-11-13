@@ -28,6 +28,7 @@ const Abouts: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>About</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
 
             <div className={styles.about}>
@@ -76,7 +77,6 @@ const Abouts: FC = () => {
                                 }} />
                             </div>
                             <h2 className={`${styles.titleName} ${poppins.className}`}>{name},</h2>
-                            <span className={poppins.className}>{expertise}</span>
                             <div className={styles.teamInfo}>
                                 <span>{descriptions}</span>
                             </div>

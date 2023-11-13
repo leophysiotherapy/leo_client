@@ -66,6 +66,7 @@ const FeedbackID: FC = ({ feed }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>Feedback</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.feedbackContainer}>
                 {feed.map(({ feedback, rating, feedbackID, users, creatdAt }: any) => (

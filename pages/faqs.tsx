@@ -25,8 +25,9 @@ const FAQs: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>FAQs</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
-            <h2 className={poppins.className}>Frequently Asked Question</h2>
+            <h2 className={poppins.className}>Frequently Asked Questions</h2>
             {
                 loading ? "Loading" : data?.getAllFAQs.map(({ faqsID, faqs, answer }: FAQs) => (
                     <FAQsCard key={faqsID} question={faqs} answers={answer} />

@@ -7,6 +7,7 @@
    flex-direction: column;
    overflow: auto;
    gap: 20px;
+
    .search {
       width: 100%;
       display: flex;
@@ -25,26 +26,39 @@
    .blogContainer {
       width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, 500px);
+      grid-template-columns: repeat(auto-fit, 450px);
       gap: 10px;
+      @media screen and (max-width: 600px) {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+      }
       .blogCard {
-         width: 500px;
-         height: 400px;
+         width: 400px;
+         height: 250px;
          padding: 10px;
          display: flex;
          flex-direction: column;
          gap: 15px;
          box-shadow: 0px 0px 3px 0px #ccc;
          border-radius: 5px;
+         @media screen and (max-width: 600px) {
+            width: 370px;
+         }
          .backImage {
             width: 100%;
-            height: 250px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
          }
          .title {
             width: 100%;
-            height: 70px;
+            height: 30px;
             display: flex;
             align-items: center;
+            z-index: 999;
             h2 {
                font-size: 20px;
                cursor: pointer;

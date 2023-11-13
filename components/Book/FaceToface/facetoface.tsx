@@ -166,7 +166,7 @@ export default function F2F() {
                 <h2 className={poppins.className}>Select Services</h2>
                 <div className={styles.select}>
                     <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
-                        <option disabled>--</option>
+                        <option selected disabled>--</option>
                         {dataServices.getAllServices.map(({ services, servicesID }: { services: string, servicesID: string }) => (
                             <option key={servicesID} value={services}>{services}</option>
                         ))}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Oxygen } from 'next/font/google'
-import { TbTrash, TbEdit } from 'react-icons/tb'
+import { TbTrash, TbEdit, TbEye } from 'react-icons/tb'
 import { useState } from 'react'
 import styles from '@/styles/admin/records/patient.module.scss'
 import UserDelete from './delete'
@@ -42,7 +42,8 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
                 ))}
             {
                 diagnosis.map(({ diagnosisID, diagnosis: dia }: any) => (
-                    dia.length === 0 ? <td key={diagnosisID}>N/A</td> : <td key={diagnosisID} className={oxygen.className}><Link href={`/administrator/records/patient/diagnosis/${diagnosisID}`}>View</Link></td>
+                    dia.length === 0 ? <td key={diagnosisID}>N/A</td> : <td key={diagnosisID} className={oxygen.className}><Link href={`/administrator/records/patient/diagnosis/${diagnosisID}`}>
+                        <TbEye size={23} /></Link></td>
                 ))
             }
             <td className={oxygen.className}>

@@ -38,6 +38,7 @@ const MyBooking: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>My Booking</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.upcoming}>
                 <h2 className={poppins.className}>Bookings</h2>

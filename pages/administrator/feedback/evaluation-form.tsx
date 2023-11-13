@@ -18,6 +18,7 @@ const Eval: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Evaluation Form</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Evaluation Form</h2>
             <div className={styles.reports}>

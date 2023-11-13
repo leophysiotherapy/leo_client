@@ -4,7 +4,7 @@ import React, { FC, useState } from 'react'
 import styles from '@/styles/admin/content/blogs.module.scss'
 import Head from 'next/head'
 import { TbPlus } from 'react-icons/tb'
-import { Poppins } from 'next/font/google'
+import { Poppins, Oxygen } from 'next/font/google'
 import AddBlog from '@/components/admin/content/blogs/add'
 import jwtDecode from 'jwt-decode'
 import { GetServerSidePropsContext } from 'next'
@@ -19,7 +19,10 @@ const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
 })
-
+const oxygen = Oxygen({
+    weight: "400",
+    subsets: [ "latin" ]
+})
 
 const Blogs: FC = ({ userID }: any) => {
 
@@ -42,6 +45,7 @@ const Blogs: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>Blogs</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Blogs</h2>
             {
@@ -50,7 +54,8 @@ const Blogs: FC = ({ userID }: any) => {
                 </div> : null
             }
             <div className={styles.search}>
-                <input type="search" placeholder='Search' onChange={(e) => {
+                <span className={oxygen.className}>Search:</span>
+                <input type="search" onChange={(e) => {
                     searchBlog();
                     setSearch(e.target.value)
                 }} />

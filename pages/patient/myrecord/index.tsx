@@ -29,6 +29,7 @@ const MyRecord: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>My Records</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.profile}>
                 {loading ? "Loading" : data.getAllPhysioId.map(({ email, profile, prescription, diagnosis }: any) => (

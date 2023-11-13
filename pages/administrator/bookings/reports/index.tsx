@@ -40,6 +40,7 @@ const OnlineReports: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Online Reports</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <select onChange={(e) => setDateValue(e.target.value)}>
                 <option value="Monthly">Monthly</option>

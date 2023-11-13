@@ -11,6 +11,7 @@ const FaceToface: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Face-to-Face Appointment</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <F2F />
         </div>

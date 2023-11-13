@@ -3,7 +3,7 @@ import { gql, useLazyQuery, useQuery } from '@apollo/client'
 import Head from 'next/head'
 import styles from '@/styles/admin/content/services.module.scss'
 import AddServices from '@/components/admin/content/services/add'
-import { Poppins } from 'next/font/google'
+import { Poppins, Oxygen } from 'next/font/google'
 import ServiceQuery from '@/components/admin/content/services/servicesQuery'
 import PageWithLayout from '@/layout/page.layout'
 import DashboardLayout from '@/layout/dashboard.layout'
@@ -17,6 +17,10 @@ const poppins = Poppins({
     subsets: [ "latin" ]
 })
 
+const oxygen = Oxygen({
+    weight: "400",
+    subsets: [ "latin" ]
+})
 const Services: FC = () => {
     const [ add, setAdd ] = useState(false)
     const [ search, setSearch ] = useState("")
@@ -50,6 +54,7 @@ const Services: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Services</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Services</h2>
             {
@@ -58,7 +63,8 @@ const Services: FC = () => {
                 </div> : null
             }
             <div className={styles.search}>
-                <input type="search" placeholder='Search' onChange={(e) => {
+                <span className={oxygen.className}>Search:</span>
+                <input type="search" onChange={(e) => {
                     searchBlog();
                     setSearch(e.target.value)
                 }} />

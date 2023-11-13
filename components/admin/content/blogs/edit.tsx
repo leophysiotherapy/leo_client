@@ -28,6 +28,7 @@ const poppins = Poppins({
 export default function BlogEdit({ blogsID, title, content, expertise, close }: any) {
 
 
+    const [ selectImage, setSelectImage ] = useState(null)
     const [ edit, setEdit ] = useState({
         title: title,
         content: content,
@@ -37,12 +38,24 @@ export default function BlogEdit({ blogsID, title, content, expertise, close }: 
 
 
 
+    const onFileChange = (e: any) => {
+        const file = e.target.files[ 0 ]
+
+        if (!file) return
+
+        setSelectImage(file)
+    }
+
+
+
+
     const [ mutate ] = useMutation(UpdateBlogPost, {
         variables: {
             blog: {
                 content: contents,
                 expertise: edit.expertise,
-                title: edit.title
+                title: edit.title,
+                file: selectImage
             },
             blogsId: blogsID
         },
@@ -61,9 +74,9 @@ export default function BlogEdit({ blogsID, title, content, expertise, close }: 
             <form onSubmit={onHandleBlogs}>
                 <h2 className={poppins.className}>Edit Blogs</h2>
                 <div className={styles.con}>
-                    <input className={oxygen.className} type="text" value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} />
-
-                    <ReactQuill value={content} onChange={setContent} style={{ height: "280px" }} />
+                    <input className={`${oxygen.className} ${styles.inp}`} type="text" value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} />
+                    <input type="file" accept='image/*' onChange={onFileChange} />
+                    <ReactQuill value={contents} onChange={setContent} style={{ height: "280px" }} />
                 </div>
                 <div className={styles.add}>
                     <button className={styles.cancel} onClick={close} type="button">Cancel</button>

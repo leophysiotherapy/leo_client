@@ -10,9 +10,8 @@ const oxygen = Oxygen({
 })
 import EditEquipment from './edit'
 import DeleteEquipment from './delete'
-import { buildQueryFromSelectionSet } from '@apollo/client/utilities'
 
-export default function InventoryQuery({ name, quantity, expiredDate, equipmentID }: any) {
+export default function InventoryQuery({ name, quantity, expiredDate, equipmentID, description }: any) {
 
     const [ editInventory, setEditInventory ] = useState(false)
     const [ deleteInventory, setDeleteInventory ] = useState(false)
@@ -47,7 +46,7 @@ export default function InventoryQuery({ name, quantity, expiredDate, equipmentI
                 }
                 {
                     editInventory ? <div className={styles.overlay}>
-                        <EditEquipment equipmentID={equipmentID} name={name} quantity={quantity} expireDate={expiredDate}
+                        <EditEquipment equipmentID={equipmentID} name={name} quantity={quantity} expireDate={expiredDate} description={description}
                             close={onHandleEditInventory}
                         />
                     </div> : null

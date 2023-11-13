@@ -44,6 +44,7 @@ const Online: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Face-to-Face Appointment</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Face-to-Face</h2>
             <div className={styles.filtering}>

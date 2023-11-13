@@ -8,6 +8,7 @@ export default function Register() {
         <div className={styles.container}>
             <Head>
                 <title>Register</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <RegisterForm />
         </div>

@@ -7,6 +7,7 @@ export default function Index() {
         <div className={styles.container}>
             <Head>
                 <title>Login</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <Form />
         </div>

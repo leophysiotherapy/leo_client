@@ -23,6 +23,7 @@ const Reviews: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Feedback</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Reviews</h2>
             <div className={styles.table}>

@@ -132,7 +132,10 @@
                align-items: center;
                display: flex;
                overflow: hidden;
-
+               @media screen and (max-width: 1200px) {
+                  width: 125px;
+                  height: 125px;
+               }
                &:hover {
                   box-shadow: 0px 0px 10px 0px #0097b2;
                }

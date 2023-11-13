@@ -29,7 +29,7 @@ export const getStaticPaths = async () => {
         return { params: { id: diagnosisID } }
     })
     return {
-        paths, fallback: false
+        paths, fallback: true
     }
 }
 
@@ -80,10 +80,16 @@ const Diagnosis: FC = ({ diagnosis }: any) => {
     })
 
 
+    if (router.isFallback) {
+        return (<p>Loading...</p>)
+    }
+
+
     return (
         <div className={styles.container}>
             <Head>
                 <title>Diagnosis</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.printer} ref={PrintComponent}>
                 <ReceiptDiagnosis data={diagnosis} />

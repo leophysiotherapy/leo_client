@@ -20,7 +20,7 @@ export default function ServiceEdit({ services, servicesID, descriptions, close 
         title: services,
         content: descriptions,
     })
-
+    const [ selectImage, setSelectImage ] = useState(null)
 
     const [ mutate ] = useMutation(gql`mutation UpdateServices(
         $servicesId: ID!
@@ -44,7 +44,8 @@ export default function ServiceEdit({ services, servicesID, descriptions, close 
         variables: {
             services: edit.title,
             descriptions: edit.content,
-            servicesId: servicesID
+            servicesId: servicesID,
+            file: selectImage
         },
         onCompleted: () => {
             alert("Successfully Services Updated")
@@ -59,6 +60,15 @@ export default function ServiceEdit({ services, servicesID, descriptions, close 
         } ]
     })
 
+    const onFileChange = (e: any) => {
+        const file = e.target.files[ 0 ]
+
+        if (!file) return
+
+        setSelectImage(file)
+    }
+
+
     const onHandleBlogs = (e: SyntheticEvent) => {
         e.preventDefault();
         mutate()
@@ -69,6 +79,7 @@ export default function ServiceEdit({ services, servicesID, descriptions, close 
                 <h2 className={poppins.className}>Edit Services</h2>
                 <div className={styles.con}>
                     <input className={oxygen.className} type="text" value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} />
+                    <input type="file" accept='image/*' onChange={onFileChange} />
                     <textarea className={oxygen.className} value={edit.content} onChange={(e) => setEdit({ ...edit, content: e.target.value })} />
                 </div>
                 <div className={styles.add}>

@@ -63,6 +63,7 @@ const Prescriptions: FC = ({ prescription }: any) => {
         isClient ? <>
             <Head>
                 <title>Prescriptions</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <PDFViewer style={{
 

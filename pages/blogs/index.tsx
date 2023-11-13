@@ -36,6 +36,7 @@ const Blogs: FC = () => {
             </Head>
             <h2 className={poppins.className}>Blogs</h2>
             <div className={styles.search}>
+                <span className={oxygen.className}>Search: </span>
                 <input type="search" onChange={(e) => {
                     BlogsSearch();
                     setSearch(e.target.value)
@@ -45,7 +46,11 @@ const Blogs: FC = () => {
                 {search ? searchData?.getBlogSearch.map(({ title, content, blogsID, image, createdAt }: any) => (
                     <div className={styles.blogCard} key={blogsID}>
                         <div className={styles.backImage}>
-                            <Image src={image} width={480} height={260} alt={title} blurDataURL={image} priority style={{ objectFit: "cover", objectPosition: "center", }} />
+                        <Image src={image} alt="physical therapy" fill style={{
+                                objectFit: "cover",
+                                objectPosition: "center",
+                                imageResolution: "from-image"
+                            }} />
                         </div>
                         <div className={styles.title}>
                             <h2 className={poppins.className} onClick={() => router.push(`/blogs/${blogsID}`)}>{title}</h2>
@@ -59,15 +64,21 @@ const Blogs: FC = () => {
                 )) : loading ? "Loading" : data?.getAllBlogsPost.map(({ title, content, blogsID, image, createdAt }: any) => (
                     <div className={styles.blogCard} key={blogsID}>
                         <div className={styles.backImage}>
-                            <Image src={image} width={480} height={260} alt={title} blurDataURL={image} priority style={{ objectFit: "cover", objectPosition: "center", }} />
+                            <Image src={image} alt="physical therapy" fill style={{
+                                objectFit: "cover",
+                                objectPosition: "center",
+                                imageResolution: "from-image"
+                            }} />
                         </div>
-                        <div className={styles.title}>
-                            <h2 className={poppins.className} onClick={() => router.push(`/blogs/${blogsID}`)}>{title}</h2>
-                        </div>
-                        <div className={styles.blogDate}>
-                            <span className={oxygen.className}>
-                                {format(new Date(createdAt), "MMMM dd, yyyy")}
-                            </span>
+                        <div>
+                            <div className={styles.title}>
+                                <h2 className={poppins.className} onClick={() => router.push(`/blogs/${blogsID}`)}>{title}</h2>
+                            </div>
+                            <div className={styles.blogDate}>
+                                <span className={oxygen.className}>
+                                    {format(new Date(createdAt), "MMMM dd, yyyy")}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 ))}

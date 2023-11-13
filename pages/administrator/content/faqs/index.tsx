@@ -4,7 +4,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { TbPlus } from 'react-icons/tb'
 import Head from 'next/head'
 import styles from '@/styles/admin/content/faqs.module.scss'
-import { Poppins } from 'next/font/google'
+import { Poppins, Oxygen } from 'next/font/google'
 import { useQuery, useLazyQuery } from '@apollo/client'
 import { GetAllFAQs, GetFindFaqsQuestion } from '@/util/faqs/faqs.query'
 import FAQsQuery from '@/components/admin/content/faqs/faqQuery'
@@ -15,6 +15,12 @@ import { FAQSubscriptions } from '@/util/faqs/faqs.subscriptions'
 
 const poppins = Poppins({
     weight: "500",
+    subsets: [ "latin" ]
+})
+
+
+const oxygen = Oxygen({
+    weight: "400",
     subsets: [ "latin" ]
 })
 
@@ -57,6 +63,7 @@ const FAQs: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>FAQs</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>FAQs</h2>
             {
@@ -66,7 +73,8 @@ const FAQs: FC = ({ userID }: any) => {
             }
 
             <div className={styles.search}>
-                <input type="search" placeholder='Search' onChange={(e) => {
+                <span className={oxygen.className}>Search: </span>
+                <input type="search" onChange={(e) => {
                     searchFAQs()
                     setSearch(e.target.value)
                 }} />

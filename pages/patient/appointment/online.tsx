@@ -10,6 +10,7 @@ const Online: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Online Appointment</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <Onlines />
         </div>

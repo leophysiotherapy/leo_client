@@ -52,6 +52,7 @@ export default function ResetPassword() {
         <div className={styles.container}>
             <Head>
                 <title>Reset Password</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.forgotContainer}>
                 <h2 className={poppins.className}>Reset Password</h2>

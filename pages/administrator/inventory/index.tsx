@@ -51,6 +51,7 @@ const Equipment: FC = ({ userID }: any) => {
             <h2 className={poppins.className}>Inventory</h2>
             <Head>
                 <title>Inventory</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             {
                 add ? <div className={styles.overlay}>
@@ -94,15 +95,15 @@ const Equipment: FC = ({ userID }: any) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {search ? searchData?.getInventoryBySearch.map(({ equipmentID, name, quantity, expireDate }: any) => (
-                            <InventoryQuery userID={userID} equipmentID={equipmentID} key={equipmentID} name={name} quantity={quantity} expiredDate={expireDate} />
+                        {search ? searchData?.getInventoryBySearch.map(({ equipmentID, name, quantity, expireDate, description }: any) => (
+                            <InventoryQuery userID={userID} equipmentID={equipmentID} key={equipmentID} name={name} quantity={quantity} expiredDate={expireDate} description={description} />
                         )) : loading ? <tr>
                             <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                        </tr> : data.getAllEquipment.map(({ equipmentID, name, quantity, expireDate }: any) => (
-                            <InventoryQuery key={equipmentID} equipmentID={equipmentID} name={name} quantity={quantity} expiredDate={expireDate} userID={userID} />
+                        </tr> : data.getAllEquipment.map(({ equipmentID, name, quantity, expireDate, description }: any) => (
+                            <InventoryQuery key={equipmentID} equipmentID={equipmentID} name={name} quantity={quantity} expiredDate={expireDate} userID={userID} description={description} />
                         ))}
                     </tbody>
                 </table>

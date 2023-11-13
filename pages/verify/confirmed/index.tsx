@@ -46,6 +46,7 @@ export default function Index() {
         <div className={styles.container}>
             <Head>
                 <title>Verified Email</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.confirmed}>
                 <h2 className={poppins.className}>Email Confirmed</h2>

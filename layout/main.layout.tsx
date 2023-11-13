@@ -49,7 +49,7 @@ export default function MainLayout({ children }: { children: ReactNode }) {
                     <span className={oxygen.className}><TbPhone size={25} />+16264847725</span>
                 </div>
                 <div className={styles.contactContainer}>
-                    <span className={poppins.className}><button onClick={onHandleTC}>Terms and Condition</button></span>
+                    <span className={poppins.className}><button onClick={onHandleTC}>Terms and Conditions</button></span>
                     <span className={oxygen.className}>&copy;{datesYear} by Leonardo Physical Therapy</span>
                     <span className={oxygen.className}>Rehabilitation Clinic</span>
                 </div>

@@ -37,6 +37,7 @@ const Feedback: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>Feedback</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             {
                 open ? < div className={styles.overlay}>

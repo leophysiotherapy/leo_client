@@ -10,7 +10,12 @@
    gap: 10px;
    border-radius: 5px;
    flex-direction: column;
-
+   @media screen and (max-width: 700px) {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+   }
    padding: 20px;
    span {
       font-size: 18px;
@@ -24,6 +29,7 @@
       flex-direction: column;
       gap: 10px;
       padding: 10px;
+
       .add {
          width: 350px;
          display: flex;

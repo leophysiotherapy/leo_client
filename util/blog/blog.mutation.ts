@@ -16,7 +16,7 @@ export const DeleteBlogPost = gql`mutation Mutation($blogsId: ID!) {
 }`
 
 
-export const UpdateBlogPost = gql`mutation Mutation($blogsId: ID!, $blog: blogInput) {
+export const UpdateBlogPost = gql`mutation UpdateBlogsPost($blogsId: ID!, $blog: blogInput) {
   updateBlogsPost(blogsID: $blogsId, blog: $blog) {
     blogsID
   }

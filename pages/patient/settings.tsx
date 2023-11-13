@@ -92,6 +92,7 @@ const Settings: FC = ({ userID }: any) => {
         <div className={styles.container}>
             <Head>
                 <title>Account Settings</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.profile}>
                 {loading ? "Loading" : data.getAllPhysioId.map(({ email, profile }: any) => (

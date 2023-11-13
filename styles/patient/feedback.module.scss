@@ -9,6 +9,15 @@
    padding: 20px;
    border-radius: 10px;
    background-color: #0097b2;
+   @media screen and (max-width: 500px) {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border-radius: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
    h2 {
       font-size: 22px;
    }
@@ -17,6 +26,16 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      @media screen and (max-width: 500px) {
+         width: 360px;
+         height: auto;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         textarea {
+            width: 100%;
+         }
+      }
       .ratings {
          width: 100%;
          display: flex;
@@ -46,6 +65,10 @@
             border: none;
             outline: none;
             padding: 10px;
+            @media screen and (max-width: 500px) {
+               width: 350px;
+               height: 300px;
+            }
          }
       }
       .btns {

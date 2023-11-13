@@ -57,18 +57,28 @@
       align-items: center;
       justify-content: center;
       gap: 20px;
-      padding: 20px 10px;
+      padding: 20px;
+      @media screen and (max-width: 700px) {
+         width: 100%;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         .card {
+            width: 450px;
+         }
+      }
       .card {
          display: flex;
          justify-content: center;
          flex-direction: column;
          position: relative;
          margin-bottom: 5%;
-         width: 450px;
+         width: 400px;
          height: 350px;
          transition: 0.3s ease-out;
          box-shadow: 0 2px 2px rgba(0, 0, 0, 0.7);
          border-radius: 4px;
+
          &:hover {
             box-shadow: 0 0 5em rgba(0, 0, 0, 0.4);
             .content {
@@ -108,7 +118,7 @@
             height: 80px;
             width: 100%;
             padding: 12px;
-            background: #3a92d1;
+            background: #0097b2;
             transition: all 0.5s cubic-bezier(0.48, -0/28, 0.41, 1.4);
             box-sizing: border-box;
             overflow: hidden;

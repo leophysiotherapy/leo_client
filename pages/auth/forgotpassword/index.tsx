@@ -61,6 +61,7 @@ export default function ForgetPassword() {
         <div className={styles.container}>
             <Head>
                 <title>Forgot Password</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
 
             <div className={styles.forgotContainer}>

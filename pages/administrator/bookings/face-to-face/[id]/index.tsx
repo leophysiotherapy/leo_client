@@ -38,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
     })
 
     return {
-        paths, fallback: false
+        paths, fallback: true
     }
 }
 
@@ -89,12 +89,18 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
 
 
 
+    if (router.isFallback) {
+        return (<p>Loading...</p>)
+    }
+
+
     return (
         <div className={styles.container}>
             <Head>
                 <title>
                     Face-to-Face - Booking
                 </title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.filter}>
                 <button onClick={hanadlePrint}>Print/save</button>

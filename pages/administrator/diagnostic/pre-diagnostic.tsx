@@ -18,6 +18,7 @@ const PreDiagnostic: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Pre-Diagnostic</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Pre-Diagnotic Form</h2>
             <div className={styles.reports}>

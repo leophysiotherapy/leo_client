@@ -67,6 +67,7 @@ const Staff: FC = () => {
             <Head>
                 <title>Staff</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Staff Records</h2>
             {

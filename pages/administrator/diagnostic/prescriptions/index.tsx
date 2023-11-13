@@ -43,6 +43,7 @@ const Prescriptions: FC = () => {
         <div className={styles.container}>
             <Head>
                 <title>Prescription</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <h2 className={poppins.className}>Prescriptions</h2>
             {

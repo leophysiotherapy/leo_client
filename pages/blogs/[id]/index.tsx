@@ -75,12 +75,14 @@ const BlogsID: FC = ({ blogs }: any) => {
     if (router.isFallback) {
         return (<p>Loading</p>)
     }
+
     return (
         blogs.map(({ blogsID, title, image, content }: { blogsID: string, title: string, image: string, content: string }) => (
             <div className={styles.container} key={blogsID}>
                 <Head>
                     <title>{title}</title>
                 </Head>
+                <button onClick={() => router.back()}>Back to blogs</button>
                 <div className={styles.imageContainer}>
                     <h2 className={poppins.className}>{title}</h2>
                     <Image src={image} priority height={500} width={500} alt="" style={{

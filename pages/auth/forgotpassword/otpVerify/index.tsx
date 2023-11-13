@@ -39,6 +39,7 @@ export default function OTPVerify() {
         <div className={styles.container}>
             <Head>
                 <title>OTP Verify</title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.forgotContainer}>
                 <h2 className={poppins.className}>Reset Password</h2>

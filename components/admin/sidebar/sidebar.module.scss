@@ -8,8 +8,8 @@
    justify-content: space-between;
    flex-direction: column;
    @media screen and (max-width: 600px) {
-      width: 500px;
-      position: fixed;
+      width: 350px;
+      position: absolute;
       inset: 0;
    }
    .logo {

@@ -76,7 +76,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                 })
             },
             onError: (e) => {
-                alert("Please set an appointment first before creating a diagnosis and prescription.")
+                alert(e.message)
             },
             refetchQueries: [ {
                 query: GetAllPhysioUserByRole,
@@ -88,6 +88,12 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
             } ]
         })
     }
+
+
+    const of2f = [
+        { name: "Online", value: "online" },
+        { name: "Face-to-Face", value: "f2f" }
+    ]
     return (
         <div className={styles.container}>
             <h2 className={poppins.className}>Edit Patient</h2>
@@ -102,26 +108,17 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             onChange={(e) => setAddPatient({ ...patient, contact: e.target.value })} />
                         <div className={styles.platform}>
                             <div>
-                                <input type="radio"
-                                    checked={patient.platform === "online" ? true : false}
-                                    value="online" onChange={(e) => {
-                                        setAddPatient({ ...patient, platform: e.target.value })
-                                    }} />
-                                <label>Online</label>
-                            </div>
-                            <div>
-                                <input type="radio"
-                                    value="f2f"
-                                    checked={patient.platform === "f2f" ? true : false}
-                                    onChange={(e) => {
+                                {of2f.map(({ name, value }) => (
+                                    <>
+                                        <input key={name} type="radio" value={editAppoint.platform} onChange={(e) => setEditAppointment({ ...editAppoint, platform: e.target.value })} checked={patient.platform === "online" ? true : false} />
+                                        <label>{name}</label>
+                                    </>
+                                ))}
 
-                                        setAddPatient({ ...patient, platform: e.target.value })
-                                    }} />
-                                <label>Face-to-Face</label>
                             </div>
                         </div>
                         <div className={styles.appointment}>
-                            <input type='date' value={patient.date} onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
+                            <input type='date' value={editAppoint.date} onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
                             <select value={patient.time} onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
                                 {TimeValue.map(({ name, start }) => (
                                     <option key={name} value={start}>{name}</option>
@@ -135,7 +132,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             <textarea placeholder='Diagnosis' value={patient.diagnosis} onChange={(e) => setAddPatient({ ...patient, diagnosis: e.target.value })} />
                         </div>
                         <div>
-                            <textarea placeholder='Prescriptions' value={patient.prescription} onChange={(e) => setAddPatient({ ...patient, prescription: e.target.value })} />
+                            <textarea placeholder='Prescriptions' value={editAppoint.prescription} onChange={(e) => setAddPatient({ ...patient, prescription: e.target.value })} />
                         </div>
                     </div>
                 </div>

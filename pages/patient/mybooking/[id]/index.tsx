@@ -99,6 +99,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                 <title>
                     Booking
                 </title>
+                <link rel="icon" href="/faviphysio.png" />
             </Head>
             <div className={styles.filter}>
                 <button onClick={hanadlePrint}>Print/save</button>

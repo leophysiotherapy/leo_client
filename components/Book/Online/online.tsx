@@ -168,7 +168,7 @@ export default function Online() {
                 <h2 className={poppins.className}>Select Platform</h2>
                 <div className={styles.select}>
                     <select onChange={(e) => setAppointment({ ...appointment, services: e.target.value })}>
-                        <option disabled>--</option>
+                        <option selected disabled>--</option>
                         <option value="Gmeet">Gmeet</option>
                     </select>
                 </div>
