@@ -76,7 +76,7 @@ export default function BlogEdit({ blogsID, title, content, expertise, close }: 
                 <div className={styles.con}>
                     <input className={`${oxygen.className} ${styles.inp}`} type="text" value={edit.title} onChange={(e) => setEdit({ ...edit, title: e.target.value })} />
                     <input type="file" accept='image/*' onChange={onFileChange} />
-                    <ReactQuill value={contents} onChange={setContent} style={{ height: "280px" }} />
+                    <ReactQuill value={contents} onChange={setContent} style={{ height: "250px" }} />
                 </div>
                 <div className={styles.add}>
                     <button className={styles.cancel} onClick={close} type="button">Cancel</button>

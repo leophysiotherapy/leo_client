@@ -11,6 +11,8 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 import 'react-quill/dist/quill.snow.css';
 
 
+const ToolbarOptions = [ 'bold', 'italic', 'underline']
+
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
@@ -73,7 +75,11 @@ export default function AddPrescriptions({ close }: any) {
                         ))
                     ))}
                 </select>
-                <ReactQuill value={prescription} onChange={setPrescription} style={{ width: "100%", height: "300px", margin: "10px 0" }} />
+                <ReactQuill value={prescription} onChange={setPrescription} style={{ width: "100%", height: "300px", margin: "10px 0" }}
+                    modules={{
+                        toolbar: ToolbarOptions
+                    }}
+                />
                 <div className={styles.btnGrp}>
                     <button className={styles.cancel} type="button" onClick={close}>Cancel</button>
                     <button className={styles.submit} type="submit">Submit</button>

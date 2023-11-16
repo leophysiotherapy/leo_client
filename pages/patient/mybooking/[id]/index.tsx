@@ -157,7 +157,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             {status === "canceled" || status === "done" || status === "finished" ? null :
                                 <div className={styles.cancelBtn}>
                                     <button>
-                                        <h2 className={oxygen.className}>Cancel</h2>
+                                        <h2 className={oxygen.className}>Cancel Booking</h2>
                                         <PayPalButtons
 
                                             style={{

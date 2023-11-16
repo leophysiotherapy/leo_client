@@ -105,6 +105,12 @@ const Diagnosis: FC = ({ diagnosis }: any) => {
                         </div>
                     ))}
                 </div>
+
+            </div>
+            <div className={styles.footer}>
+                <button onClick={() => router.back()}>Back to Patient Record</button>
+                <h2 className={poppins.className}>Diagnosis</h2>
+                <button onClick={hanadlePrint}>Print/Save</button>
             </div>
         </div>
     )

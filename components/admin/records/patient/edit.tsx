@@ -18,13 +18,14 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
     const [ editAppoint, setEditAppointment ] = useState<any>({
         date: "", time: "", platform: ""
     })
-
+    const [ patientPlatform, setPatientPlatform ] = useState("online")
 
     useEffect(() => {
         appointment.map(({ date, time, platform }: any, i: any) => {
-            i === 0 ? setEditAppointment({
-                date, time, platform
-            }) : null
+            i === 0 ?
+                setEditAppointment({
+                    date, time, platform
+                }) : null
         })
     }, [ appointment ])
 
@@ -110,7 +111,11 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             <div>
                                 {of2f.map(({ name, value }) => (
                                     <>
-                                        <input key={name} type="radio" value={editAppoint.platform} onChange={(e) => setEditAppointment({ ...editAppoint, platform: e.target.value })} checked={patient.platform === "online" ? true : false} />
+                                        <input key={name} type="radio" value={patientPlatform === editAppoint?.platform ? "online" : "f2f"} onChange={(e) => {
+                                            setPatientPlatform(e.target.value)
+                                            setEditAppointment({ ...editAppoint, platform: e.target.value })
+                                        }}
+                                            checked={value === patientPlatform ? true : false} />
                                         <label>{name}</label>
                                     </>
                                 ))}

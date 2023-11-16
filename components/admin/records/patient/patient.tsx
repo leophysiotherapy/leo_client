@@ -38,7 +38,8 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
             {prescription.length === 0 ? <td>N/A</td> :
                 prescription.map(({ prescriptionID, prescription: pre }: any, i) => (
                     i === 0 ?
-                        <td className={oxygen.className} key={prescriptionID}><Link href={`/administrator/records/patient/prescription/${prescriptionID}`}>View</Link></td> : null
+                        <td className={oxygen.className} key={prescriptionID}><Link href={`/administrator/records/patient/prescription/${prescriptionID}`}>
+                            <TbEye size={23} /></Link></td> : null
                 ))}
             {
                 diagnosis.map(({ diagnosisID, diagnosis: dia }: any) => (
