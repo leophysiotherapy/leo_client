@@ -103,7 +103,6 @@ const Prescriptions: FC = () => {
                                     <td></td>
                                     <td></td>
                                 </tr> : data.getAllPrescription.map(({ prescriptionID, createdAt, patient, prescription }: { prescriptionID: string, createdAt: any, patient: [], prescription: string, }) => (
-
                                     patient.map(({ profile, email }: { profile: [], email: string }) => (
                                         profile.map(({ fullname, phone }: { fullname: string, phone: string }) => (
                                             <PrescriptionQuery key={prescriptionID} prescriptionID={prescriptionID} fullname={fullname} date={createdAt} prescription={prescription} email={email} phone={phone} />

@@ -64,7 +64,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     return {
         props: {
             blogs: getBlogsById
-        }
+        },
+        revalidate: 5
     }
 }
 

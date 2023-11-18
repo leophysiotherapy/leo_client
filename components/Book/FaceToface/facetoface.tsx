@@ -48,7 +48,8 @@ export default function F2F() {
         variables: {
             date: format(new Date(selectedDate.toISOString()), "yyyy-MM-dd"),
             platform: "f2f"
-        }
+        },
+        pollInterval: 1000
     })
 
     const [ times, setTime ] = useState([ "" ]);

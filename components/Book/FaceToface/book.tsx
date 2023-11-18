@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useMutation, useQuery } from '@apollo/client'
 import { PayPalButtons } from '@paypal/react-paypal-js'
 import { CreateAppointment } from '@/util/appointment/appointment.mutation'
@@ -8,6 +8,7 @@ import { format } from 'date-fns'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import { getAllPhysioId } from '@/util/user/user.query'
+import { useRouter } from 'next/router'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
@@ -22,7 +23,7 @@ export default function Books({ selectedDate, time, close, platform, services }:
 
     const [ cookies, setCookies ] = useState("")
     const [ paid, setPaid ] = useState(false)
-
+    const router = useRouter();
     const { loading, data, error } = useQuery(getAllPhysioId, {
         variables: {
             userId: cookies
@@ -57,9 +58,9 @@ export default function Books({ selectedDate, time, close, platform, services }:
             },
             errorPolicy: "all",
             onCompleted: (data) => {
-                console.log(data)
                 setPaid(() => false)
                 close()
+                router.reload();
             },
             onError: error => {
                 console.log(error.message)

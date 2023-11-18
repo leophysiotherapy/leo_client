@@ -116,7 +116,7 @@ export default function PrescriptionQuery({ date, prescriptionID, fullname, pres
     }
     return (
         <tr>
-            <td className={oxygen.className}>{format(new Date(date), "MMMM dd, yyyy")}</td>
+            <td className={oxygen.className}>{format(new Date(date), "MMMM dd, yyyy hh:mm:ss")}</td>
             <td className={oxygen.className}>{fullname}</td>
             <td>
                 {

@@ -46,7 +46,8 @@ export default function Online() {
         variables: {
             date: format(new Date(selectedDate.toISOString()), "yyyy-MM-dd"),
             platform: "online"
-        }
+        },
+        pollInterval: 1000
     })
 
     const onHandleClose = () => {

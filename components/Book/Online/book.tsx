@@ -8,6 +8,7 @@ import { format } from 'date-fns'
 import jwtDecode from 'jwt-decode'
 import Cookies from 'js-cookie'
 import { getAllPhysioId } from '@/util/user/user.query'
+import { useRouter } from 'next/router'
 
 const poppins = Poppins({
     weight: "500",
@@ -23,6 +24,7 @@ export default function Books({ selectedDate, time, close, platform }: any) {
 
     const [ cookies, setCookies ] = useState("")
     const [ paid, setPaid ] = useState(false)
+    const router = useRouter();
 
     const { loading, data, error } = useQuery(getAllPhysioId, {
         variables: {
@@ -58,9 +60,9 @@ export default function Books({ selectedDate, time, close, platform }: any) {
             },
             errorPolicy: "all",
             onCompleted: (data) => {
-                console.log(data)
                 setPaid(() => false)
                 close()
+                router.reload();
             },
             onError: error => {
                 console.log(error.message)

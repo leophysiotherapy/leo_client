@@ -9,7 +9,6 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { format } from 'date-fns'
 import HTMLParse from 'react-pdf-html'
-import ReactDomServer from 'react-dom/server'
 
 export const getStaticPaths = async () => {
 

@@ -5,7 +5,7 @@ import { Poppins } from 'next/font/google'
 import { UpdateOldPatient } from '@/util/user/user.mutation'
 import { GetAllPhysioUserByRole } from '@/util/user/user.query'
 import { TimeValue } from '@/components/Book/calendar.config'
-
+import parse from 'html-react-parser'
 
 const poppins = Poppins({
     weight: "500",
@@ -14,10 +14,12 @@ const poppins = Poppins({
 export default function PatientAdd({ close, userID, firstname, lastname, phone, prescription, diagnosis, appointment, email }: any) {
 
 
-
+    const [ pres, setPrescriptions ] = useState("")
     const [ editAppoint, setEditAppointment ] = useState<any>({
         date: "", time: "", platform: ""
     })
+
+
     const [ patientPlatform, setPatientPlatform ] = useState("online")
 
     useEffect(() => {
@@ -29,6 +31,13 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
         })
     }, [ appointment ])
 
+
+    useEffect(() => {
+        prescription.map(({ prescription }: any, i: number) => {
+            i === 0 ? setPrescriptions(prescription) : null
+        })
+    }, [ prescription ])
+
     const [ mutate ] = useMutation(UpdateOldPatient)
 
     const [ patient, setAddPatient ] = useState({
@@ -37,7 +46,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
         contact: phone,
         email: email,
         diagnosis: diagnosis[ 0 ].diagnosis,
-        prescription: "",
+        prescription: pres,
         date: editAppoint.date,
         time: editAppoint.time,
         platform: editAppoint.platform,
@@ -50,10 +59,10 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
             variables: {
                 userId: userID,
                 diagnosis: patient.diagnosis,
-                prescription: patient.prescription,
-                date: editAppoint.date,
-                time: editAppoint.time,
-                platform: editAppoint.platform,
+                prescription: pres,
+                date: patient.date,
+                time: patient.time,
+                platform: patientPlatform,
                 user: {
                     firstname: patient.firstname,
                     lastname: patient.lastname,
@@ -70,10 +79,10 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                     contact: phone,
                     email,
                     diagnosis: diagnosis[ 0 ].diagnosis,
-                    prescription: prescription[ 0 ].prescription,
-                    date: editAppoint.date,
-                    platform: editAppoint.platform,
-                    time: editAppoint.time
+                    prescription: pres,
+                    date: patient.date,
+                    platform: patientPlatform,
+                    time: patient.time
                 })
             },
             onError: (e) => {
@@ -111,9 +120,8 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             <div>
                                 {of2f.map(({ name, value }) => (
                                     <>
-                                        <input key={name} type="radio" value={patientPlatform === editAppoint?.platform ? "online" : "f2f"} onChange={(e) => {
+                                        <input key={name} type="radio" value={value} onChange={(e) => {
                                             setPatientPlatform(e.target.value)
-                                            setEditAppointment({ ...editAppoint, platform: e.target.value })
                                         }}
                                             checked={value === patientPlatform ? true : false} />
                                         <label>{name}</label>
@@ -123,7 +131,7 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             </div>
                         </div>
                         <div className={styles.appointment}>
-                            <input type='date' value={editAppoint.date} onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
+                            <input type='date' onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
                             <select value={patient.time} onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
                                 {TimeValue.map(({ name, start }) => (
                                     <option key={name} value={start}>{name}</option>
@@ -137,7 +145,9 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                             <textarea placeholder='Diagnosis' value={patient.diagnosis} onChange={(e) => setAddPatient({ ...patient, diagnosis: e.target.value })} />
                         </div>
                         <div>
-                            <textarea placeholder='Prescriptions' value={editAppoint.prescription} onChange={(e) => setAddPatient({ ...patient, prescription: e.target.value })} />
+
+                            <textarea value={pres} onChange={(e) => setPrescriptions(e.target.value)}></textarea>
+
                         </div>
                     </div>
                 </div>
