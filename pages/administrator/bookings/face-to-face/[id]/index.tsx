@@ -144,7 +144,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             {platform === "online" ? <div className={styles.bokk}>
                                 <h2 className={poppins.className}>Link:</h2>
                                 <span className={oxygen.className}>
-                                    {link.length === 0 ? "N/A" : <Link style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
+                                    {link === null ? "N/A" : <Link style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
                                 </span>
                             </div> : null}
                             <div className={styles.bokk}>
