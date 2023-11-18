@@ -31,12 +31,10 @@ export default function FeedbackQuery({ feedbackID, createdAt, rating }: any) {
                 <Link href={`/patient/feedback/${feedbackID}`}>
                     <TbEye size={20} />
                 </Link>
-                {
-                    feedback ? <div className={styles.overlay}>
+                <div className={styles.overlay}>
                         <DeleteFeedback feedbackID={feedbackID} close={onHandleCloseFeedbackDelete} />
-                    </div> : null
-                }
-                <button className={styles.btnTrash} onClick={() => setFeedback(() => !feedback)}>
+                    </div>
+                <button className={styles.btnTrash} onClick={onHandleCloseFeedbackDelete}>
                     <TbTrash size={20} />
                 </button>
             </td>

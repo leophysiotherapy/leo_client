@@ -26,7 +26,6 @@ export default function PatientAdd({ close }: any) {
         contact: "",
         email: "",
         diagnosis: "",
-        prescription: "",
         time: "",
         date: "",
         platform: ""
@@ -45,7 +44,6 @@ export default function PatientAdd({ close }: any) {
                 time: patient.time,
                 date: patient.date,
                 platform: patient.platform,
-                prescription: patient.prescription,
                 diagnosis: patient.diagnosis
             },
             errorPolicy: "all",
@@ -57,7 +55,6 @@ export default function PatientAdd({ close }: any) {
                     contact: "",
                     email: "",
                     diagnosis: "",
-                    prescription: "",
                     date: "",
                     platform: "",
                     time: ""
@@ -118,9 +115,6 @@ export default function PatientAdd({ close }: any) {
                     <div className={styles.ss}>
                         <div>
                             <textarea placeholder='Diagnosis' value={patient.diagnosis} onChange={(e) => setAddPatient({ ...patient, diagnosis: e.target.value })} />
-                        </div>
-                        <div>
-                            <textarea placeholder='Prescriptions' value={patient.prescription} onChange={(e) => setAddPatient({ ...patient, prescription: e.target.value })} />
                         </div>
                     </div>
                 </div>

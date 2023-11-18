@@ -5,38 +5,12 @@ import { Poppins } from 'next/font/google'
 import { UpdateOldPatient } from '@/util/user/user.mutation'
 import { GetAllPhysioUserByRole } from '@/util/user/user.query'
 import { TimeValue } from '@/components/Book/calendar.config'
-import parse from 'html-react-parser'
 
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
 })
-export default function PatientAdd({ close, userID, firstname, lastname, phone, prescription, diagnosis, appointment, email }: any) {
-
-
-    const [ pres, setPrescriptions ] = useState("")
-    const [ editAppoint, setEditAppointment ] = useState<any>({
-        date: "", time: "", platform: ""
-    })
-
-
-    const [ patientPlatform, setPatientPlatform ] = useState("online")
-
-    useEffect(() => {
-        appointment.map(({ date, time, platform }: any, i: any) => {
-            i === 0 ?
-                setEditAppointment({
-                    date, time, platform
-                }) : null
-        })
-    }, [ appointment ])
-
-
-    useEffect(() => {
-        prescription.map(({ prescription }: any, i: number) => {
-            i === 0 ? setPrescriptions(prescription) : null
-        })
-    }, [ prescription ])
+export default function PatientAdd({ close, userID, firstname, lastname, phone, diagnosis, email }: any) {
 
     const [ mutate ] = useMutation(UpdateOldPatient)
 
@@ -46,10 +20,6 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
         contact: phone,
         email: email,
         diagnosis: diagnosis[ 0 ].diagnosis,
-        prescription: pres,
-        date: editAppoint.date,
-        time: editAppoint.time,
-        platform: editAppoint.platform,
 
     })
 
@@ -59,10 +29,6 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
             variables: {
                 userId: userID,
                 diagnosis: patient.diagnosis,
-                prescription: pres,
-                date: patient.date,
-                time: patient.time,
-                platform: patientPlatform,
                 user: {
                     firstname: patient.firstname,
                     lastname: patient.lastname,
@@ -79,10 +45,6 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                     contact: phone,
                     email,
                     diagnosis: diagnosis[ 0 ].diagnosis,
-                    prescription: pres,
-                    date: patient.date,
-                    platform: patientPlatform,
-                    time: patient.time
                 })
             },
             onError: (e) => {
@@ -98,12 +60,6 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
             } ]
         })
     }
-
-
-    const of2f = [
-        { name: "Online", value: "online" },
-        { name: "Face-to-Face", value: "f2f" }
-    ]
     return (
         <div className={styles.container}>
             <h2 className={poppins.className}>Edit Patient</h2>
@@ -116,11 +72,11 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                         <input type="text" value={patient.email} placeholder='Email' onChange={(e) => setAddPatient({ ...patient, email: e.target.value })} />
                         <input type="text" value={patient.contact} placeholder='Contact'
                             onChange={(e) => setAddPatient({ ...patient, contact: e.target.value })} />
-                        <div className={styles.platform}>
+                        {/* <div className={styles.platform}>
                             <div>
                                 {of2f.map(({ name, value }) => (
                                     <>
-                                        <input key={name} type="radio" value={value} onChange={(e) => {
+                                        <input disabled key={name} type="radio" value={value} onChange={(e) => {
                                             setPatientPlatform(e.target.value)
                                         }}
                                             checked={value === patientPlatform ? true : false} />
@@ -129,25 +85,20 @@ export default function PatientAdd({ close, userID, firstname, lastname, phone, 
                                 ))}
 
                             </div>
-                        </div>
-                        <div className={styles.appointment}>
-                            <input type='date' onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
-                            <select value={patient.time} onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
+                        </div> */}
+                        {/* <div className={styles.appointment}>
+                            <input disabled type='date' onChange={(e) => setAddPatient({ ...patient, date: e.target.value })} />
+                            <select disabled value={patient.time} onChange={(e) => setAddPatient({ ...patient, time: e.target.value })}>
                                 {TimeValue.map(({ name, start }) => (
                                     <option key={name} value={start}>{name}</option>
                                 ))}
                             </select>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className={styles.ss}>
                         <div>
                             <textarea placeholder='Diagnosis' value={patient.diagnosis} onChange={(e) => setAddPatient({ ...patient, diagnosis: e.target.value })} />
-                        </div>
-                        <div>
-
-                            <textarea value={pres} onChange={(e) => setPrescriptions(e.target.value)}></textarea>
-
                         </div>
                     </div>
                 </div>

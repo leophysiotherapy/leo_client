@@ -11,7 +11,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 import 'react-quill/dist/quill.snow.css';
 
 
-const ToolbarOptions = [ 'bold', 'italic', 'underline']
+const ToolbarOptions = ['underline']
 
 const oxygen = Oxygen({
     weight: "400",
@@ -51,6 +51,7 @@ export default function AddPrescriptions({ close }: any) {
         },
         onCompleted: () => {
             alert("Successfully Prescriptions Added")
+            close()
             setPrescriptions({
                 userID: "-",
             })

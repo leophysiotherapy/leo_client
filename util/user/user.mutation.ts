@@ -35,7 +35,6 @@ export const CreateStaff = gql`mutation CreateStaffAccount($user: userInput, $fi
 
 export const CreateOldPatient = gql`mutation UpdateOlPatient(
   $diagnosis: String!
-  $prescription: String!
   $date: String!
   $user: userInput
   $time: String
@@ -43,7 +42,6 @@ export const CreateOldPatient = gql`mutation UpdateOlPatient(
 ) {
   createOldPatient(
     diagnosis: $diagnosis
-    prescription: $prescription
     date: $date
     user: $user
     time: $time
@@ -56,8 +54,8 @@ export const CreateOldPatient = gql`mutation UpdateOlPatient(
 `
 
 
-export const UpdateOldPatient = gql`mutation UpdateOlPatient($userId: ID!, $diagnosis: String!, $prescription: String!, $date: String!, $user: userInput, $time: String, $platform: platform) {
-  updateOlPatient(userID: $userId, diagnosis: $diagnosis, prescription: $prescription, date: $date, user: $user, time: $time, platform: $platform) {
+export const UpdateOldPatient = gql`mutation UpdateOlPatient($userId: ID!, $diagnosis: String!, $user: userInput) {
+  updateOlPatient(userID: $userId, diagnosis: $diagnosis, user: $user) {
     userID
   }
 }

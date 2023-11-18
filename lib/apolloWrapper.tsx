@@ -6,8 +6,9 @@ import { GraphQLWsLink } from '@apollo/client/link/subscriptions'
 import { getMainDefinition } from '@apollo/client/utilities'
 
 const uploadLink = createUploadLink({
-    uri: "https://leophysio-22e2a3c9656a.herokuapp.com/graphql",
+    uri: "http://localhost:4000/graphql",
     credentials: "include",
+
     headers: {
         'Apollo-Require-Preflight': 'true'
     }
@@ -15,7 +16,7 @@ const uploadLink = createUploadLink({
 
 
 const webSocketLink = typeof window !== "undefined" ? new GraphQLWsLink(createClient({
-    url: "wss://leophysio-22e2a3c9656a.herokuapp.com/graphql"
+    url: "ws://localhost:4000/graphql"
 })) : null
 
 const splitLink = typeof window !== "undefined" && webSocketLink !== null ? split(({ query }) => {
@@ -27,7 +28,13 @@ const splitLink = typeof window !== "undefined" && webSocketLink !== null ? spli
 
 export const client = new ApolloClient({
     link: splitLink,
-    cache: new InMemoryCache()
+    cache: new InMemoryCache(),
+    defaultOptions: {
+        watchQuery: {
+            fetchPolicy: "no-cache"
+        }
+    }
+
 })
 
 

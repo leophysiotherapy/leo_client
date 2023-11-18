@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
 import PageWithLayout from '@/layout/page.layout'
 import DashboardLayout from '@/layout/dashboard.layout'
 import Head from 'next/head'
@@ -85,7 +85,6 @@ const Administrator: FC = () => {
     }
 
 
-
     useEffect(() => {
 
 
@@ -93,15 +92,7 @@ const Administrator: FC = () => {
             const differenceInMilliseconds = targetDateTime.getTime() - currentDateTime.getTime();
             const time = differenceInMilliseconds <= 600000 && differenceInMilliseconds >= 0; // 600000 milliseconds is equal to 10 minutes
             if (time) {
-                if (!emailData) {
-                    EmailNotificationMutaiton({
-                        variables: {
-                            email: "leonardophysiotherapy@gmail.com",
-                        }
-                    })
-                } else {
-                    return
-                }
+
             } else {
                 return
             }
@@ -271,7 +262,7 @@ const Administrator: FC = () => {
 
         })
 
-    }, [EmailNotificationMutaiton, SMSMutation, appointment, emailData])
+    }, [ EmailNotificationMutaiton, SMSMutation, appointment, emailData ])
     return (
         <div className={styles.container}>
             <Head>
