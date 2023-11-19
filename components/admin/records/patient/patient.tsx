@@ -43,8 +43,8 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
                 ))}
             {
                 diagnosis.map(({ diagnosisID, diagnosis: dia }: any, i) => (
-                    i === 0 ? <td key={diagnosisID}>N/A</td> : <td key={diagnosisID} className={oxygen.className}><Link href={`/administrator/records/patient/diagnosis/${diagnosisID}`}>
-                        <TbEye size={23} /></Link></td>
+                    i === 0 ? <td key={diagnosisID} className={oxygen.className}><Link href={`/administrator/records/patient/diagnosis/${diagnosisID}`}>
+                        <TbEye size={23} /></Link></td> : null
                 ))
             }
             <td className={oxygen.className}>
