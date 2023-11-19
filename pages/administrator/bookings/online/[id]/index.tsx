@@ -2,7 +2,6 @@ import { client } from '@/lib/apolloWrapper'
 import React, { FC, useEffect, useRef, useState } from 'react'
 import Head from 'next/head'
 import PageWithLayout from '@/layout/page.layout'
-import MainLayout from '@/layout/main.layout'
 import styles from '@/styles/patient/bookingid.module.scss'
 import Feedback from '@/components/Book/feedback'
 import Link from 'next/link'
@@ -147,7 +146,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             {platform === "online" ? <div className={styles.bokk}>
                                 <h2 className={poppins.className}>Link:</h2>
                                 <span className={oxygen.className}>
-                                    {link === null ? "N/A" : <Link target='_blank' style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
+                                    {link.length === 0 ? "N/A" : <Link target='_blank' style={{ textDecoration: "underline", cursor: "pointer" }} href={link}>google</Link>}
                                 </span>
                             </div> : null}
                             <div className={styles.bokk}>

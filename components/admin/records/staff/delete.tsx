@@ -18,29 +18,14 @@ export default function UserDelete({ close, userID }: any) {
     },
     onCompleted: () => {
       alert("Successfully deleted")
+      close();
     },
-    update: (cache, { data }) => {
-      const { getPhysioUserByRole }: any = cache.readQuery({
-        query: GetAllPhysioUserByRole,
-        variables: {
-          role: "staff",
-          take: 10,
-          limit: 0
-        },
-      })
-
-      cache.writeQuery({
-        query: GetAllPhysioUserByRole,
-        variables: {
-          role: "staff",
-          take: 10,
-          limit: 0
-        },
-        data: {
-          getPhysioUserByRole: getPhysioUserByRole.filter((user: any) => user.userID !== data.deleteUserAcc.userID)
-        }
-      })
-    },
+    refetchQueries: [ {
+      query: GetAllPhysioUserByRole,
+      variables: {
+        role: "staff"
+      }
+    } ]
   })
 
 

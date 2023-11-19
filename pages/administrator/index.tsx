@@ -1,4 +1,4 @@
-import React, { FC, SyntheticEvent, useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import PageWithLayout from '@/layout/page.layout'
 import DashboardLayout from '@/layout/dashboard.layout'
 import Head from 'next/head'
@@ -6,7 +6,8 @@ import styles from '@/styles/admin/homepage.module.scss'
 import { Poppins, Oxygen } from 'next/font/google'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import Link from 'next/link'
-
+import { format } from 'date-fns'
+import { es } from 'date-fns/locale'
 const tableList = [ "Time", "Name", "Services", "Platform" ]
 
 
@@ -268,7 +269,10 @@ const Administrator: FC = () => {
             <Head>
                 <title>Administrator</title>
             </Head>
-            <h2 className={poppins.className}>Today{"'"}s Appointments</h2>
+            <div className={styles.todayDate}>
+                <h2 className={poppins.className}>Today{"'"}s Appointments</h2>
+                <span className={poppins.className}>{format(new Date(), "cccc, MMMM dd, yyyy")}</span>
+            </div>
             <div className={styles.table}>
                 <table>
                     <thead>
