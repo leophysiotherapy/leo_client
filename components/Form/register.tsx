@@ -118,6 +118,9 @@ export default function RegisterForm() {
                 <input onChange={(e) => {
                     setUsers({ ...users, email: e.target.value })
                 }} className={styles.inptext} type="email" placeholder='Email Address' />
+                <p className={oxygen.className} style={{ textAlign: 'left', width: "100%" }}>
+                    You must use a gmail account.
+                </p>
                 <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
                 <div className={styles.password}>
                     <input style={isValid && users.password.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} onChange={(e) => {

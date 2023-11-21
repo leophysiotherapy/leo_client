@@ -23,7 +23,7 @@ export default function VerificationMessage() {
             </Head>
             <div className={styles.verificationContainer}>
                 <h2 className={poppins.className}>Email Verification</h2>
-                <span className={oxygen.className}>Please check your email and click the confimation link to complemte your registration. </span>
+                <span className={oxygen.className}>Please check your email and click the confimation link to complete your registration. </span>
                 <span className={oxygen.className}>Thank you!</span>
             </div>
         </div >
