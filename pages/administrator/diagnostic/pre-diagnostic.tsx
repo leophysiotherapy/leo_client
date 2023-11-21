@@ -20,7 +20,7 @@ const PreDiagnostic: FC = () => {
                 <title>Pre-Diagnostic</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
-            <h2 className={poppins.className}>Pre-Diagnotic Form</h2>
+            <h2 className={poppins.className}>Pre-Diagnostic Form</h2>
             <div className={styles.reports}>
                 <button onClick={() => router.push("https://docs.google.com/forms/d/1QD8QaSX3alu2DqdvPYPb6SqAC6h6Nu2eA54pKEhPTCE/edit#responses")}>Reports</button>
             </div>
