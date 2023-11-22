@@ -30,7 +30,7 @@ export default function DeleteFeedback({ feedbackID, close }: any) {
     return (
         <div className={styles.container}>
 
-            <form onClick={onHandleFeedbacKDeleteForm}>
+            <form onSubmit={onHandleFeedbacKDeleteForm}>
                 <span className={oxygen.className}>Do you want to delete this Feedback?</span>
                 <div className={styles.add}>
                     <button onClick={close} type='button'>Cancel</button>
