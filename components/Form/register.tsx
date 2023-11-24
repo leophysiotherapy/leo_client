@@ -157,7 +157,7 @@ export default function RegisterForm() {
                     </div>
                     <span className={oxygen.className}>Already have an account? <Link href="/auth/login">Login here</Link></span>
                 </div>
-                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone || !optin === false} type="submit">
+                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone || optin === false} type="submit">
                     <span className={oxygen.className}>
                         Sign up
                     </span>
