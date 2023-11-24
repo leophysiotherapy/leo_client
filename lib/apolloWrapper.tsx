@@ -16,7 +16,7 @@ const uploadLink = createUploadLink({
 
 
 const webSocketLink = typeof window !== "undefined" ? new GraphQLWsLink(createClient({
-    url: "ws://leophysio-22e2a3c9656a.herokuapp.com/graphql"
+    url: "wss://leophysio-22e2a3c9656a.herokuapp.com/graphql"
 })) : null
 
 const splitLink = typeof window !== "undefined" && webSocketLink !== null ? split(({ query }) => {

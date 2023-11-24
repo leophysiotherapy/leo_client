@@ -85,7 +85,7 @@
          width: 100%;
          display: flex;
          flex-direction: column;
-         gap: 10px;
+         gap: 15px;
 
          .statement {
             display: flex;
@@ -100,6 +100,36 @@
             input {
                appearance: none;
                width: 20px;
+               height: 20px;
+               border: 1px solid #ccc;
+               border-radius: 3px;
+               display: grid;
+               place-content: center;
+               outline: none;
+               &::before {
+                  content: "";
+                  width: 1em;
+                  height: 1em;
+                  transform: scale(0);
+                  transition: 120ms transform ease-in-out;
+                  box-shadow: inset 1em 1em #fff;
+                  border-radius: 2px;
+               }
+               &:checked::before {
+                  transform: scale(1);
+               }
+            }
+         }
+         .statement2 {
+            width: 100%;
+            display: flex;
+            gap: 10px;
+            span {
+               font-size: 15px;
+            }
+            input {
+               appearance: none;
+               width: 34px;
                height: 20px;
                border: 1px solid #ccc;
                border-radius: 3px;

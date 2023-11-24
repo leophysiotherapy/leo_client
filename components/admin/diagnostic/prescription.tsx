@@ -48,7 +48,7 @@ const PrescriptionDocument = ({ fullname, prescription, email, phone, date }: an
                         justifyContent: "center",
                         flex: "1"
                     }}>
-                        <Text style={{ color: "#fff", fontSize: "13px" }}>Palo Leonardo, DPT</Text>
+                        <Text style={{ color: "#fff", fontSize: "13px" }}>Paolo Leonardo, DPT</Text>
                         <Text style={{ color: "#fff", fontSize: "13px" }}>
                             Owner and Physical Therapist
                         </Text>

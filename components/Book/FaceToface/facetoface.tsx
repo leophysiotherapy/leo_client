@@ -56,7 +56,7 @@ export default function F2F() {
     const [ dates, setDates ] = useState([ "" ])
     const [ isRender, setRender ] = useState(false)
     const [ policies, setPolicies ] = useState(false)
-
+    const [ optin, setOptin ] = useState(false)
     useEffect(() => {
 
         if (!isRender) {
@@ -84,6 +84,10 @@ export default function F2F() {
 
     const onHandleClosePolicies = () => {
         setPolicies(() => !policies)
+    }
+
+    const onHandleCheckSMS = () => {
+        setOptin(() => !optin)
     }
 
     const [ toggle, setToggle ] = useState(false)
@@ -177,9 +181,13 @@ export default function F2F() {
                     <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
                     <span className={oxygen.className}>I have read the <button onClick={onHandleClosePolicies}>policies of the website</button></span>
                 </div>
+                <div className={styles.statement2}>
+                    <input type="checkbox" onChange={onHandleCheckSMS} checked={optin} />
+                    <span className={oxygen.className}>I accept to receive automated booking reminder 1 hour prior to my appointment schedule through SMS</span>
+                </div>
                 <div className={styles.form}>
                     <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>
-                    <button disabled={toggle === false} onClick={() => setBooks(() => !books)}>Book Now</button>
+                    <button disabled={toggle === false || optin === false} onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 

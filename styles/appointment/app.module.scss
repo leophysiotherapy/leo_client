@@ -202,11 +202,13 @@
       .policies {
          width: 100%;
          display: flex;
-         gap: 20px;
+         gap: 10px;
          @media screen and (max-width: 600px) {
-            display: flex;
             align-items: center;
             justify-content: center;
+            span {
+               width: 300px;
+            }
          }
          button {
             background-color: transparent;
@@ -214,6 +216,50 @@
             font-size: 16px;
             border-bottom: 1px solid blue;
             cursor: pointer;
+         }
+         input {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            display: grid;
+            place-content: center;
+            outline: none;
+
+            &::before {
+               content: "";
+               width: 1em;
+               height: 1em;
+               transform: scale(0);
+               transition: 120ms transform ease-in-out;
+               box-shadow: inset 1em 1em #0097b2;
+               border-radius: 2px;
+            }
+            &:checked::before {
+               transform: scale(1);
+            }
+         }
+      }
+      .statement2 {
+         width: 100%;
+         display: flex;
+         gap: 10px;
+         @media screen and (max-width: 600px) {
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            span {
+               width: 320px;
+               padding: 20px;
+            }
+            input {
+               width: 30px;
+               height: 30px;
+            }
+         }
+         span {
+            font-size: 15px;
          }
          input {
             appearance: none;

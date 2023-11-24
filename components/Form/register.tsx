@@ -30,6 +30,7 @@ export default function RegisterForm() {
     const [ store, setStored ] = useLocalStorage("email", "")
     const [ hippa, setHippa ] = useState(false)
     const [ ischecked, setChecked ] = useState(false)
+    const [ optin, setOptin ] = useState(false)
     const [ retype, setRetype ] = useState("")
     const [ mutate ] = useMutation(RegisterUser)
     const [ show, setShow ] = useState(false)
@@ -144,12 +145,19 @@ export default function RegisterForm() {
                 </div>
                 <div className={styles.verification}>
                     <div className={styles.statement}>
-                        <input onChange={() => setChecked(!ischecked)} checked={ischecked} type="checkbox" />
+                        <input onChange={() => setChecked(!ischecked)} checked={ischecked} required type="checkbox" />
                         <span className={oxygen.className}>I agree to all statement in <button type='button' onClick={() => setHippa(() => !hippa)} className={styles.hippa}><b>HIPAA</b></button> </span>
+                    </div>
+                    <div className={styles.statement2}>
+                        <input type="checkbox" required onChange={() => setOptin(() => !optin)} checked={optin} />
+                        <span className={oxygen.className}>
+                            I accept to receive automated booking reminder 1 hour prior to my appointment schedule through SMS
+                        </span>
+
                     </div>
                     <span className={oxygen.className}>Already have an account? <Link href="/auth/login">Login here</Link></span>
                 </div>
-                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone} type="submit">
+                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone || !optin === false} type="submit">
                     <span className={oxygen.className}>
                         Sign up
                     </span>
