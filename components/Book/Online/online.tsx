@@ -30,7 +30,7 @@ export default function Online() {
 
 
 
-    const [ today, setToday ] = useState(currentDate.add(1, "days"))
+    const [ today, setToday ] = useState(currentDate)
     const [ books, setBooks ] = useState(false)
     const [ selectedDate, setSelectedDate ] = useState(currentDate.add(1, "days"))
     const [ appointment, setAppointment ] = useState({
@@ -179,10 +179,6 @@ export default function Online() {
                 <div className={styles.policies}>
                     <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
                     <span className={oxygen.className}>I have read the <button onClick={onHandleClosePolicies}>policies of the website</button></span>
-                </div>
-                <div className={styles.statement2}>
-                    <input type="checkbox" onChange={onHandleCheckSMS} checked={optin} />
-                    <span className={oxygen.className}>I accept to receive automated booking reminder 1 hour prior to my appointment schedule through SMS</span>
                 </div>
                 <div className={styles.form}>
                     <button className={styles.cancelBtn}>Cancel</button>

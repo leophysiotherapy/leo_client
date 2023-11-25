@@ -46,7 +46,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     return {
         props: {
             diagnosis: getDiagnosisID
-        }
+        },
+        revalidate: 60
     }
 }
 

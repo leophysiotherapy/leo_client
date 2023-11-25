@@ -55,13 +55,13 @@ const OnlineReports: FC = () => {
                             label: "Online",
                             backgroundColor: "red",
                             data: loadingOnline ? "" : dataOnline.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: format(new Date(createdAt), "MMMM"), y: _all }
+                                return { x: createdAt, y: _all }
                             })
                         }, {
                             label: "Face-to-Face",
                             backgroundColor: "Blue",
                             data: loadingF2F ? "" : dataF2f.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: format(new Date(createdAt), "MMMM"), y: _all }
+                                return { x: createdAt, y: _all }
                             })
                         }
                     ]

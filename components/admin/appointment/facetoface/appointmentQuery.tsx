@@ -6,6 +6,7 @@ import { TbEdit, TbEye, TbX } from 'react-icons/tb'
 import styles from '@/styles/admin/booking/online.module.scss'
 import DeleteAppointmentsId from './cancelAppointment'
 import EditAppointment from './edit'
+import { utcToZonedTime } from 'date-fns-tz'
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
@@ -27,7 +28,7 @@ export default function AppointmentQuery({ appointmentID, date, time, status, fu
     }
     return (
         <tr>
-            <td className={oxygen.className}>{format(new Date(date), "MM/dd/yyyy")} {time}</td>
+            <td className={oxygen.className}>{format(utcToZonedTime(date, "America/Los_Angeles"), "MM/dd/yyyy")} {time}</td>
             <td className={oxygen.className}>{fullname}</td>
             <td className={oxygen.className}>{services}</td>
             <td style={{ textTransform: "uppercase" }} className={oxygen.className}>{status}</td>

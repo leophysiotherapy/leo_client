@@ -8,7 +8,6 @@ import { getAllAppointByPlatform, getFindSpecificDate } from '@/util/appointment
 import { useRouter } from 'next/router'
 import { useLazyQuery, useQuery } from '@apollo/client'
 import AppointmentQuery from '@/components/admin/appointment/online/appointmentQuery'
-import { format } from 'date-fns'
 const OnlineHeader = [ "Date & Time", "Name", "Links", "Status", "Receipt", "Actions" ]
 
 

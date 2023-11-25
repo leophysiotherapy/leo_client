@@ -181,10 +181,6 @@ export default function F2F() {
                     <input type="checkbox" checked={toggle} onChange={onHandleToggle} />
                     <span className={oxygen.className}>I have read the <button onClick={onHandleClosePolicies}>policies of the website</button></span>
                 </div>
-                <div className={styles.statement2}>
-                    <input type="checkbox" onChange={onHandleCheckSMS} checked={optin} />
-                    <span className={oxygen.className}>I accept to receive automated booking reminder 1 hour prior to my appointment schedule through SMS</span>
-                </div>
                 <div className={styles.form}>
                     <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>
                     <button disabled={toggle === false || optin === false} onClick={() => setBooks(() => !books)}>Book Now</button>

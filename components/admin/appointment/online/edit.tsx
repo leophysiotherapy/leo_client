@@ -141,7 +141,7 @@ export default function EditAppointment({ appointmentID, close, link, date, full
             <form onSubmit={onHandleEditAppointment}>
                 <div className={styles.formContainer}>
                     <input type="tex" value={fullname} disabled />
-                    <select onChange={(e) => setEdit({ ...edit, platform: e.target.value })}>
+                    <select disabled onChange={(e) => setEdit({ ...edit, platform: e.target.value })}>
 
                         <option value="online">Online</option>
                         <option value="f2f">Face-to-Face</option>

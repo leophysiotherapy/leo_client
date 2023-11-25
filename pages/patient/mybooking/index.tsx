@@ -11,6 +11,7 @@ import { useQuery } from '@apollo/client'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import { TbEye } from 'react-icons/tb'
+import { utcToZonedTime } from 'date-fns-tz'
 
 const poppins = Poppins({
     weight: "500",
@@ -70,7 +71,7 @@ const MyBooking: FC = ({ userID }: any) => {
                             </tr> :
                             data.getAllPatientAppointment.map(({ appointmentID, date, time, services, amount }: any) => (
                                 <tr key={appointmentID}>
-                                    <td className={oxygen.className}>{format(new Date(date), "MM/dd/yyyy")}</td>
+                                    <td className={oxygen.className}>{format(utcToZonedTime(date, "America/Los_Angeles"), "MM/dd/yyyy")}</td>
                                     <td className={oxygen.className}>{time}</td>
                                     <td className={oxygen.className}>{services}</td>
 

@@ -7,7 +7,6 @@ import { Poppins, Oxygen } from 'next/font/google'
 import { gql, useQuery, useMutation } from '@apollo/client'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import { utcToZonedTime } from 'date-fns-tz'
 const tableList = [ "Time", "Name", "Services", "Platform" ]
 
 
@@ -42,7 +41,6 @@ const Administrator: FC = () => {
       }`)
 
 
-    const zonedTime = utcToZonedTime(new Date(Date.now()), "America/Los_Angeles")
     return (
         <div className={styles.container}>
             <Head>
@@ -50,7 +48,7 @@ const Administrator: FC = () => {
             </Head>
             <div className={styles.todayDate}>
                 <h2 className={poppins.className}>Today{"'"}s Appointments</h2>
-                <span className={poppins.className}>{format(zonedTime, "cccc MMMM dd, yyyy")}</span>
+                <span className={poppins.className}>{format(new Date(Date.now()), "cccc MMMM dd, yyyy")}</span>
             </div>
             <div className={styles.table}>
                 <table>
