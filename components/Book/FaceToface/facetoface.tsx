@@ -56,7 +56,6 @@ export default function F2F() {
     const [ dates, setDates ] = useState([ "" ])
     const [ isRender, setRender ] = useState(false)
     const [ policies, setPolicies ] = useState(false)
-    const [ optin, setOptin ] = useState(false)
     useEffect(() => {
 
         if (!isRender) {
@@ -86,9 +85,6 @@ export default function F2F() {
         setPolicies(() => !policies)
     }
 
-    const onHandleCheckSMS = () => {
-        setOptin(() => !optin)
-    }
 
     const [ toggle, setToggle ] = useState(false)
     const onHandleToggle = () => {
@@ -183,7 +179,7 @@ export default function F2F() {
                 </div>
                 <div className={styles.form}>
                     <button onClick={() => router.push("/")} className={styles.cancelBtn}>Cancel</button>
-                    <button disabled={toggle === false || optin === false} onClick={() => setBooks(() => !books)}>Book Now</button>
+                    <button disabled={toggle === false} onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 

@@ -40,7 +40,6 @@ export default function Online() {
 
     })
     const [ policies, setPolicies ] = useState(false)
-    const [ optin, setOptin ] = useState(false)
 
     const { loading, data } = useQuery(getFindSpecificDate, {
         variables: {
@@ -73,9 +72,6 @@ export default function Online() {
         setRender(false)
     }, [ data, isRender ])
 
-    const onHandleCheckSMS = () => {
-        setOptin(() => !optin)
-    }
 
     const onValidChange = (time: any) => {
 
@@ -182,7 +178,7 @@ export default function Online() {
                 </div>
                 <div className={styles.form}>
                     <button className={styles.cancelBtn}>Cancel</button>
-                    <button disabled={toggle === false || optin === false} onClick={() => setBooks(() => !books)}>Book Now</button>
+                    <button disabled={toggle === false} onClick={() => setBooks(() => !books)}>Book Now</button>
                 </div>
             </div>
 
