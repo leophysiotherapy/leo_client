@@ -57,7 +57,8 @@ export const getStaticProps = async (context: GetStaticPropsContext) => {
     return {
         props: {
             appointmentData: getAllAppointmentID
-        }
+        },
+        revalidate: 60
     }
 }
 

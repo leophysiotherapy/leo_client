@@ -4,6 +4,7 @@ import Image from 'next/image'
 import { TbLocationPin, TbBrandInstagram } from 'react-icons/tb'
 import { Poppins, Oxygen } from 'next/font/google'
 import { format } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
 
 
 
@@ -67,7 +68,7 @@ export default function ReceiptBooking({ appointment, ref }: any) {
                                 <tr>
                                     <td className={oxygen.className}><b>Date</b></td>
                                     <td className={oxygen.className}>:</td>
-                                    <td className={oxygen.className}>{format(new Date(date), "MMMM dd, yyyy")}</td>
+                                    <td className={oxygen.className}>{format(utcToZonedTime( date, "America/Los_Angeles"), "MMMM dd, yyyy")}</td>
                                 </tr>
                                 <tr>
                                     <td className={oxygen.className}><b>Mode of Payment</b></td>
