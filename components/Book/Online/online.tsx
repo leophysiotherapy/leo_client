@@ -132,7 +132,11 @@ export default function Online() {
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
                         <div className={styles.cells} key={index}>
                             <button
-                                onClick={() => { setSelectedDate(date) }}
+                                onClick={() => {
+                                    setSelectedDate(date)
+                                    setDates([])
+                                    setTime([])
+                                }}
                                 disabled={date.isBefore(currentDate.add(1, "days"), "days") || date.isAfter(currentDate.add(2, "days"), "days")}
                                 className={
                                     cn(

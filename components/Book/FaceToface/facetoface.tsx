@@ -138,7 +138,11 @@ export default function F2F() {
                     {generateDate(today.month(), today.year()).map(({ date, currentMonth, today }, index) => (
                         <div className={styles.cells} key={index}>
                             <button
-                                onClick={() => { setSelectedDate(date) }}
+                                onClick={() => {
+                                    setSelectedDate(date)
+                                    setDates([])
+                                    setTime([])
+                                }}
                                 disabled={date.isBefore(currentDate.add(1, "days"), "days") || date.isAfter(currentDate.add(2, "days"), "days")}
                                 className={
                                     cn(
@@ -158,7 +162,9 @@ export default function F2F() {
                     {TimeValue.map(({ name, start, }) => (
                         <button
                             disabled={onValidChange(start)}
-                            onClick={(e) => setAppointment({ ...appointment, time: e.currentTarget.value })}
+                            onClick={(e) => {
+                                setAppointment({ ...appointment, time: e.currentTarget.value })
+                            }}
                             value={start} key={name} className={appointment.time === start ? `${styles.timeContainer} ${styles.timeActive}` : `${styles.timeContainer}`}>
                             <h2 className={oxygen.className}>{name}</h2>
                         </button>

@@ -61,7 +61,7 @@ export default function ResetPassword() {
                     {data ? "You have successfully changed your password!" : "A verification code has been sent to your email, Please check your email"}
                 </span>
                 {data ? <button onClick={() => router.push("/auth/login")}>Login Here</button> : <form onSubmit={onHandleResetPassword}>
-                    <input type="password" placeholder='Password' onChange={(e) => setPass({ ...pass, password: e.target.value })} />
+                    <input type="password" placeholder='Enter your new password' onChange={(e) => setPass({ ...pass, password: e.target.value })} />
                     <input type="password" placeholder='Re-type Password' onChange={(e) => setPass({ ...pass, rpassword: e.target.value })} />
                     <button disabled={!pass} type="submit">Submit</button>
                 </form>}
