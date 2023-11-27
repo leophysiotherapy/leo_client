@@ -47,7 +47,7 @@ export default function InventoryAdd({ close, userID }: any) {
     }
     return (
         <div className={styles.container}>
-            <h2 className={poppins.className}>Add Equipment</h2>
+            <h2 className={poppins.className}>Add Inventory</h2>
             <form onSubmit={onHandleInventoryForm}>
                 <div>
                     <input type="text" value={inventory.name} placeholder='Name' onChange={(e) => setInventoryAdd({ ...inventory, name: e.target.value })} />

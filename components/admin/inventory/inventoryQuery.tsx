@@ -10,6 +10,7 @@ const oxygen = Oxygen({
 })
 import EditEquipment from './edit'
 import DeleteEquipment from './delete'
+import { utcToZonedTime } from 'date-fns-tz'
 
 export default function InventoryQuery({ name, quantity, expiredDate, equipmentID, description }: any) {
 
@@ -37,7 +38,7 @@ export default function InventoryQuery({ name, quantity, expiredDate, equipmentI
         <tr style={currentDate >= expirationDate && currentDate >= almostExpiredDate || currentDate <= expirationDate && currentDate >= almostExpiredDate ? { color: "red" } : {}}>
             <td className={oxygen.className}>{name}</td>
             <td className={oxygen.className}>{quantity}</td>
-            <td className={oxygen.className}>{format(new Date(expiredDate), "MMMM dd, yyyy")}</td>
+            <td className={oxygen.className}>{format(utcToZonedTime(expiredDate, "America/Los_Angeles"), "MMMM dd, yyyy")}</td>
             <td>
                 {
                     deleteInventory ? <div className={styles.overlay}>

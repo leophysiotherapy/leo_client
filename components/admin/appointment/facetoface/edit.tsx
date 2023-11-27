@@ -141,11 +141,11 @@ export default function EditAppointment({ appointmentID, close, date, fullname, 
             <form onSubmit={onHandleEditAppointment}>
                 <div>
                     <input type="tex" value={fullname} disabled />
-                    <select value={edit.platform} onChange={(e) => setEdit({ ...edit, platform: e.target.value })}>
-                        <option disabled value="online">Online</option>
-                        <option disabled value="f2f">Face-to-Face</option>
+                    <select onChange={(e) => setEdit({ ...edit, status: e.target.value })}>
+                        <option value="upcoming">Upcoming</option>
+                        <option value="finished">Finished</option>
+                        <option value="canceled">Canceled</option>
                     </select>
-
                 </div>
                 <div onClick={() => setReason(() => !reason)} className={styles.formContainer} >
                     <input type="text" value={edit.time} onChange={(e) => setEdit({ ...edit, time: e.target.value })} />
@@ -156,11 +156,7 @@ export default function EditAppointment({ appointmentID, close, date, fullname, 
                     </div>
                 </div>
                 <div>
-                    <select onChange={(e) => setEdit({ ...edit, status: e.target.value })}>
-                        <option value="upcoming">Upcoming</option>
-                        <option value="finished">Finished</option>
-                        <option value="canceled">Canceled</option>
-                    </select>
+
                 </div>
                 <div className={styles.formBtnGrp}>
                     <button type="button" className={styles.cancel} onClick={close}>Cancel</button>

@@ -141,11 +141,8 @@ export default function EditAppointment({ appointmentID, close, link, date, full
             <form onSubmit={onHandleEditAppointment}>
                 <div className={styles.formContainer}>
                     <input type="tex" value={fullname} disabled />
-                    <select value={edit.platform} onChange={(e) => setEdit({ ...edit, platform: e.target.value })}>
-                        <option disabled value="online">Online</option>
-                        <option disabled value="f2f">Face-to-Face</option>
-                    </select>
-
+                    <input type="url" value={edit.link} placeholder='Link' onChange={(e) => setEdit({ ...edit, link: e.target.value })}
+                    />
                 </div>
                 <div onClick={() => setReason(() => !reason)} className={styles.formContainer} >
                     <input type="text" value={edit.time} onChange={(e) => setEdit({ ...edit, time: e.target.value })} />
@@ -156,8 +153,7 @@ export default function EditAppointment({ appointmentID, close, link, date, full
                     </div>
                 </div>
                 <div className={styles.formContainer}>
-                    <input type="url" value={edit.link} placeholder='Link' onChange={(e) => setEdit({ ...edit, link: e.target.value })}
-                    />
+
                     <select onChange={(e) => setEdit({ ...edit, status: e.target.value })}>
                         <option value="upcoming">Upcoming</option>
                         <option value="finished">Finished</option>

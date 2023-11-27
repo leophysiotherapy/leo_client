@@ -40,7 +40,8 @@ const Patient: FC = () => {
             role: "patient",
             take: pagination,
             limit: pages * pagination
-        }
+        },
+        pollInterval: 1000
     })
 
     const onHandlePatient = () => {

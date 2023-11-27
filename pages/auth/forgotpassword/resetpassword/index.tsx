@@ -58,7 +58,7 @@ export default function ResetPassword() {
                 <h2 className={poppins.className}>Reset Password</h2>
                 <Image src="/logo.png" alt="" height={80} width={120} priority />
                 <span className={oxygen.className}>
-                    {data ? "You have successfully changed your password!" : "A verification code has been sent to your email, Please check your email"}
+                    {data ? "You have successfully changed your password!" : "Enter your new Password"}
                 </span>
                 {data ? <button onClick={() => router.push("/auth/login")}>Login Here</button> : <form onSubmit={onHandleResetPassword}>
                     <input type="password" placeholder='Enter your new password' onChange={(e) => setPass({ ...pass, password: e.target.value })} />

@@ -7,6 +7,7 @@ import UserDelete from './delete'
 import UserEdit from './edit'
 import Link from 'next/link'
 import { format } from 'date-fns'
+import { utcToZonedTime } from 'date-fns-tz'
 
 const oxygen = Oxygen({
     weight: "400",
@@ -33,7 +34,7 @@ export default function PatientQuery({ userID, firstname, lastname, phone, appoi
         <tr key={userID}>
             <td className={oxygen.className}>{firstname} {lastname}</td>
             {appointment.length === 0 ? <td className={oxygen.className}>N/A</td> : appointment.map(({ date, time }: any, i) => (
-                i === 0 ? <td key={date} className={oxygen.className}>{format(new Date(date), "MMMM dd, yyyy")}{" "}{time}</td> : null
+                i === 0 ? <td key={date} className={oxygen.className}>{format(utcToZonedTime(date, "America/Los_Angeles"), "MMMM dd, yyyy")}{" "}{time}</td> : null
             ))}
             {prescription.length === 0 ? <td>N/A</td> :
                 prescription.map(({ prescriptionID, prescription: pre }: any, i) => (

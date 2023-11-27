@@ -30,7 +30,7 @@ const Online: FC = () => {
     const { loading, data } = useQuery(getAllAppointByPlatform, {
         variables: {
             platform: "f2f"
-        }
+        },
     })
 
     const [ datetime, { data: dataSpeficDate } ] = useLazyQuery(getFindSpecificDate, {
