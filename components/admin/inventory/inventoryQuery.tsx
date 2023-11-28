@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TbEdit, TbTrash } from 'react-icons/tb'
-import { format } from 'date-fns'
+import { addDays, format, parseISO } from 'date-fns'
 import { Oxygen } from 'next/font/google'
 import styles from '@/styles/admin/inventory/inventory.module.scss'
 
@@ -38,7 +38,7 @@ export default function InventoryQuery({ name, quantity, expiredDate, equipmentI
         <tr style={currentDate >= expirationDate && currentDate >= almostExpiredDate || currentDate <= expirationDate && currentDate >= almostExpiredDate ? { color: "red" } : {}}>
             <td className={oxygen.className}>{name}</td>
             <td className={oxygen.className}>{quantity}</td>
-            <td className={oxygen.className}>{format(utcToZonedTime(expiredDate, "America/Los_Angeles"), "MMMM dd, yyyy")}</td>
+            <td className={oxygen.className}>{format(addDays(new Date(expiredDate), 1), "MMMM dd,yyyy")}</td>
             <td>
                 {
                     deleteInventory ? <div className={styles.overlay}>
