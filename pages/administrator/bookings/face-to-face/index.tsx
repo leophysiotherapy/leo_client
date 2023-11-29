@@ -43,10 +43,10 @@ const Online: FC = () => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Face-to-Face Appointment</title>
+                <title>Face-to-Face Sessions</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
-            <h2 className={poppins.className}>Face-to-Face</h2>
+            <h2 className={poppins.className}>Face-to-Face Sessions</h2>
             <div className={styles.filtering}>
                 <div className={styles.filterDate}>
 

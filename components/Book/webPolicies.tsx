@@ -39,15 +39,7 @@ export default function WebPolicies({ close }: any) {
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>3. Availability Confirmation
-                    </h2>
-                    <p className={oxygen.className}>
-                        -    All bookings are subject to availability. While we strive to update our inventory regularly, there may be instances where the desired service or facility is not available for the preferred dates. In such cases, patients will be notified promptly through email and offered suitable alternatives or the option to choose an available date.
-                    </p>
-
-                </div>
-                <div>
-                    <h2 className={poppins.className}>4.Payment and Billing
+                    <h2 className={poppins.className}>3.Payment and Billing
                     </h2>
                     <p className={oxygen.className}>
                         -  You agree to pay all fees associated with your treatment and rehabilitation services as outlined in our fee schedule.
@@ -57,35 +49,35 @@ export default function WebPolicies({ close }: any) {
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>5. Booking Reminder
+                    <h2 className={poppins.className}>4. Booking Reminder
                     </h2>
                     <p className={oxygen.className}>
                         -  The patient will receive a booking reminder an hour before their appointment schedule through SMS.
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>6. Cancellation
+                    <h2 className={poppins.className}>5. Cancellation
                     </h2>
                     <p className={oxygen.className}>
                         -  Patients are requested to review their appointment details carefully before confirming the booking. Cancellations made will incur a cancellation fee of $50.
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>7. Rescheduling
+                    <h2 className={poppins.className}>6. Rescheduling
                     </h2>
                     <p className={oxygen.className}>
                         - We understand that unforeseen circumstances may arise, necessitating changes to the scheduled appointment. Admins will only have the authority to reschedule your schedule to ensure an effective use of available resources.
                     </p>
                 </div>
                 <div>
-                    <h2 className={poppins.className}>8. User Conduct
+                    <h2 className={poppins.className}>7. User Conduct
                     </h2>
                     <p className={oxygen.className}>
                         -  By using our services, you agree to use them for lawful purposes only and in compliance with all applicable laws and regulations. The patient shall not use our services to transmit any content that is offensive, harmful or in violation of the rights of others.
                     </p>
 
                     <div>
-                        <h2 className={poppins.className}>9. Contact Information
+                        <h2 className={poppins.className}>8. Contact Information
                         </h2>
                         <p className={oxygen.className}>
                             - If you have any questions or concerns about these Terms and Conditions or our services, please contact us at restore.pt11@gmail.com.

@@ -44,10 +44,10 @@ const Online: FC = () => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Online Appointment</title>
+                <title>Online Consultations</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
-            <h2 className={poppins.className}>Online Booking</h2>
+            <h2 className={poppins.className}>Online Consultations</h2>
             <div className={styles.filtering}>
                 <div className={styles.filterDate}>
 

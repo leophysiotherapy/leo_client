@@ -10,7 +10,7 @@ const FaceToface: FC = () => {
     return (
         <div className={styles.container}>
             <Head>
-                <title>Face-to-Face Appointment</title>
+                <title>Face-to-Face Sessions</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
             <F2F />

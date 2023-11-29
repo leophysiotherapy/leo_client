@@ -21,8 +21,8 @@ const patientURL = [
 ]
 
 const bookingURL = [
-    { name: "Face-to-Face", url: "/patient/appointment/facetoface" },
-    { name: "Online", url: "/patient/appointment/online" },
+    { name: "Face-to-Face Sesssion", url: "/patient/appointment/facetoface" },
+    { name: "Online Consultation", url: "/patient/appointment/online" },
     { name: "Pre-diagnostic", url: "/patient/appointment/pre-diagnostic" }
 ]
 export default function Header() {
@@ -70,7 +70,7 @@ export default function Header() {
                 </div>
             </div>
 
-            {width <=  900 ? <div className={styles.mobile} >
+            {width <= 900 ? <div className={styles.mobile} >
                 {mob ?
                     <div className={styles.navbar}>
                         <div className={styles.header}>
