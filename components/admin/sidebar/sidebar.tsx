@@ -92,7 +92,7 @@ export default function Sidebar({ close }: any) {
                                 router.push("/administrator/bookings/online")
                                 width < 600 ? close() : null
                             }}>
-                                <span>Online Consultation</span>
+                                <span>Online Consultations</span>
                             </button>
                             <button onClick={() => {
                                 router.push("/administrator/bookings/face-to-face")

@@ -21,8 +21,8 @@ const patientURL = [
 ]
 
 const bookingURL = [
-    { name: "Face-to-Face Sesssion", url: "/patient/appointment/facetoface" },
-    { name: "Online Consultation", url: "/patient/appointment/online" },
+    { name: "Face-to-Face Sessions", url: "/patient/appointment/facetoface" },
+    { name: "Online Consultations", url: "/patient/appointment/online" },
     { name: "Pre-diagnostic", url: "/patient/appointment/pre-diagnostic" }
 ]
 export default function Header() {
