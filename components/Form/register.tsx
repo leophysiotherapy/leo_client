@@ -151,7 +151,7 @@ export default function RegisterForm() {
                     <div className={styles.statement2}>
                         <input type="checkbox" required onChange={() => setOptin(() => !optin)} checked={optin} />
                         <span className={oxygen.className}>
-                            I accept to receive automated booking reminder 1 hour prior to my appointment schedule through SMS
+                            I accept to receive automated booking reminder prior to my appointment schedule through SMS
                         </span>
 
                     </div>
