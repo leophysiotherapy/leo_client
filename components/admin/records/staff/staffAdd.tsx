@@ -66,7 +66,8 @@ export default function StaffAdd({ close }: any) {
                 variables: {
                     role: "staff",
                     take: 10,
-                    limit: 0
+                    limit: 0,
+                    orders: "asc"
                 }
             } ]
         })

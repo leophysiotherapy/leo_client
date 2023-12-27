@@ -37,37 +37,42 @@ export default function Form() {
 
     const onHandleFormSubmit = (e: SyntheticEvent) => {
         e.preventDefault()
-        mutate({
-            variables: {
-                email: users.email,
-                password: users.password
-            },
-            onCompleted: (data) => {
-                Cookies.set("physio_token", data.login.token, {
-                    sameSite: "none",
-                    secure: true,
-                    path: "/",
-                    expires: 60 * 60 * 24 * 7
-                })
 
-                const { role }: any = jwtDecode(data.login.token)
+        if (isVerified === false) {
+            alert("Please verify the reCAPTCHA!")
+        } else {
+            mutate({
+                variables: {
+                    email: users.email,
+                    password: users.password
+                },
+                onCompleted: (data) => {
+                    Cookies.set("physio_token", data.login.token, {
+                        sameSite: "none",
+                        secure: true,
+                        path: "/",
+                        expires: 60 * 60 * 24 * 7
+                    })
 
-                switch (role) {
-                    case "patient":
-                        router.push("/patient/mybooking");
-                        break;
-                    case "admin":
-                        router.push("/administrator")
-                        break;
-                    default:
-                        break;
-                }
-            },
-            onError: (error) => {
-                alert(error.message)
-            },
-            errorPolicy: "all"
-        })
+                    const { role }: any = jwtDecode(data.login.token)
+
+                    switch (role) {
+                        case "patient":
+                            router.push("/patient/mybooking");
+                            break;
+                        case "admin":
+                            router.push("/administrator")
+                            break;
+                        default:
+                            break;
+                    }
+                },
+                onError: (error) => {
+                    alert(error.message)
+                },
+                errorPolicy: "all"
+            })
+        }
     }
 
 
@@ -92,9 +97,11 @@ export default function Form() {
                     <Link className={oxygen.className} href="/auth/forgotpassword">Forgot password</Link>
                 </div>
                 <div>
-                    <ReCAPTCHA sitekey='6LeakgspAAAAANbCiKckz48E2XCGHpYgfZHshxMH' onChange={onCaptchaChange} />
+                    <ReCAPTCHA sitekey='6LeakgspAAAAANbCiKckz48E2XCGHpYgfZHshxMH'
+
+                        onChange={onCaptchaChange} />
                 </div>
-                <button disabled={isVerified === false} type="submit" onClick={onHandleFormSubmit}>
+                <button type="submit" onClick={onHandleFormSubmit}>
                     <span className={oxygen.className}>Login</span>
                 </button>
                 <div className={styles.register}>

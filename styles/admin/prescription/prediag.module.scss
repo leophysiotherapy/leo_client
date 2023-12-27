@@ -103,7 +103,12 @@
                      align-items: center;
                      border: none;
                      cursor: pointer;
-                     &:nth-child(3) {
+                     &:nth-child(1) {
+                        svg {
+                           color: blue;
+                        }
+                     }
+                     &:nth-child(2) {
                         svg {
                            color: red;
                         }

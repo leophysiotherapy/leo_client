@@ -23,7 +23,9 @@ export default function UserDelete({ close, userID }: any) {
     refetchQueries: [ {
       query: GetAllPhysioUserByRole,
       variables: {
-        role: "staff"
+        role: "staff",
+        take: 10,
+        limit: 0,
       }
     } ]
   })

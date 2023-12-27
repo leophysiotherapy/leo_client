@@ -40,27 +40,13 @@ const Staff: FC = () => {
             take: pagination,
             limit: pages * pagination,
             orders: orders
-        }
+        },
+        pollInterval: 1000
     })
 
 
     const [ searchUser, { data: searchData } ] = useLazyQuery(GetAllPhysioSearchByRole)
 
-    useEffect(() => {
-        return subscribeToMore({
-            document: UserSubscriptions,
-            variables: {
-                role: "staff"
-            },
-            updateQuery: (prev, { subscriptionData }) => {
-                if (!subscriptionData.data) return prev
-                const neweAddUser = subscriptionData.data.UserSubscriptions
-                return Object.assign({}, {
-                    getPhysioUserByRole: [ prev.getPhysioUserByRole, neweAddUser ]
-                })
-            }
-        })
-    }, [ subscribeToMore ])
     const onHandleStaff = () => {
         setAdd(false)
     }

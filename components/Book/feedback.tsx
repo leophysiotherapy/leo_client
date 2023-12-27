@@ -91,7 +91,7 @@ export default function Feedback({ appointmentID, close }: any) {
             <Head>
                 <title>Feedback</title>
             </Head>
-            <h2 className={poppins.className}>Create Review</h2>
+            <h2 className={poppins.className}>Create Feedback</h2>
             <form onSubmit={onHandleFeedbackForm}>
                 <div className={styles.qs}>
                     <label className={poppins.className}>Therapist{"'"}s Name:</label>

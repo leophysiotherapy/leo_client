@@ -4,6 +4,7 @@ import { Poppins, Oxygen } from 'next/font/google'
 import { TimeValue } from '@/components/Book/calendar.config'
 import { useMutation } from '@apollo/client'
 import { CreatePreDiagForm } from '@/util/prediag/prediag.mutation'
+import { useRouter } from 'next/router'
 const oxygen = Oxygen({
     weight: "400",
     subsets: [ "latin" ]
@@ -19,8 +20,7 @@ const poppins = Poppins({
 
 export default function Questionaire({ userID }: any) {
 
-    console.log(userID)
-
+    const router = useRouter();
 
     const [ age, setAge ] = useState("")
     const [ sex, setSex ] = useState("")
@@ -77,6 +77,7 @@ export default function Questionaire({ userID }: any) {
             },
             onCompleted: () => {
                 alert("Successfully Pre-diagnostic Created");
+                router.reload();
             },
             onError: (e) => {
                 alert(e.message)
@@ -290,7 +291,7 @@ export default function Questionaire({ userID }: any) {
                         <label className={poppins.className}>Current medications: (Type N/A if none) </label>
                         <input type="text" onChange={(e) => setQuestion16(e.target.value)} />
                     </div>
-                    <button type="submit">Save</button>
+                    <button type="submit">Submit</button>
                 </div>
 
             </form>

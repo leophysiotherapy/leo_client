@@ -65,7 +65,8 @@ export default function PatientAdd({ close }: any) {
                 variables: {
                     role: "patient",
                     take: 10,
-                    limit: 0
+                    limit: 0,
+                    orders: "asc"
                 }
             } ]
         })
