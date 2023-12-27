@@ -66,7 +66,7 @@ const Index: FC = ({ diagForm }: any) => {
                 <title>Pre-Diagnostic Form</title>
             </Head>
             <h2 className={poppins.className}>Pre-Diagnostic</h2>
-            {diagForm.map(({ prediagnosticID, age, date, sex, time, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16, question17, user }: any) => (
+            {diagForm.map(({ prediagnosticID, age, date, sex, time, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16, user }: any) => (
                 <div className={styles.questionaireContainer} key={prediagnosticID}>
                     <div>
                         <label className={poppins.className} >Name: {user[ 0 ].profile[ 0 ].fullname}</label>
@@ -121,53 +121,49 @@ const Index: FC = ({ diagForm }: any) => {
                         <label className={poppins.className}>G. Chest pain/Palpitations: </label>
                         <span className={oxygen.className}>{question7}</span>
                     </div>
+
                     <div className={styles.question}>
-                        <label className={poppins.className}>F. Swelling in feet or hands
+                        <label className={poppins.className}>H. Swelling in feet or hands
                             : </label>
                         <span className={oxygen.className}>{question8}</span>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>H. Swelling in feet or hands
-                            : </label>
-                        <span className={oxygen.className}>{question9}</span>
-                    </div>
-                    <div className={styles.question}>
                         <label className={poppins.className}>I. Difficulty breathing/Shortness of breath
                         </label>
-                        <span className={oxygen.className}>{question10}</span>
+                        <span className={oxygen.className}>{question9}</span>
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>J. Cough/Change in cough/Blood in phlegm
                             : </label>
-                        <span className={oxygen.className}>{question11}</span>
+                        <span className={oxygen.className}>{question10}</span>
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>K. Difficulty swallowing
                             : </label>
-                        <span className={oxygen.className}>{question12}</span>
+                        <span className={oxygen.className}>{question11}</span>
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>L. Heartburn/Indigestion
                             : </label>
-                        <span className={oxygen.className}>{question13}</span>
+                        <span className={oxygen.className}>{question12}</span>
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>M. Difficulty urinating (starting, stopping)
                             : </label>
-                        <span className={oxygen.className}>{question14}</span>
+                        <span className={oxygen.className}>{question13}</span>
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>N. Are you pregnant?
                             : </label>
-                        <span className={oxygen.className}>{question15}</span>
+                        <span className={oxygen.className}>{question14}</span>
                     </div>
                     <div className={styles.question2}>
                         <label className={poppins.className}>Other medical Connditions or prior surgeries: (Type N/A if none) </label>
-                        <span className={oxygen.className}>{question16}</span>
+                        <span className={oxygen.className}>{question15}</span>
                     </div>
                     <div className={styles.question2}>
                         <label className={poppins.className}>Current medications: (Type N/A if none) </label>
-                        <span className={oxygen.className}>{question17}</span>
+                        <span className={oxygen.className}>{question16}</span>
                     </div>
                 </div>
             ))}

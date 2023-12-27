@@ -42,7 +42,6 @@ export default function Questionaire({ userID }: any) {
     const [ question14, setQuestion14 ] = useState("")
     const [ question15, setQuestion15 ] = useState("")
     const [ question16, setQuestion16 ] = useState("")
-    const [ question17, setQuestion17 ] = useState("")
 
     const [ questionMutation ] = useMutation(CreatePreDiagForm)
 
@@ -74,7 +73,6 @@ export default function Questionaire({ userID }: any) {
                     question14: question14,
                     question15: question15,
                     question16: question16,
-                    question17: question17,
                 }
             },
             onCompleted: () => {
@@ -201,7 +199,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>F. Swelling in feet or hands
+                        <label className={poppins.className}>H. Swelling in feet or hands
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question8 === "Yes" ? true : false} onChange={(e) => setQuestion8(e.target.value)} />
@@ -213,7 +211,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>H. Swelling in feet or hands
+                        <label className={poppins.className}>I. Difficulty breathing/Shortness of breath
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question9 === "Yes" ? true : false} onChange={(e) => setQuestion9(e.target.value)} />
@@ -225,7 +223,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>I. Difficulty breathing/Shortness of breath
+                        <label className={poppins.className}>J. Cough/Change in cough/Blood in phlegm
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question10 === "Yes" ? true : false} onChange={(e) => setQuestion10(e.target.value)} />
@@ -237,7 +235,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>J. Cough/Change in cough/Blood in phlegm
+                        <label className={poppins.className}>K. Difficulty swallowing
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question11 === "Yes" ? true : false} onChange={(e) => setQuestion11(e.target.value)} />
@@ -249,7 +247,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>K. Difficulty swallowing
+                        <label className={poppins.className}>L. Heartburn/Indigestion
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question12 === "Yes" ? true : false} onChange={(e) => setQuestion12(e.target.value)} />
@@ -261,7 +259,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>L. Heartburn/Indigestion
+                        <label className={poppins.className}>M. Difficulty urinating (starting, stopping)
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question13 === "Yes" ? true : false} onChange={(e) => setQuestion13(e.target.value)} />
@@ -273,7 +271,7 @@ export default function Questionaire({ userID }: any) {
                         </div>
                     </div>
                     <div className={styles.question}>
-                        <label className={poppins.className}>M. Difficulty urinating (starting, stopping)
+                        <label className={poppins.className}>N. Are you pregnant?
                             : </label>
                         <div className={styles.radios}>
                             <input type="radio" value="Yes" checked={question14 === "Yes" ? true : false} onChange={(e) => setQuestion14(e.target.value)} />
@@ -284,25 +282,13 @@ export default function Questionaire({ userID }: any) {
                             <label className={oxygen.className}>No</label>
                         </div>
                     </div>
-                    <div className={styles.question}>
-                        <label className={poppins.className}>N. Are you pregnant?
-                            : </label>
-                        <div className={styles.radios}>
-                            <input type="radio" value="Yes" checked={question15 === "Yes" ? true : false} onChange={(e) => setQuestion15(e.target.value)} />
-                            <label className={oxygen.className}>Yes</label>
-                        </div>
-                        <div className={styles.radios}>
-                            <input type="radio" value="No" checked={question15 === "No" ? true : false} onChange={(e) => setQuestion15(e.target.value)} />
-                            <label className={oxygen.className}>No</label>
-                        </div>
-                    </div>
                     <div className={styles.question2}>
                         <label className={poppins.className}>Other medical Connditions or prior surgeries: (Type N/A if none) </label>
-                        <input type="text" onChange={(e) => setQuestion16(e.target.value)} />
+                        <input type="text" onChange={(e) => setQuestion15(e.target.value)} />
                     </div>
                     <div className={styles.question2}>
                         <label className={poppins.className}>Current medications: (Type N/A if none) </label>
-                        <input type="text" onChange={(e) => setQuestion17(e.target.value)} />
+                        <input type="text" onChange={(e) => setQuestion16(e.target.value)} />
                     </div>
                     <button type="submit">Save</button>
                 </div>

@@ -31,7 +31,6 @@ export const GetAllPreDiagFormId = gql`query Query($prediagnosticId: ID!) {
     question14
     question15
     question16
-    question17
     question2
     question3
     question4
@@ -76,7 +75,6 @@ export const GetSearchPreDiagForm = gql`query GetSearchPreDiagnosticForm($search
     question14
     question15
     question16
-    question17
     createdAt
     updatedAt
     user {
