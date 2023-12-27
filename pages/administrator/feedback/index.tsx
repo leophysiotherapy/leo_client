@@ -1,10 +1,10 @@
 import DashboardLayout from '@/layout/dashboard.layout'
 import PageWithLayout from '@/layout/page.layout'
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import styles from '@/styles/admin/feedback/review.module.scss'
-import { GetAllFeedbackQuery } from '@/util/feedback/feedback.query'
-import { Poppins } from 'next/font/google'
-import { useQuery } from '@apollo/client'
+import { GetAllFeedbackQuery, GetSearchFeedback } from '@/util/feedback/feedback.query'
+import { Poppins, Oxygen } from 'next/font/google'
+import { useLazyQuery, useQuery } from '@apollo/client'
 import Head from 'next/head'
 import FeedbackQuery from '@/components/admin/feedback/feedbackQuery'
 
@@ -16,17 +16,45 @@ const poppins = Poppins({
     subsets: [ "latin" ]
 })
 
+const oxygen = Oxygen({
+    weight: "400",
+    subsets: [ "latin" ]
+})
+
 
 const Reviews: FC = () => {
     const { loading, data } = useQuery(GetAllFeedbackQuery)
 
+    const [ search, setSearch ] = useState("")
+
+    const [ searchFeedback, { data: searchData } ] = useLazyQuery(GetSearchFeedback, {
+        variables: {
+            search
+        }
+    })
     return (
         <div className={styles.container}>
             <Head>
                 <title>Feedback</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
-            <h2 className={poppins.className}>Reviews</h2>
+            <h2 className={poppins.className}>Feedback</h2>
+            <div className={styles.filter}>
+
+                <div className={styles.filterEntries}>
+
+                    <div className={styles.filterSearch}>
+                        <span className={oxygen.className}>Search:</span>
+                        <input type="search" onChange={(e) => {
+                            searchFeedback()
+                            setSearch(e.target.value)
+                        }
+
+                        } />
+                    </div>
+
+                </div>
+            </div>
             <div className={styles.table}>
                 <table>
                     <thead>
@@ -39,7 +67,13 @@ const Reviews: FC = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {loading ? <tr>
+                        {search ? searchData?.getSearchFeedback.map(({ rating, feedbackID, feedback, creatdAt, users }: any) => (
+                            users.map(({ profile }: any) => (
+                                profile.map(({ fullname }: any) => (
+                                    <FeedbackQuery key={feedbackID} feedbackID={feedbackID} feedback={feedback} rating={rating} date={creatdAt} fullname={fullname} />
+                                ))
+                            ))
+                        )) : loading ? <tr>
                             <td></td>
                             <td></td>
                             <td></td>

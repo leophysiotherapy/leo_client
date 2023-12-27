@@ -15,6 +15,8 @@ import { useMutation } from '@apollo/client'
 import { PayPalButtons } from '@paypal/react-paypal-js'
 import { useReactToPrint } from 'react-to-print'
 import ReceiptBooking from '@/components/patient/receiptBooking'
+import DisclaimerFeedback from '@/components/patient/feedback/disclamier'
+import { count } from 'console'
 
 const poppins = Poppins({
     weight: "500",
@@ -77,6 +79,7 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
 
     const onHandleFeedbackToggle = () => {
         setFeedback(false)
+        setContinue(false)
     }
 
     useEffect(() => {
@@ -89,6 +92,12 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
         content: () => PrintComponent.current
     })
 
+    const [ cont, setContinue ] = useState(false)
+
+
+    const onHandleDisclaimer = () => {
+        setContinue(() => !cont)
+    }
 
 
     if (router.isFallback) {
@@ -118,7 +127,8 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                     <div key={appointmentID} className={styles.bookContainer}>
                         {
                             feedback ? <div className={styles.overlay}>
-                                <Feedback appointmentID={appointmentID} close={onHandleFeedbackToggle} />
+                                {cont ?
+                                    <Feedback appointmentID={appointmentID} close={onHandleFeedbackToggle} /> : <DisclaimerFeedback continueHandler={onHandleDisclaimer} />}
                             </div> : null
                         }
                         <div className={styles.book}>

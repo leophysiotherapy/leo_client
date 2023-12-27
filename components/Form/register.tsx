@@ -37,6 +37,9 @@ export default function RegisterForm() {
     const [ isShow, setIsShow ] = useState(false)
     const [ isValid, setIsValid ] = useState(false)
 
+
+
+
     const [ users, setUsers ] = useState<RegisterForm>({
         email: "",
         password: "",
@@ -63,6 +66,8 @@ export default function RegisterForm() {
         if (users.password !== retype) {
             alert("Password is not matched")
         }
+
+
 
 
         mutate({
@@ -119,9 +124,7 @@ export default function RegisterForm() {
                 <input onChange={(e) => {
                     setUsers({ ...users, email: e.target.value })
                 }} className={styles.inptext} type="email" placeholder='Email Address' />
-                <p className={oxygen.className} style={{ textAlign: 'left', width: "100%" }}>
-                    You must use a gmail account.
-                </p>
+
                 <input onChange={(e) => setUsers({ ...users, phone: e.target.value })} className={styles.inptext} type="tel" placeholder='Contact Number' />
                 <div className={styles.password}>
                     <input style={isValid && users.password.length > 6 ? { border: "2px solid green" } : { border: "2px solid red" }} onChange={(e) => {
@@ -157,7 +160,7 @@ export default function RegisterForm() {
                     </div>
                     <span className={oxygen.className}>Already have an account? <Link href="/auth/login">Login here</Link></span>
                 </div>
-                <button className={styles.submitBtn} disabled={ischecked === false || !users.email || !users.firstname || !users.password || !users.lastname || !users.phone || optin === false} type="submit">
+                <button className={styles.submitBtn} type="submit">
                     <span className={oxygen.className}>
                         Sign up
                     </span>

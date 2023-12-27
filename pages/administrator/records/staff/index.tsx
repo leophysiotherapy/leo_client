@@ -10,7 +10,7 @@ import StaffAdd from '@/components/admin/records/staff/staffAdd'
 import { GetAllPhysioUserByRole, GetAllPhysioSearchByRole } from '@/util/user/user.query'
 import { UserSubscriptions } from '@/util/user/user.subscirptions'
 import StaffQuery from '@/components/admin/records/staff/staff'
-
+import { Sorting } from '@/util/sorting'
 
 const oxygen = Oxygen({
     weight: "400",
@@ -32,11 +32,14 @@ const Staff: FC = () => {
 
     const [ search, setSearch ] = useState("")
 
+    const [ orders, setOrders ] = useState("asc")
+
     const { loading, data, subscribeToMore } = useQuery(GetAllPhysioUserByRole, {
         variables: {
             role: "staff",
             take: pagination,
-            limit: pages * pagination
+            limit: pages * pagination,
+            orders: orders
         }
     })
 
@@ -91,6 +94,12 @@ const Staff: FC = () => {
                         <option value={100}>100</option>
                     </select>
                     <span className={oxygen.className}>entries</span>
+                    <span className={oxygen.className}>Sort:</span>
+                    <select onChange={(e) => setOrders(e.target.value)}>
+                        {Sorting.map(({ name, value }) => (
+                            <option key={name} value={value}>{name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className={styles.filterSearch}>
                     <span className={oxygen.className}>Search:</span>

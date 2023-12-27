@@ -158,27 +158,11 @@ export default function Sidebar({ close }: any) {
                             </button>
                         </div> : null
                 }
-                <button onClick={() => setFeedback(() => !feedback)}>
-                    <span>Feedback</span>
-                    {feedback ? <TbChevronDown size={20} /> : <TbChevronRight size={20} />}
+                <button onClick={() => router.push("/administrator/feedback")}>
+                    <span>Feedbacks</span>
+
                 </button>
-                {
-                    feedback ?
-                        <div className={styles.subNav}>
-                            <button onClick={() => {
-                                router.push("/administrator/feedback/evaluation-form")
-                                width < 600 ? close() : null
-                            }}>
-                                <span>Evaluation Form</span>
-                            </button>
-                            <button onClick={() => {
-                                router.push("/administrator/feedback/reviews")
-                                width < 600 ? close() : null
-                            }}>
-                                <span>Reviews</span>
-                            </button>
-                        </div> : null
-                }
+
             </ul>
             <div className={styles.btnLogout}>
                 <button onClick={onHandleLogout}>

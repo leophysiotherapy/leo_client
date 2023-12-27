@@ -11,9 +11,7 @@ import { useQuery, useLazyQuery } from '@apollo/client'
 import { TbPlus } from 'react-icons/tb'
 import { GetAllInventory, GetAllInventoryBySearch } from '@/util/inventory/equipment.query'
 import { GetServerSidePropsContext } from 'next'
-
-const headerTable = [ "Name", "Quantity", "Expired Date", "Actions" ]
-
+import { Sorting } from '@/util/sorting'
 
 const oxygen = Oxygen({
     weight: "400",
@@ -34,10 +32,13 @@ const Equipment: FC = ({ userID }: any) => {
     const [ search, setSearch ] = useState("")
     const [ add, setAdd ] = useState(false)
 
+    const [ orders, setOrders ] = useState("asc")
+
     const [ inventory, setInventory ] = useState("equipment")
     const { loading, data } = useQuery(GetAllInventory, {
         variables: {
-            inventories: inventory
+            inventories: inventory,
+            orders: orders
         }
     })
     const [ searchInventory, { data: searchData } ] = useLazyQuery(GetAllInventoryBySearch)
@@ -70,6 +71,11 @@ const Equipment: FC = ({ userID }: any) => {
                         <option value="equipment">Equipment</option>
                         <option value="supplies">Supplies</option>
                     </select>
+                    <select onChange={(e) => setOrders(e.target.value)}>
+                        {Sorting.map(({ name, value }) => (
+                            <option key={name} value={value}>{name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className={styles.filterSearch}>
                     <span className={oxygen.className}>Search:</span>
@@ -89,9 +95,12 @@ const Equipment: FC = ({ userID }: any) => {
                 <table>
                     <thead>
                         <tr>
-                            {headerTable.map((name) => (
-                                <th className={poppins.className} key={name}>{name}</th>
-                            ))}
+
+                            <th className={poppins.className}>Name</th>
+                            <th className={poppins.className}>Quantity</th>
+                            <th className={poppins.className}>{inventory === "equipment" ? "Maintenance Date" : "Expiry Date"}</th>
+                            <th className={poppins.className}>Action</th>
+
                         </tr>
                     </thead>
                     <tbody>

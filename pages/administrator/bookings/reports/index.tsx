@@ -2,10 +2,15 @@ import DashboardLayout from '@/layout/dashboard.layout'
 import PageWithLayout from '@/layout/page.layout'
 import React, { FC, useState } from 'react'
 import Head from 'next/head'
-import { BarElement, Chart as ChartJS, Legend, CategoryScale, LinearScale } from 'chart.js'
+import { BarElement, Chart as ChartJS, Legend, CategoryScale, LinearScale, Tooltip, PointElement, Title, ArcElement, LineElement, } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
-import { format } from 'date-fns'
-ChartJS.register(BarElement, Legend, CategoryScale, LinearScale)
+ChartJS.register(LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip, ArcElement, CategoryScale,
+    BarElement,
+    Legend)
 
 import styles from '@/styles/admin/booking/reports/reports.module.scss'
 import { gql, useQuery } from '@apollo/client'
@@ -49,23 +54,25 @@ const OnlineReports: FC = () => {
                 <option value="Annually">Annually</option>
             </select>
             <div className={styles.chartsJS} >
-                <Bar data={{
-                    datasets: [
-                        {
-                            label: "Online",
-                            backgroundColor: "red",
-                            data: loadingOnline ? "" : dataOnline.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: createdAt, y: _all }
-                            })
-                        }, {
-                            label: "Face-to-Face",
-                            backgroundColor: "Blue",
-                            data: loadingF2F ? "" : dataF2f.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
-                                return { x: createdAt, y: _all }
-                            })
-                        }
-                    ]
-                }} />
+                <Bar
+                    data={{
+                        datasets: [
+                            {
+                                label: "Online",
+                                backgroundColor: "red",
+
+                                data: loadingOnline ? "" : dataOnline.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
+                                    return { x: createdAt, y: _all }
+                                })
+                            }, {
+                                label: "Face-to-Face",
+                                backgroundColor: "Blue",
+                                data: loadingF2F ? "" : dataF2f.getReportsByPlatform.map(({ createdAt, _all }: { createdAt: any, _all: number }) => {
+                                    return { x: createdAt, y: _all }
+                                })
+                            }
+                        ]
+                    }} />
             </div>
         </div>
     )

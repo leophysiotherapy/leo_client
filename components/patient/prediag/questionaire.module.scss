@@ -1,0 +1,66 @@
+.container {
+   width: 800px;
+   display: flex;
+   align-content: center;
+   justify-content: center;
+   @media screen and (max-width: 1200px) {
+      width: 100%;
+   }
+   form {
+      background-color: #0097b2;
+      border-radius: 5px;
+      button {
+         width: 100%;
+         height: 45px;
+      }
+   }
+   .questionaireContainer {
+      width: 100%;
+      padding: 20px;
+
+      color: #fff;
+      border-radius: 5px;
+      height: 500px;
+      overflow-y: auto;
+      @media screen and (max-width: 1200px) {
+         width: 100%;
+         height: 600px;
+      }
+      .question {
+         display: flex;
+         flex-direction: column;
+         gap: 10px;
+         padding: 10px 0;
+         label {
+            font-size: 16px;
+         }
+         select {
+            height: 45px;
+         }
+         input {
+            height: 35px;
+            width: 120px;
+            padding: 5px;
+         }
+         .radios {
+            display: flex;
+            gap: 10px;
+            input {
+               width: auto;
+            }
+         }
+      }
+      .question2 {
+         width: 100%;
+         display: flex;
+         flex-direction: column;
+         gap: 5px;
+         height: 76px;
+         input {
+            width: 100%;
+            height: 35px;
+            padding: 5px;
+         }
+      }
+   }
+}

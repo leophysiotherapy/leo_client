@@ -10,7 +10,7 @@ import { GetAllPhysioSearchByRole, GetAllPhysioUserByRole } from '@/util/user/us
 import PatientAdd from '@/components/admin/records/patient/patientAdd'
 import PatientQuery from '@/components/admin/records/patient/patient'
 import { UserSubscriptions } from '@/util/user/user.subscirptions'
-
+import { Sorting } from '@/util/sorting'
 
 
 const oxygen = Oxygen({
@@ -35,11 +35,14 @@ const Patient: FC = () => {
     const [ pages, setPages ] = useState(0)
     const [ search, setSearch ] = useState("")
 
+    const [ orders, setOrders ] = useState("asc")
+
     const { loading, data, subscribeToMore } = useQuery(GetAllPhysioUserByRole, {
         variables: {
             role: "patient",
             take: pagination,
-            limit: pages * pagination
+            limit: pages * pagination,
+            orders: orders
         },
         pollInterval: 1000
     })
@@ -94,6 +97,12 @@ const Patient: FC = () => {
                         <option value={100}>100</option>
                     </select>
                     <span className={oxygen.className}>entries</span>
+                    <span className={oxygen.className}>Sort:</span>
+                    <select onChange={(e) => setOrders(e.target.value)}>
+                        {Sorting.map(({ name, value }) => (
+                            <option key={name} value={value}>{name}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className={styles.filterSearch}>
                     <span className={oxygen.className}>Search:</span>

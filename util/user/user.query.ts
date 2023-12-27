@@ -24,9 +24,9 @@ export const getAllPhysioId = gql`query Query($userId: ID!) {
 
 
 
-export const GetAllPhysioUserByRole = gql`query Query($role: roles, $take: Int!, $limit: Int!) {
-  getPhysioUserByRole(role: $role, take: $take, limit: $limit) {
-    userID
+export const GetAllPhysioUserByRole = gql`query GetPhysioUserByRole($take: Int!, $limit: Int!, $role: roles, $orders: sort!) {
+  getPhysioUserByRole(take: $take, limit: $limit, role: $role, orders: $orders) {
+ userID
     email
     password
     profile {
@@ -54,7 +54,9 @@ export const GetAllPhysioUserByRole = gql`query Query($role: roles, $take: Int!,
       platform
     }
   }
-}
+  }
+
+
 `
 
 

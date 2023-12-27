@@ -1,6 +1,5 @@
 .container {
    width: 500px;
-   height: auto;
    display: flex;
    align-items: center;
    flex-direction: column;
@@ -23,9 +22,24 @@
    }
    form {
       width: 450px;
+
+      height: 500px;
       display: flex;
       flex-direction: column;
       gap: 20px;
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+         width: 5px;
+      }
+      .qs {
+         width: 100%;
+         display: flex;
+         align-items: center;
+         gap: 5px;
+         input {
+            padding: 5px;
+         }
+      }
       @media screen and (max-width: 500px) {
          width: 360px;
          height: auto;
@@ -34,6 +48,22 @@
          justify-content: center;
          textarea {
             width: 100%;
+         }
+      }
+      .question {
+         .onRadio {
+            height: 50px;
+            display: flex;
+            justify-content: space-around;
+            .radio {
+               display: flex;
+               align-items: center;
+               gap: 10px;
+               input {
+                  width: 15px;
+                  height: 23px;
+               }
+            }
          }
       }
       .ratings {

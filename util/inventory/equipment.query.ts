@@ -2,13 +2,13 @@ import { gql } from "@apollo/client";
 
 
 
-export const GetAllInventory = gql`query GetAllEquipment($inventories: inventory) {
-  getAllEquipment(inventories: $inventories) {
-    quantity
+export const GetAllInventory = gql`query GetAllEquipment($inventories: inventory, $orders: sort) {
+  getAllEquipment(inventories: $inventories, orders: $orders) {
     name
-    expireDate
-    equipmentID
-    description
+      quantity
+      expireDate
+      equipmentID
+      description
   }
 }`
 

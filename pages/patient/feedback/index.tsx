@@ -9,8 +9,6 @@ import jwtDecode from 'jwt-decode'
 import { useQuery } from '@apollo/client'
 import { FeedbackQueryByUser } from '@/util/feedback/feedback.query'
 import FeedbackQuery from '@/components/patient/feedbackQuery'
-import { TbPlus } from 'react-icons/tb'
-import CreateAddFeedback from '@/components/patient/feedback/addFeedback'
 const poppins = Poppins({
     weight: "500",
     subsets: [ "latin" ]
@@ -25,40 +23,20 @@ const Feedback: FC = ({ userID }: any) => {
             userId: userID
         }
     })
-    const [ open, setOpen ] = useState(false)
 
-
-    const onHandleCloseCreateFeedback = () => {
-        setOpen(() => !open)
-    }
-
-    const [ selection, setSelections ] = useState("feedback")
     return (
         <div className={styles.container}>
             <Head>
                 <title>Feedback</title>
                 <link rel="icon" href="/faviphysio.png" />
             </Head>
-            {
-                open ? < div className={styles.overlay}>
-                    <CreateAddFeedback userID={userID} close={onHandleCloseCreateFeedback} />
-                </div> : null
-            }
-            <div className={styles.forms}>
-                <select onChange={(e) => setSelections(e.target.value)}>
-                    <option value="feedback">Reviews</option>
-                    <option value="form">Evaluation form</option>
-                </select>
-            </div>
 
             <div>
                 <div className={styles.titleContainer}>
                     <h2 className={poppins.className}>Feedback</h2>
                 </div>
-                {selection === "feedback" ? <div className={styles.addBtn}>
-                    <button onClick={onHandleCloseCreateFeedback}> <TbPlus size={20} /> Create </button>
-                </div> : null}
-                {selection === "feedback" ? <table>
+
+                <table>
                     <thead>
                         <tr>
                             {feedHead.map((name) => (
@@ -77,9 +55,7 @@ const Feedback: FC = ({ userID }: any) => {
                             <FeedbackQuery key={feedbackID} feedbackID={feedbackID} rating={rating} createdAt={creatdAt} />
                         ))}
                     </tbody>
-                </table> : <div style={{ display: "flex", justifyContent: "center", alignContent: "center", border: "0" }}>
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfZMcDctfaw0MQr08Bx8A53JedEa4vTvFmD8aRbzTWYhaSzEQ/viewform?embedded=true" width="640" height="1800" >Loading…</iframe>
-                </div>}
+                </table>
             </div>
         </div>
     )

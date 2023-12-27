@@ -42,6 +42,9 @@ export default function InventoryAdd({ close, userID }: any) {
             onCompleted: () => {
                 alert("Successfully Inventory Added")
             },
+            onError: (error) => {
+                alert(error.message)
+            },
             refetchQueries: [ GetAllInventory ]
         })
     }
