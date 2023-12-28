@@ -69,7 +69,11 @@ const Index: FC = ({ diagForm }: any) => {
             {diagForm.map(({ prediagnosticID, age, date, sex, time, question1, question2, question3, question4, question5, question6, question7, question8, question9, question10, question11, question12, question13, question14, question15, question16, user }: any) => (
                 <div className={styles.questionaireContainer} key={prediagnosticID}>
                     <div>
-                        <label className={poppins.className} >Name: {user[ 0 ].profile[ 0 ].fullname}</label>
+                        {user.map(({ profile }: any) => (
+                            profile.map(({ fullname }: any) => (
+                                <label key={fullname}>{fullname}</label>
+                            ))
+                        ))}
                     </div>
                     <div className={styles.question}>
                         <label className={poppins.className}>Age: {age}</label>
