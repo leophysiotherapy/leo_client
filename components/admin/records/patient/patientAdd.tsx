@@ -62,6 +62,7 @@ export default function PatientAdd({ close }: any) {
             },
             onError: (e) => {
                 alert(e.message)
+                
             },
             refetchQueries: [ {
                 query: GetAllPhysioUserByRole,
