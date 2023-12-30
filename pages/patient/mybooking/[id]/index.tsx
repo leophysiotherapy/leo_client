@@ -1,5 +1,5 @@
 import { client } from '@/lib/apolloWrapper'
-import React, { FC, useState, useRef, useEffect } from 'react'
+import React, { FC, useState, useRef, useEffect, SyntheticEvent } from 'react'
 import Head from 'next/head'
 import PageWithLayout from '@/layout/page.layout'
 import MainLayout from '@/layout/main.layout'
@@ -167,7 +167,8 @@ const IdMyBooking: FC = ({ appointmentData }: any) => {
                             <h2 className={poppins.className}>Total amount: <span className={oxygen.className}>{Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(amount)}</span></h2>
                             {status === "canceled" || status === "done" || status === "finished" ? null :
                                 <div className={styles.cancelBtn}>
-                                    <button onClick={() => {
+                                    <button onClick={(e: SyntheticEvent) => {
+                                        e.preventDefault();
                                         mutate({
                                             variables: {
                                                 appointmentId: appointmentID
